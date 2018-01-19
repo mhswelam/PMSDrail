@@ -1,53 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Team 1 Project 2</title>
+  <title>Team 1 Drail project</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <style>
+  body {
+      position: relative;
+      background-color: rgb(194, 197, 197);
+  }
+  </style>
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<div class="container">
-  <div id="demo" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#section1">Team Members</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section2">Roles</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section3">Project Description</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link" href="#section4" >Milestones</a>
+    </li>
   </ul>
+</nav>
 
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="" alt="">
-      <div class="carousel-caption">
-    <h3>Project Members</h3>
-    <p>We are having such a great time!</p>
-  </div>
-    </div>
-    <div class="carousel-item">
-      <img src="" alt="">
-    </div>
-    <div class="carousel-item">
-      <img src="" alt="">
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-
+<div id="section1" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+  <h1>Team Members</h1>
+  <h2>Charles Harris</h2>
+  <h2>  Mohamad Alhindi</h2>
+  <h2>  Allan Poindexter</h2>
+  <h2>  Cristian Hermida</h2>
+  <h2>  Mohamed Swelam</h2>
 </div>
+<div id="section2" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+  <h1>Roles</h1>
+  <p>GitHub :  Cristian Hermida</p>
+  <p>DevOps : Mohamad Alhindi</p>
+  <p>Client Side: Allan Poindexter</p>
+  <p>Server Side: Charles Harris</p>
+  <p>RDS : Mohamed Swelam</p>
+  <p>----------------------------------</p>
+  <p>Validation : Charles Harris</p>
+  <p>Captain - SCRUM Master : Mohamed Swelam </p>
 </div>
+<div id="section3" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+  <h1>Project Description</h1>
+  <p>Agile SCRUM Board Software System</p>
+  <p>Swim lanes
+    -Stories
+    -Tasks
+    -story points
+    -burndown charts
+    -Create multiple boards per user
+    -Multiple roles
+    -logging: java logging, log4j using Spring AOP -"Hijack code"
+    -Mobile friendly first!
+    -Bonus for making it drag-n-drop</p>
+    <p>Required Technologies:
+      Java 8, HTML, CSS, JavaScript, AJAX, Bootstrap, Angular
+      RDS - Oracle DB
+      EC2 - host application -Prod
+      EC2 - for development -UAT (Optional)
+      EC2 - host jenkins for the DevOps Pipeline
+      Spring Core, MVC, ORM/DATA or Spring Boot
+      jUnit</p>
+</div>
+<div id="section4" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+  <h1>Milestones</h1>
+  <p>Project Plan, Pipeline  Setup</p>
+  <img src="pipeline.jpg" alt="img" width="400" height="400" />
+  <p>Database Plan, ER Digram and DB Setup</p>
+  <img src="er.png" alt="img" width="400" height="400" />
+  <p></p>
+</div>
+
 
 </body>
 </html>
