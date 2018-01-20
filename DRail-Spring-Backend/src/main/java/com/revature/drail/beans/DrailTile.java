@@ -1,6 +1,8 @@
 package com.revature.drail.beans;
 
 import java.security.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,13 +55,12 @@ public class DrailTile {
 	private DrailRail rail;
 	
 	@OneToMany(mappedBy="tile", fetch=FetchType.EAGER)
-	private DrailTask task;
+	private List<DrailTask> task = new ArrayList<DrailTask>();
 	
 	public DrailTile() {
 	}
-
 	public DrailTile(int tileId, String name, int points, String note, Timestamp dateCompleted, int completed,
-			int order, DrailUser userCheckedOut, DrailRail rail, DrailTask task) {
+			int order, DrailUser userCheckedOut, DrailRail rail, List<DrailTask> task) {
 		super();
 		this.tileId = tileId;
 		this.name = name;
@@ -72,87 +73,66 @@ public class DrailTile {
 		this.rail = rail;
 		this.task = task;
 	}
-
 	public int getTileId() {
 		return tileId;
 	}
-
 	public void setTileId(int tileId) {
 		this.tileId = tileId;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public int getPoints() {
 		return points;
 	}
-
 	public void setPoints(int points) {
 		this.points = points;
 	}
-
 	public String getNote() {
 		return note;
 	}
-
 	public void setNote(String note) {
 		this.note = note;
 	}
-
 	public Timestamp getDateCompleted() {
 		return dateCompleted;
 	}
-
 	public void setDateCompleted(Timestamp dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
-
 	public int getCompleted() {
 		return completed;
 	}
-
 	public void setCompleted(int completed) {
 		this.completed = completed;
 	}
-
 	public int getOrder() {
 		return order;
 	}
-
 	public void setOrder(int order) {
 		this.order = order;
 	}
-
 	public DrailUser getUserCheckedOut() {
 		return userCheckedOut;
 	}
-
 	public void setUserCheckedOut(DrailUser userCheckedOut) {
 		this.userCheckedOut = userCheckedOut;
 	}
-
 	public DrailRail getRail() {
 		return rail;
 	}
-
 	public void setRail(DrailRail rail) {
 		this.rail = rail;
 	}
-
-	public DrailTask getTask() {
+	public List<DrailTask> getTask() {
 		return task;
 	}
-
-	public void setTask(DrailTask task) {
+	public void setTask(List<DrailTask> task) {
 		this.task = task;
 	}
-
 	@Override
 	public String toString() {
 		return "DrailTile [tileId=" + tileId + ", name=" + name + ", points=" + points + ", note=" + note
