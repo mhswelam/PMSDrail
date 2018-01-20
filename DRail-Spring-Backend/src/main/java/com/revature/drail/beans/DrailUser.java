@@ -1,10 +1,17 @@
 package com.revature.drail.beans;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,6 +39,12 @@ public class DrailUser {
 	
 	@Column(name="USER_EMAIL")
 	private String email;
+	
+	@ManyToMany
+	@JoinTable(name = "DRAIL_URS",
+			joinColumns= { @JoinColumn(name="URS_U_ID") },
+			inverseJoinColumns= {@JoinColumn(name="URS_S_ID") })
+	Set<DrailStation> stations = new HashSet<>();
 	
 	public DrailUser() {
 	}
@@ -91,6 +104,14 @@ public class DrailUser {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Set<DrailStation> getStations() {
+		return stations;
+	}
+
+	public void setStations(Set<DrailStation> stations) {
+		this.stations = stations;
 	}
 
 	@Override
