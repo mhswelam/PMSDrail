@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class DrailUser {
 	@Column(name="USER_EMAIL")
 	private String email;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "DRAIL_URS",
 			joinColumns= { @JoinColumn(name="URS_U_ID") },
 			inverseJoinColumns= {@JoinColumn(name="URS_S_ID") })
