@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="DRAIL_TASK")
 public class DrailTask {
@@ -31,6 +33,7 @@ public class DrailTask {
 	@Column(name="TASK_ORDER")
 	private int order;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="TILE_ID")
 	private DrailTile tile;

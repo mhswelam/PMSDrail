@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="DRAIL_TILE")
 public class DrailTile {
@@ -50,6 +52,7 @@ public class DrailTile {
 	@JoinColumn(name="USER_ID")
 	private DrailUser userCheckedOut;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="RAIL_ID")
 	private DrailRail rail;
