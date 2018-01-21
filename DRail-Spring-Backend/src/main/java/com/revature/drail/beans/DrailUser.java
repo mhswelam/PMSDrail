@@ -1,7 +1,8 @@
 package com.revature.drail.beans;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -45,7 +46,7 @@ public class DrailUser {
 	@JoinTable(name = "DRAIL_URS",
 			joinColumns= { @JoinColumn(name="URS_U_ID") },
 			inverseJoinColumns= {@JoinColumn(name="URS_S_ID") })
-	Set<DrailStation> stations = new HashSet<>();
+	 private Set<DrailStation> stations = new HashSet<>();
 	
 	public DrailUser() {
 	}
