@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="DRAIL_RAIL")
 public class DrailRail {
@@ -32,6 +34,7 @@ public class DrailRail {
 	@Column(name="RAIL_ORDER")
 	private int order;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="RAIL_S_ID")
 	private DrailStation station;
