@@ -1,10 +1,8 @@
 package com.revature.drail.dto;
 
-import java.util.List;
-
 import com.revature.drail.beans.DrailUser;
 
-public class DrailUserDTO extends DrailUser {
+public class DrailUserDTO{
 	
 	private int userId;
 	private String username;
