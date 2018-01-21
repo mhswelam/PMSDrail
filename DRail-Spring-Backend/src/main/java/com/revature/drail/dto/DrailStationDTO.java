@@ -15,8 +15,8 @@ public class DrailStationDTO {
 	private String name;
 	private Timestamp timeCreated;
 	private Date dueDate;
-	private List<DrailRail> rails = new ArrayList<>();
-	private List<DrailUserDTO> users = new ArrayList<>();
+	private List<Integer> railIds = new ArrayList<>();
+	private List<Integer> userIds = new ArrayList<>();
 	
 	public DrailStationDTO() {
 	}
@@ -26,22 +26,27 @@ public class DrailStationDTO {
 		this.name = station.getName();
 		this.timeCreated = station.getTimeCreated();
 		this.dueDate = station.getDueDate();
-		this.rails = station.getRails();
-		for(DrailUser user : station.getUsers()) {
-			users.add(new DrailUserDTO(user));
+		if (station.getRails() != null) {
+			for(DrailRail rail : station.getRails()) {
+				this.railIds.add(rail.getRailId());
+			}
+		}
+		if (station.getUsers() != null) {
+			for(DrailUser user : station.getUsers()) {
+				this.userIds.add(user.getUserId());
+			}
 		}
 	}
-	
-	
 
-	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Date dueDate, List<DrailRail> rails,
-			List<DrailUserDTO> users) {
+	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Date dueDate, List<Integer> railIds,
+			List<Integer> userIds) {
+		super();
 		this.stationId = stationId;
 		this.name = name;
 		this.timeCreated = timeCreated;
 		this.dueDate = dueDate;
-		this.rails = rails;
-		this.users = users;
+		this.railIds = railIds;
+		this.userIds = userIds;
 	}
 
 	public int getStationId() {
@@ -76,29 +81,26 @@ public class DrailStationDTO {
 		this.dueDate = dueDate;
 	}
 
-	public List<DrailRail> getRails() {
-		return rails;
+	public List<Integer> getRailIds() {
+		return railIds;
 	}
 
-	public void setRails(List<DrailRail> rails) {
-		this.rails = rails;
+	public void setRailIds(List<Integer> railIds) {
+		this.railIds = railIds;
 	}
 
-	public List<DrailUserDTO> getUsers() {
-		return users;
+	public List<Integer> getUserIds() {
+		return userIds;
 	}
 
-	public void setUsers(List<DrailUserDTO> users) {
-		this.users = users;
+	public void setUserIds(List<Integer> userIds) {
+		this.userIds = userIds;
 	}
 
 	@Override
 	public String toString() {
 		return "DrailStationDTO [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated
-				+ ", dueDate=" + dueDate + ", rails=" + rails + ", users=" + users + "]";
+				+ ", dueDate=" + dueDate + ", railIds=" + railIds + ", userIds=" + userIds + "]";
 	}
-	
-	
-	
-	
+
 }
