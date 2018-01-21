@@ -113,7 +113,7 @@ public class DrailStation {
 	@Override
 	public String toString() {
 		return "DrailStation [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated + ", dueDate="
-				+ dueDate + ", users=" + users + ", rails=" + rails + "]";
+				+ dueDate;
 	}
 
 }
