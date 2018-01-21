@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.drail.beans.DrailUser;
 import com.revature.drail.dto.DrailUserDTO;
 
 @RestController
@@ -20,11 +21,11 @@ public class ViewProfileCtrl {
 	 */
 	@GetMapping("/viewprofile")
 	public ResponseEntity<DrailUserDTO> viewProfile(HttpSession session) {
-		DrailUserDTO currentUser = (DrailUserDTO) session.getAttribute("user");
+		DrailUser currentUser = (DrailUser) session.getAttribute("user");
 		if (currentUser != null && currentUser.getUserId() > 0) {
-			return new ResponseEntity<DrailUserDTO>(currentUser, HttpStatus.OK);
+			return new ResponseEntity<DrailUserDTO>(new DrailUserDTO(currentUser), HttpStatus.OK);
 		}
-		return new ResponseEntity<DrailUserDTO>(currentUser, HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<DrailUserDTO>(new DrailUserDTO(currentUser), HttpStatus.UNAUTHORIZED);
 	}
 
 }
