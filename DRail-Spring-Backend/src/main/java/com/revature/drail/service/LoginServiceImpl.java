@@ -14,11 +14,11 @@ public class LoginServiceImpl implements LoginService {
 	DrailUserRepo userRepo;
 	
 	@Override
-	public DrailUserDTO login(DrailUser du) {
-		DrailUserDTO result = new DrailUserDTO();
+	public DrailUser login(DrailUser du) {
+		DrailUser result = new DrailUser();
 		DrailUser user = userRepo.findByUsername(du.getUsername());
 		if (user != null && user.getPassword().equals(du.getPassword())) {
-			result = new DrailUserDTO(user);
+			result = user;
 		}
 		return result;
 	}
