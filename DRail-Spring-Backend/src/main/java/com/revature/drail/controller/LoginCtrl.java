@@ -20,13 +20,13 @@ public class LoginCtrl {
 	private LoginService loginService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<DrailUser> login(@RequestBody DrailUser du, HttpSession session) {
+	public ResponseEntity<DrailUserDTO> login(@RequestBody DrailUser du, HttpSession session) {
 		DrailUser currentUser = loginService.login(du);
 		if (currentUser.getUserId() > 0) {
 			session.setAttribute("user", currentUser);
-			return new ResponseEntity<DrailUser>(new DrailUserDTO(currentUser), HttpStatus.ACCEPTED);
+			return new ResponseEntity<DrailUserDTO>(new DrailUserDTO(currentUser), HttpStatus.ACCEPTED);
 		}
-		return new ResponseEntity<DrailUser>(currentUser, HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<DrailUserDTO>(new DrailUserDTO(currentUser), HttpStatus.UNAUTHORIZED);
 	}
 
 }

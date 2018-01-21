@@ -18,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 @Table(name = "DRAIL_ST")
@@ -44,10 +42,10 @@ public class DrailStation {
 	@JoinTable(name = "DRAIL_URS",
 			joinColumns= { @JoinColumn(name="URS_S_ID") },
 			inverseJoinColumns= {@JoinColumn(name="URS_U_ID") })
-	List<DrailUser> users = new ArrayList<>();
+	private List<DrailUser> users = new ArrayList<>();
 	
 	@OneToMany(mappedBy="station", fetch=FetchType.EAGER)
-	List<DrailRail> rails = new ArrayList<>();
+	private List<DrailRail> rails = new ArrayList<>();
 	
 	public DrailStation() {
 		super();

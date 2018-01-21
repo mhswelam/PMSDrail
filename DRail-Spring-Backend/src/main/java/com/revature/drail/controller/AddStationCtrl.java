@@ -1,5 +1,7 @@
 package com.revature.drail.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.dto.DrailStationDTO;
 import com.revature.drail.service.AddStationService;
 
 @RestController
@@ -18,18 +21,21 @@ public class AddStationCtrl {
 	AddStationService dsService;
 	
 	@PostMapping("/addstation")
-	public ResponseEntity<DrailStation> addStation(@RequestBody DrailStation ds) {
+	public ResponseEntity<DrailStationDTO> addStation(@RequestBody DrailStation ds,HttpSession session) {
 		try {
-			//TODO Get User Session
-			DrailUser du = new DrailUser("test", "pass", "test", "user", "test@user.com");
-			du.setUserId(107);
+			DrailUser du = (DrailUser) session.getAttribute("user");
 			
-			dsService.addStation(du, ds);
-
-			return new ResponseEntity<DrailStation>(HttpStatus.CREATED);
+			if(du!=null) {
+			DrailStationDTO stationDTO = dsService.addStation(du, ds);
+			return new ResponseEntity<DrailStationDTO>(stationDTO,HttpStatus.CREATED);
+																				}
+			
 		} catch (Exception e) {
-			return new ResponseEntity<DrailStation>(HttpStatus.CONFLICT);
+			e.printStackTrace();
+			return new ResponseEntity<DrailStationDTO>(HttpStatus.CONFLICT);
 		}
+		
+		return new ResponseEntity<DrailStationDTO>(HttpStatus.UNAUTHORIZED);
 	}
 	
 }
