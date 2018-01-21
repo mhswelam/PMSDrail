@@ -21,10 +21,10 @@ public class LoginCtrl {
 	
 	@PostMapping("/login")
 	public ResponseEntity<DrailUser> login(@RequestBody DrailUser du, HttpSession session) {
-		DrailUserDTO currentUser = loginService.login(du);
+		DrailUser currentUser = loginService.login(du);
 		if (currentUser.getUserId() > 0) {
 			session.setAttribute("user", currentUser);
-			return new ResponseEntity<DrailUser>(currentUser, HttpStatus.ACCEPTED);
+			return new ResponseEntity<DrailUser>(new DrailUserDTO(currentUser), HttpStatus.ACCEPTED);
 		}
 		return new ResponseEntity<DrailUser>(currentUser, HttpStatus.UNAUTHORIZED);
 	}
