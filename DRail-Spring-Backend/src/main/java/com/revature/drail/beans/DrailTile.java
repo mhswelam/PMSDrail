@@ -1,6 +1,7 @@
 package com.revature.drail.beans;
 
 import java.security.Timestamp;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class DrailTile {
 	private String note;
 	
 	@Column(name="TILE_DATE_COMPLETED")
-	private Timestamp dateCompleted;
+	private Date dateCompleted;
 	
 	@Column(name="TILE_COMPLETED")
 	private int completed;
@@ -49,12 +50,12 @@ public class DrailTile {
 	private int order;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="TILE_U_ID")
 	private DrailUser userCheckedOut;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="RAIL_ID")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="TILE_R_ID")
 	private DrailRail rail;
 	
 	@OneToMany(mappedBy="tile", fetch=FetchType.EAGER)
@@ -62,7 +63,7 @@ public class DrailTile {
 	
 	public DrailTile() {
 	}
-	public DrailTile(int tileId, String name, int points, String note, Timestamp dateCompleted, int completed,
+	public DrailTile(int tileId, String name, int points, String note, Date dateCompleted, int completed,
 			int order, DrailUser userCheckedOut, DrailRail rail, List<DrailTask> task) {
 		super();
 		this.tileId = tileId;
@@ -100,10 +101,10 @@ public class DrailTile {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Timestamp getDateCompleted() {
+	public Date getDateCompleted() {
 		return dateCompleted;
 	}
-	public void setDateCompleted(Timestamp dateCompleted) {
+	public void setDateCompleted(Date dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 	public int getCompleted() {
