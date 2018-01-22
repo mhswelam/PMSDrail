@@ -51,6 +51,13 @@ public class DrailStation {
 		super();
 	}
 
+	
+	public DrailStation(int stationId) {
+		super();
+		this.stationId = stationId;
+	}
+
+
 	public DrailStation(int stationId, String name, Timestamp timeCreated, Date dueDate, List<DrailUser> users,
 			List<DrailRail> rails) {
 		super();

@@ -35,7 +35,7 @@ public class DrailRail {
 	private int order;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="RAIL_S_ID")
 	private DrailStation station;
 	

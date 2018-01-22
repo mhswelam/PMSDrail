@@ -51,6 +51,13 @@ public class DrailUser {
 	public DrailUser() {
 	}
 
+	
+	public DrailUser(int userId) {
+		super();
+		this.userId = userId;
+	}
+
+
 	public DrailUser(String username, String password, String firstname, String lastname, String email) {
 		super();
 		this.username = username;
