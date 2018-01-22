@@ -20,7 +20,7 @@ public class LoginCtrl {
 	private LoginService loginService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<DrailUserDTO> login(@RequestBody DrailUser du, HttpSession session) {
+	public ResponseEntity<DrailUserDTO> login(@RequestBody DrailUserDTO du, HttpSession session) {
 		DrailUser currentUser = loginService.login(du);
 		if (currentUser.getUserId() > 0) {
 			session.setAttribute("user", currentUser);
