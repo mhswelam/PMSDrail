@@ -17,5 +17,11 @@ public interface DRailURSRepo extends JpaRepository<DrailURS, Integer>{
 	@Query("UPDATE DrailURS set role = ?1 where user = ?2 AND station = ?3")
 	@Transactional
 	public void modifyURS(DrailUserRole role,DrailUser user,DrailStation station);
+	
+	
+	public DrailURS findByUserInAndStationIn(DrailUser user,DrailStation station);
+	
+	
+	
 }	
  
