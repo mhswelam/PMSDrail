@@ -18,7 +18,11 @@ import com.revature.drail.dto.DrailStationViewDTO;
 import com.revature.drail.repo.DrailUserRepo;
 import com.revature.drail.service.AddStationService;
 import com.revature.drail.service.GetStationsService;
-
+/**
+ * 
+ * @author cristian
+ *
+ */
 @RestController
 public class GetStationsCtlr {
 	
@@ -31,25 +35,16 @@ public class GetStationsCtlr {
 	@Autowired
 	DrailUserRepo userRepo;
 
+	/**
+	 * Gets the stations of a user in the session.
+	 * @param session
+	 * @return the list of DrailStationViewDTO for the home page.
+	 */
 	@GetMapping("/getstations")
 	public ResponseEntity<List<DrailStationViewDTO>> getStations(HttpSession session) {
-		//service that gets all stations that are for the user
-		//DrailUser currentUser = (DrailUser) session.getAttribute("user");
-		
-		DrailUser currentUser = new DrailUser("testuser2", "pass", "Test", "User", "test@user.com");
-		currentUser.setUserId(107);
-		//System.out.println(userRepo.findAll());
-		//returns hashmap
-		System.out.println(currentUser);
+		DrailUser currentUser = (DrailUser) session.getAttribute("user");
 		List<DrailStation> dsMap = duService.getStations(currentUser);
-		System.out.println(dsMap);
-		//get all stations with the id and store in array.
 		List<DrailStationViewDTO> allUserStations = new ArrayList<>();
-//		for(DrailStation ds : dsMap) {
-//			System.out.println(ds);
-//			allUserStations.add((DrailStationViewDTO)ds);
-//		}
-		//return new ResponseEntity<DrailUser>(new DrailUserDTO(currentUser), HttpStatus.ACCEPTED);
 		return new ResponseEntity<List<DrailStationViewDTO>>(allUserStations , HttpStatus.ACCEPTED);
 		
 	}

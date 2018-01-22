@@ -17,12 +17,24 @@ import com.revature.drail.dto.DrailStationDTO;
 import com.revature.drail.dto.DrailUserDTO;
 import com.revature.drail.service.ViewStationService;
 
+/**
+ * 
+ * @author cristian
+ *
+ */
 @RestController
 public class ViewStationCtrl {
 
 	@Autowired
 	ViewStationService stService;
 	
+	/**
+	 * Will return the station with matching Id. If station does not exist it will return 
+	 * an HTTP status of UNAUTHORIZED
+	 * @param id of the station
+	 * @param session
+	 * @return DrailStationDTO
+	 */
 	@GetMapping("/viewstation/{id}")
 	public ResponseEntity<DrailStationDTO> viewProfile(@PathVariable int id,HttpSession session) {
 		DrailUser currentUser = (DrailUser) session.getAttribute("user");
@@ -34,10 +46,7 @@ public class ViewStationCtrl {
 				stView = st;
 			}
 		}
-		//System.out.println(stView);
 		
-		//return new ResponseEntity<DrailStationDTO>(new DrailStationDTO(stView), HttpStatus.ACCEPTED);
-		//DrailStation dStation = stService.viewStationById(id);
 		if (stView == null) {
 			return new ResponseEntity<DrailStationDTO>(HttpStatus.UNAUTHORIZED);
 		}else{
@@ -45,12 +54,5 @@ public class ViewStationCtrl {
 			DrailStationDTO stDto = new DrailStationDTO(dStation);
 			return new ResponseEntity<DrailStationDTO>(stDto, HttpStatus.ACCEPTED);
 		}
-//		DrailStation dStation = stService.viewStationById(stView.getStationId());
-//		DrailStationDTO stDto = new DrailStationDTO(dStation);
-//		if(stDto.getStationId() != 0) {
-//			return new ResponseEntity<DrailStationDTO>(stDto, HttpStatus.ACCEPTED);
-//		}else {
-//			return new ResponseEntity<DrailStationDTO>(HttpStatus.UNAUTHORIZED);
-//		}
 	}
 }
