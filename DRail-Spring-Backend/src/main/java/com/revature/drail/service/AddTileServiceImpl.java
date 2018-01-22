@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailTile;
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.repo.DrailTileRepo;
 
 @Service
@@ -15,11 +16,8 @@ public class AddTileServiceImpl implements AddTileService {
 	DrailTileRepo repo;
 
 	@Override
-	public DrailTile addTile(DrailTile dt, DrailRail dr, DrailUser du) {
-		//TODO Get User Session and Current Rail
-		dt.setUserCheckedOut(du);
-		dt.setRail(dr);
-		return dt = repo.save(dt);
+	public DrailTile addTile(DrailTile tile) {
+		return repo.save(tile);
 	}
 
 }
