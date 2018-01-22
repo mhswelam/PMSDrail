@@ -9,26 +9,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.drail.beans.DrailUser;
 import com.revature.drail.dto.DrailTaskDTO;
 import com.revature.drail.service.AddTaskService;
 
 @RestController
-public class AddTaskCtrl {
+public class UpdateTaskCtrl {
 	
 	@Autowired
 	AddTaskService service;
 	
 	/**
-	 * Persists [taskDTO] as a DrailTask
-	 * @param taskDTO Should contain ID of parent Tile
-	 * @param session 
-	 * @return HttpStatus.CREATED if successful, HttpStatus.UNAUTHORIZED if no user is logged into the session
+	 * Persists changes to an existing task whose id matches [taskDTO.getTaskId()]
+	 * @param taskDTO Should contain an existing task id
+	 * @param session
+	 * @return HttpStatus.ACCEPTED if update is successful, HttpStatus.UNAUTHORIZED if there is no user logged into the session
 	 */
-	@PostMapping("/addtask")
-	public ResponseEntity<?> addTask(@RequestBody DrailTaskDTO taskDTO, HttpSession session) {
+	@PostMapping("/updatetask")
+	public ResponseEntity<DrailUser> updateUser(@RequestBody DrailTaskDTO taskDTO, HttpSession session) {
 		if (session.getAttribute("user") != null) {
 			service.saveTask(taskDTO);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	}
