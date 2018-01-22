@@ -34,7 +34,7 @@ public class DrailTask {
 	private int order;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="TASK_T_ID")
 	private DrailTile tile;
 	
