@@ -54,11 +54,11 @@ public class DrailTile {
 	private DrailUser userCheckedOut;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="TILE_R_ID")
 	private DrailRail rail;
 	
-	@OneToMany(mappedBy="tile", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="tile", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<DrailTask> task = new ArrayList<DrailTask>();
 	
 	public DrailTile() {
