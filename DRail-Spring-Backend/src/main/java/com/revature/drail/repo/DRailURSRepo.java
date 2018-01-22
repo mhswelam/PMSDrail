@@ -19,7 +19,7 @@ public interface DRailURSRepo extends JpaRepository<DrailURS, Integer>{
 	public void modifyURS(DrailUserRole role,DrailUser user,DrailStation station);
 	
 	
-	public int findByrole(int userId, int stId);
+	public DrailURS findByUserInAndStationIn(DrailUser user,DrailStation station);
 	
 	
 	
