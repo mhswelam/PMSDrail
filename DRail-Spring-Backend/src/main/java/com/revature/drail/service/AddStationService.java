@@ -6,6 +6,6 @@ import com.revature.drail.dto.DrailStationDTO;
 
 public interface AddStationService {
 
-	public DrailStationDTO addStation(DrailUser du, DrailStation ds);
+	public DrailStation addStation(DrailUser du, DrailStation ds);
 	
 }

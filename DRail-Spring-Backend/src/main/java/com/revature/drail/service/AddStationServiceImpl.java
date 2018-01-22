@@ -16,20 +16,12 @@ public class AddStationServiceImpl implements AddStationService {
 
 	@Autowired
 	DrailStationRepo repo;
-	@Autowired
-	DrailUserRepo userRepo;
-	@Autowired
-	DRailURSRepo ursRepo;
-	
+
 	@Override
-	public DrailStationDTO addStation(DrailUser du, DrailStation ds) {
-		ds.getUsers().add(du);
-		du.getStations().add(ds);
-		//userRepo.save(du);
-		DrailStation newStation = repo.save(ds);
-		ursRepo.modifyURS(DrailUserRole.PRODUCT_OWNER, du, ds);
-		return new DrailStationDTO(newStation);
-		
+	public DrailStation addStation(DrailUser du, DrailStation ds) {
+		du.getStationRoleMap().put(ds, DrailUserRole.PRODUCT_OWNER);
+		ds.getUserRoleMap().put(du, DrailUserRole.PRODUCT_OWNER);
+		return repo.save(ds);
 	}
 
 }
