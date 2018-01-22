@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.drail.beans.DrailTile;
 import com.revature.drail.beans.DrailUser;
 import com.revature.drail.beans.DrailUserRole;
 import com.revature.drail.dto.DrailRailDTO;
@@ -34,8 +35,14 @@ public class AddRailCtrl {
 		DrailUser current = (DrailUser) session.getAttribute("user");
 		
 		if ((urs.findByUserInAndStationIn(current, stRepo.findOne(rail.getStationId()))).getRole().getId() == DrailUserRole.SCRUM_MASTER.getId()) {
-			railser.addRail(rail.getStationId(), rail.getName(), rail.getOrder());
-			return new ResponseEntity<DrailStationDTO>(HttpStatus.ACCEPTED);
+			try {
+				railser.addRail(rail.getStationId(), rail.getName(), rail.getOrder());
+				return new ResponseEntity<DrailStationDTO>(HttpStatus.ACCEPTED);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(HttpStatus.CONFLICT);
+			}
+			
 		} else {
 			return new ResponseEntity<DrailStationDTO>(HttpStatus.CONFLICT);
 		}
