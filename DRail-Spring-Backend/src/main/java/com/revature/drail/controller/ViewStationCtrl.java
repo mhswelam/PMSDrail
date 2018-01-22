@@ -38,7 +38,7 @@ public class ViewStationCtrl {
 	@GetMapping("/viewstation/{id}")
 	public ResponseEntity<DrailStationDTO> viewProfile(@PathVariable int id,HttpSession session) {
 		DrailUser currentUser = (DrailUser) session.getAttribute("user");
-		Set<DrailStation> stSet = currentUser.getStations();
+		Set<DrailStation> stSet = currentUser.getStationRoleMap().keySet();
 		
 		DrailStation stView = null;
 		for(DrailStation st: stSet) {
