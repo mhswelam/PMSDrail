@@ -3,11 +3,14 @@ package com.revature.drail.dto;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.beans.DrailUserRole;
 
 public class DrailStationDTO {
 
@@ -16,7 +19,8 @@ public class DrailStationDTO {
 	private Timestamp timeCreated;
 	private Date dueDate;
 	private List<Integer> railIds = new ArrayList<>();
-	private List<Integer> userIds = new ArrayList<>();
+//	private List<Integer> userIds = new ArrayList<>();
+	private Map<Integer, DrailUserRole> userRoleMap = new HashMap<>();
 	
 	public DrailStationDTO() {
 	}
@@ -31,22 +35,22 @@ public class DrailStationDTO {
 				this.railIds.add(rail.getRailId());
 			}
 		}
-		if (station.getUsers() != null) {
-			for(DrailUser user : station.getUsers()) {
-				this.userIds.add(user.getUserId());
+		if (station.getUserRoleMap().keySet() != null) {
+			for(DrailUser user : station.getUserRoleMap().keySet()) {
+				this.userRoleMap.put(user.getUserId(), station.getUserRoleMap().get(user));
 			}
 		}
 	}
 
 	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Date dueDate, List<Integer> railIds,
-			List<Integer> userIds) {
+			Map<Integer, DrailUserRole> userRoleMap) {
 		super();
 		this.stationId = stationId;
 		this.name = name;
 		this.timeCreated = timeCreated;
 		this.dueDate = dueDate;
 		this.railIds = railIds;
-		this.userIds = userIds;
+		this.userRoleMap = userRoleMap;
 	}
 
 	public int getStationId() {
@@ -89,18 +93,18 @@ public class DrailStationDTO {
 		this.railIds = railIds;
 	}
 
-	public List<Integer> getUserIds() {
-		return userIds;
+	public Map<Integer, DrailUserRole> getUserRoleMap() {
+		return userRoleMap;
 	}
 
-	public void setUserIds(List<Integer> userIds) {
-		this.userIds = userIds;
+	public void setUserRoleMap(Map<Integer, DrailUserRole> userRoleMap) {
+		this.userRoleMap = userRoleMap;
 	}
 
 	@Override
 	public String toString() {
 		return "DrailStationDTO [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated
-				+ ", dueDate=" + dueDate + ", railIds=" + railIds + ", userIds=" + userIds + "]";
+				+ ", dueDate=" + dueDate + ", railIds=" + railIds + ", userRoleMap=" + userRoleMap + "]";
 	}
 
 }
