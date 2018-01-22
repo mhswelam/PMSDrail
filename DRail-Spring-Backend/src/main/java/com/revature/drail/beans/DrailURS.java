@@ -25,7 +25,7 @@ public class DrailURS {
 	@ManyToOne(cascade=CascadeType.REMOVE,fetch=FetchType.LAZY)
 	@JoinColumn(name="URS_S_ID")
 	private DrailStation station;
-	@ManyToOne(cascade=CascadeType.REMOVE,fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
 	@JoinColumn(name="URS_R_ID")
 	private DrailUserRole role;
 	
