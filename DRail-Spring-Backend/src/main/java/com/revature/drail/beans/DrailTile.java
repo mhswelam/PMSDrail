@@ -1,6 +1,6 @@
 package com.revature.drail.beans;
 
-import java.security.Timestamp;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.revature.drail.dto.DrailTileDTO;
 
 @Entity
 @Table(name="DRAIL_TILE")
@@ -40,7 +41,7 @@ public class DrailTile {
 	private String note;
 	
 	@Column(name="TILE_DATE_COMPLETED")
-	private Timestamp dateCompleted;
+	private Date dateCompleted;
 	
 	@Column(name="TILE_COMPLETED")
 	private int completed;
@@ -49,20 +50,20 @@ public class DrailTile {
 	private int order;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="TILE_U_ID")
 	private DrailUser userCheckedOut;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="RAIL_ID")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="TILE_R_ID")
 	private DrailRail rail;
 	
-	@OneToMany(mappedBy="tile", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="tile", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<DrailTask> task = new ArrayList<DrailTask>();
 	
 	public DrailTile() {
 	}
-	public DrailTile(int tileId, String name, int points, String note, Timestamp dateCompleted, int completed,
+	public DrailTile(int tileId, String name, int points, String note, Date dateCompleted, int completed,
 			int order, DrailUser userCheckedOut, DrailRail rail, List<DrailTask> task) {
 		super();
 		this.tileId = tileId;
@@ -75,6 +76,22 @@ public class DrailTile {
 		this.userCheckedOut = userCheckedOut;
 		this.rail = rail;
 		this.task = task;
+	}
+	
+	public DrailTile(DrailTileDTO dto) {
+		super();
+		this.tileId = dto.getTileId();
+		this.name = dto.getName();
+		this.points = dto.getPoints();
+		this.note = dto.getNote();
+		this.completed = dto.isCompleted() ? 1 : 0;
+		this.order = dto.getOrder();
+		//this.userCheckout = set in the Ctrl
+		
+		this.rail = new DrailRail();
+		this.rail.setRailId(dto.getRailId());
+		
+		//Task...shouldn't change?
 	}
 	public int getTileId() {
 		return tileId;
@@ -100,10 +117,10 @@ public class DrailTile {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Timestamp getDateCompleted() {
+	public Date getDateCompleted() {
 		return dateCompleted;
 	}
-	public void setDateCompleted(Timestamp dateCompleted) {
+	public void setDateCompleted(Date dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 	public int getCompleted() {

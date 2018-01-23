@@ -5,6 +5,6 @@ import com.revature.drail.dto.DrailUserDTO;
 
 public interface LoginService {
 	
-	public DrailUser login(DrailUser du);
+	public DrailUser login(DrailUserDTO du);
 
 }

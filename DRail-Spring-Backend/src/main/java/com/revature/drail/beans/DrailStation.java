@@ -3,7 +3,9 @@ package com.revature.drail.beans;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -40,82 +41,110 @@ public class DrailStation {
 	@Column(name = "ST_DUE")
 	private Date dueDate;
 
+//	@ManyToMany
+//	@JoinTable(name = "DRAIL_URS",
+//			joinColumns= { @JoinColumn(name="URS_S_ID") },
+//			inverseJoinColumns= {@JoinColumn(name="URS_U_ID") })
+//	private List<DrailUser> users = new ArrayList<>();
+	
 	@ManyToMany
-	@JoinTable(name = "DRAIL_URS",
-			joinColumns= { @JoinColumn(name="URS_S_ID") },
-			inverseJoinColumns= {@JoinColumn(name="URS_U_ID") })
-	List<DrailUser> users = new ArrayList<>();
+	@JoinTable(name="DRAIL_URS",
+		joinColumns=@JoinColumn(name="URS_S_ID"),
+		inverseJoinColumns=@JoinColumn(name="URS_R_ID"))
+	@MapKeyJoinColumn(name="URS_U_ID")
+	Map<DrailUser, DrailUserRole> userRoleMap = new HashMap<>();
 	
 	@OneToMany(mappedBy="station", fetch=FetchType.EAGER)
-	List<DrailRail> rails = new ArrayList<>();
+	private List<DrailRail> rails = new ArrayList<>();
 	
 	public DrailStation() {
 		super();
 	}
 
-	public DrailStation(int stationId, String name, Timestamp timeCreated, Date dueDate, List<DrailUser> users,
-			List<DrailRail> rails) {
+	
+	public DrailStation(int stationId) {
+		super();
+		this.stationId = stationId;
+	}
+
+
+	public DrailStation(int stationId, String name, Timestamp timeCreated, Date dueDate,
+			Map<DrailUser, DrailUserRole> userRoleMap, List<DrailRail> rails) {
 		super();
 		this.stationId = stationId;
 		this.name = name;
 		this.timeCreated = timeCreated;
 		this.dueDate = dueDate;
-		this.users = users;
+		this.userRoleMap = userRoleMap;
 		this.rails = rails;
 	}
+
 
 	public int getStationId() {
 		return stationId;
 	}
 
+
 	public void setStationId(int stationId) {
 		this.stationId = stationId;
 	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	public Timestamp getTimeCreated() {
 		return timeCreated;
 	}
 
+
 	public void setTimeCreated(Timestamp timeCreated) {
 		this.timeCreated = timeCreated;
 	}
+
 
 	public Date getDueDate() {
 		return dueDate;
 	}
 
+
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 
-	public List<DrailUser> getUsers() {
-		return users;
+
+	public Map<DrailUser, DrailUserRole> getUserRoleMap() {
+		return userRoleMap;
 	}
 
-	public void setUsers(List<DrailUser> users) {
-		this.users = users;
+
+	public void setUserRoleMap(Map<DrailUser, DrailUserRole> userRoleMap) {
+		this.userRoleMap = userRoleMap;
 	}
+
 
 	public List<DrailRail> getRails() {
 		return rails;
 	}
 
+
 	public void setRails(List<DrailRail> rails) {
 		this.rails = rails;
 	}
 
+
 	@Override
 	public String toString() {
 		return "DrailStation [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated + ", dueDate="
-				+ dueDate + ", users=" + users + ", rails=" + rails + "]";
+				+ dueDate + ", userRoleMap=" + userRoleMap.entrySet() + ", rails=" + rails.size() + "]";
 	}
+
 
 }

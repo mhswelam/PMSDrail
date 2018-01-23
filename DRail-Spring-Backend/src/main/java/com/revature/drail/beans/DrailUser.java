@@ -1,8 +1,7 @@
 package com.revature.drail.beans;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,14 +41,28 @@ public class DrailUser {
 	@Column(name="USER_EMAIL")
 	private String email;
 	
+//	@ManyToMany(fetch=FetchType.EAGER)
+//	@JoinTable(name = "DRAIL_URS",
+//			joinColumns= { @JoinColumn(name="URS_U_ID") },
+//			inverseJoinColumns= {@JoinColumn(name="URS_S_ID") })
+//	 private Set<DrailStation> stations = new HashSet<>();
+	
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "DRAIL_URS",
-			joinColumns= { @JoinColumn(name="URS_U_ID") },
-			inverseJoinColumns= {@JoinColumn(name="URS_S_ID") })
-	Set<DrailStation> stations = new HashSet<>();
+	@JoinTable(name="DRAIL_URS",
+		joinColumns=@JoinColumn(name="URS_U_ID"),
+		inverseJoinColumns=@JoinColumn(name="URS_R_ID"))
+	@MapKeyJoinColumn(name="URS_S_ID")
+	Map<DrailStation, DrailUserRole> stationRoleMap = new HashMap<>();
 	
 	public DrailUser() {
 	}
+
+	
+	public DrailUser(int userId) {
+		super();
+		this.userId = userId;
+	}
+
 
 	public DrailUser(String username, String password, String firstname, String lastname, String email) {
 		super();
@@ -62,58 +76,72 @@ public class DrailUser {
 	public int getUserId() {
 		return userId;
 	}
-	
+
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 
 	public String getUsername() {
 		return username;
 	}
 
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	public String getFirstname() {
 		return firstname;
 	}
 
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 
 	public String getLastname() {
 		return lastname;
 	}
 
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public Set<DrailStation> getStations() {
-		return stations;
+
+
+	public Map<DrailStation, DrailUserRole> getStationRoleMap() {
+		return stationRoleMap;
 	}
 
-	public void setStations(Set<DrailStation> stations) {
-		this.stations = stations;
+
+	public void setStationRoleMap(Map<DrailStation, DrailUserRole> stationRoleMap) {
+		this.stationRoleMap = stationRoleMap;
 	}
+
 
 	@Override
 	public String toString() {
