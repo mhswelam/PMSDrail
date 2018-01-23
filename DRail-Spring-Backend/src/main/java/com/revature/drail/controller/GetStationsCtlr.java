@@ -19,7 +19,7 @@ import com.revature.drail.service.AddStationService;
 import com.revature.drail.service.GetStationsService;
 /**
  * 
- * @author cristian
+ * @author cristian hermida
  *
  */
 @RestController
@@ -35,17 +35,24 @@ public class GetStationsCtlr {
 	DrailUserRepo userRepo;
 
 	/**
-	 * Gets the stations of a user in the session.
+	 * This will return a list of DrailStationViewDTO.
+	 * If does not exist it will return an HTTP status of UNAUTHORIZED
 	 * @param session
-	 * @return the list of DrailStationViewDTO for the home page.
+	 * @return List of DrailStationViewDTO and status 202, or 401 if session is invalid
 	 */
 	@GetMapping("/getstations")
 	public ResponseEntity<List<DrailStationViewDTO>> getStations(HttpSession session) {
-		DrailUser currentUser = (DrailUser) session.getAttribute("user");
-		List<DrailStation> dsMap = duService.getStations(currentUser);
-		List<DrailStationViewDTO> allUserStations = new ArrayList<>();
-		return new ResponseEntity<List<DrailStationViewDTO>>(allUserStations , HttpStatus.ACCEPTED);
-		
+		if (session == null) {
+			return new ResponseEntity<List<DrailStationViewDTO>>(HttpStatus.UNAUTHORIZED);
+		}else {
+			DrailUser currentUser = (DrailUser) session.getAttribute("user");
+			List<DrailStation> dsMap = duService.getStations(currentUser);
+			List<DrailStationViewDTO> allUserStations = new ArrayList<>();
+			for(DrailStation ds : dsMap) {
+				allUserStations.add(new DrailStationViewDTO(ds));
+			}
+			return new ResponseEntity<List<DrailStationViewDTO>>(allUserStations , HttpStatus.ACCEPTED);
+		}
 	}
 
 }
