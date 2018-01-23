@@ -35,13 +35,14 @@ public class ViewStationCtrl {
 	 * @param session must be a valid session
 	 * @return DrailStationDTO json and status 201, or a status of 401 if session is invalid or station does not exist.
 	 */
+
 	@PostMapping("/viewstation")
 	public ResponseEntity<DrailStationDTO> viewProfile(@RequestBody DrailStationDTO respStationDto,HttpSession session) {
 		if(session == null) {
 			return new ResponseEntity<DrailStationDTO>(HttpStatus.UNAUTHORIZED);
 		}else {
 			DrailUser currentUser = (DrailUser) session.getAttribute("user");
-			Set<DrailStation> stSet = currentUser.getStations();
+			Set<DrailStation> stSet = currentUser.getStationRoleMap().keySet();
 			
 			DrailStation stView = null;
 			for(DrailStation st: stSet) {

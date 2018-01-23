@@ -9,16 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailTile;
-import com.revature.drail.beans.DrailURS;
 import com.revature.drail.beans.DrailUser;
 import com.revature.drail.beans.DrailUserRole;
 import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.service.AddTileService;
 import com.revature.drail.service.GetStationService;
-import com.revature.drail.service.GetURSService;
 
 /**
  * 
@@ -31,12 +28,8 @@ public class AddTileCtrl {
 	
 	@Autowired
 	AddTileService tsService;
-	
 	@Autowired
 	GetStationService stnService;
-	
-	@Autowired
-	GetURSService ursService;
 	
 	/**
 	 * Adds a tile to a rail
@@ -51,35 +44,18 @@ public class AddTileCtrl {
 		
 		DrailUser currentUser = (DrailUser)session.getAttribute("user");
 		if (currentUser == null) return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
-		
-		//Use the current Rail to get the Station
+
 		DrailStation station = stnService.getStationByRail(dto.getRailId());
+		DrailUserRole role =  currentUser.getStationRoleMap().get(station);
 		
-		//Now using the Station and the User, get the user's role.
-		DrailURS urs = ursService.getStationURS(currentUser, station);
-		
-		
-		if (urs.getRole().getId() != DrailUserRole.SCRUM_MASTER.getId()) {
+		if (role != null && role.getId() != DrailUserRole.SCRUM_MASTER.getId() && role.getId() != DrailUserRole.PRODUCT_OWNER.getId()) {
 			return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
 		}
 			
 		try {
-			DrailTile tile = new DrailTile();
-			tile.setName(dto.getName());
-			tile.setPoints(dto.getPoints());
-			tile.setNote(dto.getNote());
-			tile.setOrder(dto.getOrder());
-			
-			DrailRail rail = new DrailRail();
-			rail.setRailId(dto.getRailId());
-			tile.setRail(rail);
-			
+			DrailTile tile = new DrailTile(dto);
 			tile.setUserCheckedOut(currentUser);
-			tile.setCompleted(0);
-			
-			tile = tsService.addTile(tile);
-			
-			//Display the new tile somewhere?
+			tsService.addTile(tile);
 			return new ResponseEntity<DrailTile>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

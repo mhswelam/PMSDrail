@@ -1,6 +1,5 @@
 package com.revature.drail.beans;
 
-import java.security.Timestamp;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.revature.drail.dto.DrailTileDTO;
 
 @Entity
 @Table(name="DRAIL_TILE")
@@ -76,6 +76,22 @@ public class DrailTile {
 		this.userCheckedOut = userCheckedOut;
 		this.rail = rail;
 		this.task = task;
+	}
+	
+	public DrailTile(DrailTileDTO dto) {
+		super();
+		this.tileId = dto.getTileId();
+		this.name = dto.getName();
+		this.points = dto.getPoints();
+		this.note = dto.getNote();
+		this.completed = dto.isCompleted() ? 1 : 0;
+		this.order = dto.getOrder();
+		//this.userCheckout = set in the Ctrl
+		
+		this.rail = new DrailRail();
+		this.rail.setRailId(dto.getRailId());
+		
+		//Task...shouldn't change?
 	}
 	public int getTileId() {
 		return tileId;

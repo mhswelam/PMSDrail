@@ -16,7 +16,7 @@ public class DrailTaskDTO {
 	public DrailTaskDTO(DrailTask task) {
 		this.taskId = task.getTaskId();
 		this.name = task.getName();
-		this.completed = (task.getCompleted() == 0) ? true : false;
+		this.completed = (task.getCompleted() == 1) ? true : false;
 		this.order = task.getOrder();
 		if (task.getTile() != null) this.tileId = task.getTile().getTileId();
 	}

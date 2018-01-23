@@ -16,8 +16,9 @@ public class AddTaskServiceImpl implements AddTaskService {
 	
 	public void saveTask(DrailTaskDTO taskDTO) {
 		DrailTask task = new DrailTask();
+		task.setTaskId(taskDTO.getTaskId());
 		task.setName(taskDTO.getName());
-		task.setCompleted(taskDTO.isCompleted() ? 0 : 1);
+		task.setCompleted(taskDTO.isCompleted() ? 1 : 0);
 		task.setOrder(taskDTO.getOrder());
 		DrailTile tile = new DrailTile();
 		tile.setTileId(taskDTO.getTileId());
