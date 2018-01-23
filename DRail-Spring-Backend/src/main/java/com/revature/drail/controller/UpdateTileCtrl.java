@@ -13,6 +13,7 @@ import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailTile;
 import com.revature.drail.beans.DrailUser;
 import com.revature.drail.beans.DrailUserRole;
+import com.revature.drail.dto.DrailRailDTO;
 import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.service.GetStationService;
 import com.revature.drail.service.UpdateTileService;
@@ -53,4 +54,17 @@ public class UpdateTileCtrl {
 		}
 	}
 	
+	@PostMapping("/updatetileorder")
+	public ResponseEntity<DrailRailDTO> updateTileOrders(@RequestBody DrailRailDTO railDTO, HttpSession session) {
+		DrailUser currentUser = (DrailUser) session.getAttribute("user");
+		if (currentUser == null) return new ResponseEntity<DrailRailDTO>(HttpStatus.UNAUTHORIZED);
+		
+		DrailStation station = stnService.getStationByRail(railDTO.getRailId());
+		DrailUserRole role =  currentUser.getStationRoleMap().get(station);
+		
+		if (role == null) return new ResponseEntity<DrailRailDTO>(HttpStatus.UNAUTHORIZED);
+		
+		utService.updateTileOrders(railDTO.getTileIds());
+		return new ResponseEntity<DrailRailDTO>(HttpStatus.OK);
+	}
 }
