@@ -25,10 +25,10 @@ public class ViewTileCtrl {
 	ViewTileService tileService;
 	/**
 	 * This will return a DrailTileDTO json that matches the id of the DrailTileDTO json that is sent in the request.
-	 * If tile does not exist it will return an HTTP status of UNAUTHORIZED
+	 * If tile does not exist it will return an HTTP status of 204
 	 * @param respTileDto must have tileId
 	 * @param session must be a valid session
-	 * @return DrailTileDTO json and status 202, or status 401 if session is invalid
+	 * @return DrailTileDTO json and status 200, or status 401 if session is invalid
 	 */
 	@PostMapping("/viewtile")
 	public ResponseEntity<DrailTileDTO> viewTile(@RequestBody DrailTileDTO respTileDto  ,HttpSession session){
@@ -36,8 +36,12 @@ public class ViewTileCtrl {
 			return new ResponseEntity<DrailTileDTO>(HttpStatus.UNAUTHORIZED);
 		}else {
 			DrailTile dt = tileService.viewTileById(respTileDto.getTileId());
-			DrailTileDTO dtDto = new DrailTileDTO(dt);
-			return new ResponseEntity<DrailTileDTO>(dtDto,HttpStatus.ACCEPTED);
+			if(dt ==null) {
+				return new ResponseEntity<DrailTileDTO>(HttpStatus.NO_CONTENT);
+			}else {
+				DrailTileDTO dtDto = new DrailTileDTO(dt);
+				return new ResponseEntity<DrailTileDTO>(dtDto,HttpStatus.OK);
+			}
 		}
 
 	}
