@@ -53,6 +53,10 @@ public class DrailRail {
 		this.station = station;
 		this.tiles = tiles;
 	}
+	
+	public DrailRail(int id) {
+		this.railId = id;
+	}
 
 	public int getRailId() {
 		return railId;

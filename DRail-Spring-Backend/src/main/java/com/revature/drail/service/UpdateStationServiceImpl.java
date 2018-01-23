@@ -30,25 +30,23 @@ public class UpdateStationServiceImpl implements UpdateStationService {
 	public void updateStation(DrailStationDTO updatedStation) {
 		
 			DrailStation station = new DrailStation();
-			station.setStationId(station.getStationId());
+			station.setStationId(updatedStation.getStationId());
 			station.setDueDate(updatedStation.getDueDate());
 			station.setName(updatedStation.getName());
-			station.setDueDate(updatedStation.getDueDate());
 			station.setTimeCreated(updatedStation.getTimeCreated());
 			List<DrailRail> rails = station.getRails();
 			Map<DrailUser,DrailUserRole> userRoleMap = station.getUserRoleMap();
 
-			for(int n : updatedStation.getRailIds()) {
-				rails.add(drailRailRepo.getOne(n));
-			}
+//			for(int n : updatedStation.getRailIds()) {
+//				rails.add(new DrailRail(n));
+//			}
 			
 			for(int n : updatedStation.getUserRoleMap().keySet()) {
-				
-				DrailUser user = userRepo.getOne(n);
+				DrailUser user = new DrailUser(n);
+//				DrailUser user = userRepo.getOne(n);
 				DrailUserRole role = updatedStation.getUserRoleMap().get(n);
 				userRoleMap.put(user, role);
 			}
-			
 			drailStationRepo.save(station);	
 	}
 

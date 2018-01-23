@@ -9,16 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailTile;
-import com.revature.drail.beans.DrailURS;
 import com.revature.drail.beans.DrailUser;
 import com.revature.drail.beans.DrailUserRole;
 import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.service.AddTileService;
 import com.revature.drail.service.GetStationService;
-import com.revature.drail.service.GetURSService;
 
 /**
  * 
@@ -51,7 +48,7 @@ public class AddTileCtrl {
 		DrailStation station = stnService.getStationByRail(dto.getRailId());
 		DrailUserRole role =  currentUser.getStationRoleMap().get(station);
 		
-		if (role != null && role.getId() != DrailUserRole.SCRUM_MASTER.getId()) {
+		if (role != null && role.getId() != DrailUserRole.SCRUM_MASTER.getId() && role.getId() != DrailUserRole.PRODUCT_OWNER.getId()) {
 			return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
 		}
 			

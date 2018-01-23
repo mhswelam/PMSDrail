@@ -140,12 +140,11 @@ public class DrailStation {
 	}
 
 
-	
+	@Override
+	public String toString() {
+		return "DrailStation [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated + ", dueDate="
+				+ dueDate + ", userRoleMap=" + userRoleMap.entrySet() + ", rails=" + rails.size() + "]";
+	}
 
-//	@Override
-//	public String toString() {
-//		return "DrailStation [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated + ", dueDate="
-//				+ dueDate + ", users=" + users + ", rails=" + rails + "]";
-//	}
 
 }
