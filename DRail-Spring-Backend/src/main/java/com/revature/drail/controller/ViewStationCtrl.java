@@ -41,7 +41,7 @@ public class ViewStationCtrl {
 			return new ResponseEntity<DrailStationDTO>(HttpStatus.UNAUTHORIZED);
 		}else {
 			DrailUser currentUser = (DrailUser) session.getAttribute("user");
-			Set<DrailStation> stSet = currentUser.getStations();
+			Set<DrailStation> stSet = currentUser.getStationRoleMap().keySet();
 			
 			DrailStation stView = null;
 			for(DrailStation st: stSet) {
