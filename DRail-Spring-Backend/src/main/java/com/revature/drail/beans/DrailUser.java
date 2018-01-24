@@ -16,6 +16,8 @@ import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.revature.drail.dto.DrailUserDTO;
+
 @Entity
 @Table(name="DRAIL_USERS")
 public class DrailUser {
@@ -61,6 +63,16 @@ public class DrailUser {
 	public DrailUser(int userId) {
 		super();
 		this.userId = userId;
+	}
+
+
+	public DrailUser(DrailUserDTO dtoUser) {
+		super();
+		this.setUsername(dtoUser.getUsername());
+		this.setPassword(dtoUser.getPassword());
+		this.setFirstname(dtoUser.getFirstname());
+		this.setLastname(dtoUser.getLastname());
+		this.setEmail(dtoUser.getEmail());
 	}
 
 

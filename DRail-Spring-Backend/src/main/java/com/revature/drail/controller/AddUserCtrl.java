@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.dto.DrailUserDTO;
 import com.revature.drail.service.AddUserService;
 
 
@@ -29,13 +30,13 @@ public class AddUserCtrl {
 	 * @return Status 201 if user is added, or Status 409 if user already exists
 	 */
 	@PostMapping("/adduser")
-	public ResponseEntity<DrailUser> addUser(@RequestBody DrailUser du) {
+	public ResponseEntity<DrailUserDTO> addUser(@RequestBody DrailUserDTO du) {
 		try {
 			duService.addUser(du);
-			return new ResponseEntity<DrailUser>(HttpStatus.CREATED);
+			return new ResponseEntity<DrailUserDTO>(HttpStatus.CREATED);
 		}
 		catch(Exception e) {
-			return new ResponseEntity<DrailUser>(HttpStatus.CONFLICT);
+			return new ResponseEntity<DrailUserDTO>(HttpStatus.CONFLICT);
 		}
 		
 	}
