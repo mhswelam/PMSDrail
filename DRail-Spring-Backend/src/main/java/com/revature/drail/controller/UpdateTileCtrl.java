@@ -15,6 +15,7 @@ import com.revature.drail.beans.DrailUser;
 import com.revature.drail.beans.DrailUserRole;
 import com.revature.drail.dto.DrailRailDTO;
 import com.revature.drail.dto.DrailTileDTO;
+import com.revature.drail.dto.DrailUserDTO;
 import com.revature.drail.service.GetStationService;
 import com.revature.drail.service.UpdateTileService;
 
@@ -54,7 +55,34 @@ public class UpdateTileCtrl {
 		}
 	}
 	
+	/**
+	 * For each rail in [railDTOs], updates order and railId of the tiles in that rail. This should be used both for persisting movement within a
+	 * rail and movement between rails.  
+	 * @param railDTOs Contains the rails whose tiles will be updated
+	 * @param session
+	 * @return OK if update is successful, UNAUTHORIZED if no user is logged in or the current user has no role on the current station, BAD_REQUEST
+	 * if the array of rails is empty.
+	 */
 	@PostMapping("/updatetileorder")
+	public ResponseEntity<DrailRailDTO> updateTileOrders(@RequestBody DrailRailDTO[] railDTOs, HttpSession session) {
+		DrailUser currentUser = (DrailUser) session.getAttribute("user");
+		if (currentUser == null) return new ResponseEntity<DrailRailDTO>(HttpStatus.UNAUTHORIZED);
+		
+		if (railDTOs.length == 0) return new ResponseEntity<DrailRailDTO>(HttpStatus.BAD_REQUEST);
+		
+		DrailUserDTO currentDTO = new DrailUserDTO(currentUser);
+//		DrailStation station = stnService.getStationByRail(railDTOs[0].getRailId());
+		DrailUserRole role =  currentDTO.getStationRoleMap().get(railDTOs[0].getStationId());
+		
+		if (role == null) return new ResponseEntity<DrailRailDTO>(HttpStatus.UNAUTHORIZED);
+		
+		for(DrailRailDTO rail : railDTOs) {
+			utService.updateTileOrders(rail.getTileIds(), rail.getRailId());
+		}
+		return new ResponseEntity<DrailRailDTO>(HttpStatus.OK);
+	}
+	
+/*	@PostMapping("/updatetileorder")
 	public ResponseEntity<DrailRailDTO> updateTileOrders(@RequestBody DrailRailDTO railDTO, HttpSession session) {
 		DrailUser currentUser = (DrailUser) session.getAttribute("user");
 		if (currentUser == null) return new ResponseEntity<DrailRailDTO>(HttpStatus.UNAUTHORIZED);
@@ -66,5 +94,7 @@ public class UpdateTileCtrl {
 		
 		utService.updateTileOrders(railDTO.getTileIds());
 		return new ResponseEntity<DrailRailDTO>(HttpStatus.OK);
-	}
+	}*/
+	
+	
 }
