@@ -29,7 +29,7 @@ public class DrailTileDTO {
 		this.points = tile.getPoints();
 		this.note = tile.getNote();
 		this.dateCompleted = tile.getDateCompleted();
-		this.completed = (tile.getCompleted() == 0) ? true : false;
+		this.completed = (tile.getCompleted() == 0) ? false : true;
 		this.order = tile.getOrder();
 		if (tile.getUserCheckedOut() != null) this.userCheckedOutId = tile.getUserCheckedOut().getUserId();
 		if (tile.getRail() != null) this.railId = tile.getRail().getRailId();

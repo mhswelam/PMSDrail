@@ -44,9 +44,16 @@ public class AddTileCtrl {
 		
 		DrailUser currentUser = (DrailUser)session.getAttribute("user");
 		if (currentUser == null) return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
-
-		DrailStation station = stnService.getStationByRail(dto.getRailId());
-		DrailUserRole role =  currentUser.getStationRoleMap().get(station);
+		
+		DrailStation station;
+		DrailUserRole role;
+		try {
+			station = stnService.getStationByRail(dto.getRailId());
+			role =  currentUser.getStationRoleMap().get(station);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<DrailTile>(HttpStatus.CONFLICT);
+		}
 		
 		if (role != null && role.getId() != DrailUserRole.SCRUM_MASTER.getId() && role.getId() != DrailUserRole.PRODUCT_OWNER.getId()) {
 			return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
