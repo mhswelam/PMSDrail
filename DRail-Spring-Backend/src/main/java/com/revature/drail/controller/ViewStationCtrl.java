@@ -31,7 +31,6 @@ public class ViewStationCtrl {
 	 * @param session must be a valid session
 	 * @return DrailStationDTO json and status 200, or a status of 401 if session is invalid or station does not exist, or status 204 for no content.
 	 */
-
 	@PostMapping("/viewstation")
 	public ResponseEntity<DrailStationDTO> viewProfile(@RequestBody DrailStationDTO respStationDto,HttpSession session) {
 		if(session == null) {

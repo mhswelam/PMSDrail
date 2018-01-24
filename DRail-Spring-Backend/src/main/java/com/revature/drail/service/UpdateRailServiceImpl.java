@@ -1,5 +1,8 @@
 package com.revature.drail.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,17 @@ public class UpdateRailServiceImpl implements UpdateRailService {
 		rail.setOrder(railDTO.getOrder());
 		rail.setStation(new DrailStation(railDTO.getStationId()));
 		railRepo.save(rail);
+	}
+
+	@Override
+	public void updateRailOrder(List<Integer> railIds) {
+		List<DrailRail> rails = new ArrayList<>();
+		for(int i = 0; i < railIds.size(); i++) {
+			DrailRail rail = railRepo.findOne(railIds.get(i));
+			rail.setOrder(i);
+			rails.add(rail);
+		}
+		railRepo.save(rails);
 	}
 
 }

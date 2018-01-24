@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.drail.beans.DrailRail;
+import com.revature.drail.beans.DrailUser;
+import com.revature.drail.beans.DrailUserRole;
 import com.revature.drail.dto.DrailRailDTO;
+import com.revature.drail.dto.DrailStationDTO;
+import com.revature.drail.dto.DrailUserDTO;
 import com.revature.drail.service.UpdateRailService;
 
 @RestController
@@ -32,6 +36,26 @@ public class UpdateRailCtrl {
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	}
+	
+	/**
+	 * Updates the orders of the rails in [stationDTO]
+	 * @param stationDTO The station whose rails are to be updated, this station's railIds list should be sorted so that the 
+	 * @param session
+	 * @return
+	 */
+	@PostMapping("/updaterailorder")
+	public ResponseEntity<?> updateRailOrders(@RequestBody DrailStationDTO stationDTO, HttpSession session) {
+		DrailUser currentUser = (DrailUser) session.getAttribute("user");
+		if (currentUser == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		
+		DrailUserDTO currentUserDTO = new DrailUserDTO(currentUser);
+		DrailUserRole role =  currentUserDTO.getStationRoleMap().get(stationDTO.getStationId());
+		
+		if (role == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		
+		service.updateRailOrder(stationDTO.getRailIds());
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
