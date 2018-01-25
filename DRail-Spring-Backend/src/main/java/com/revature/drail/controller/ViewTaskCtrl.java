@@ -1,5 +1,8 @@
 package com.revature.drail.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.drail.beans.DrailTask;
+import com.revature.drail.dto.DrailRailDTO;
 import com.revature.drail.dto.DrailTaskDTO;
 import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.service.GetService;
@@ -43,6 +47,30 @@ public class ViewTaskCtrl {
 				return new ResponseEntity<DrailTaskDTO>(new DrailTaskDTO(),HttpStatus.NO_CONTENT);
 			}
 		}
+	}
+	
+//	@PostMapping("/viewtasks")
+//	public ResponseEntity<List<DrailTaskDTO>> viewTasks(@RequestBody DrailTileDTO tileDTO, HttpSession session) {
+//		List<DrailTaskDTO> dtoLst = new ArrayList<>();
+//		for(int n : tileDTO.getTaskIds()) {
+//			dtoLst.add(new DrailTaskDTO(service.getTaskById(n)));
+//		}
+//		if (dtoLst.size() == 0) {
+//			return new ResponseEntity<List<DrailTaskDTO>>(HttpStatus.NO_CONTENT);
+//		}
+//		return new ResponseEntity<List<DrailTaskDTO>>(dtoLst, HttpStatus.OK);
+//	}
+	@PostMapping("/viewtasks")
+	public ResponseEntity<List<DrailTaskDTO>> viewTasks(@RequestBody DrailTileDTO tileDTO, HttpSession session) {
+//		List<DrailTaskDTO> dtoLst = new ArrayList<>();
+//		for(int n : tileDTO.getTaskIds()) {
+//			dtoLst.add(new DrailTaskDTO(service.getTaskById(n)));
+//		}
+//		if (dtoLst.size() == 0) {
+//			return new ResponseEntity<List<DrailTaskDTO>>(HttpStatus.NO_CONTENT);
+//		}
+		System.out.println(tileDTO);
+		return new ResponseEntity<List<DrailTaskDTO>>( HttpStatus.OK);
 	}
 
 }
