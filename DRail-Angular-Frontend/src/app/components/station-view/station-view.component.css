@@ -1,0 +1,23 @@
+.card {
+    box-shadow: 0px 2px 25px rgba(0, 0, 0, .25);
+    width: 24rem; 
+    height: 10rem;
+}
+.card:hover {
+    background-color: #DCDCDC;
+}
+.card-top:hover {
+    background-color: #DCDCDC;
+}
+
+.card-top{
+    background-color:#FF6557;
+    height:70px;
+    
+    
+    
+}
+.card-buttom{
+    height:30px;
+    box-shadow: 0px 2px 25px rgba(0, 0, 0, .30);
+}
