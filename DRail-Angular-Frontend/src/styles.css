@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+html, 
+body {
+    height: 100%;
+}
+
+.bgGradiant{
+    background-image: url("assets/images/background_gradientRed2Blue.jpg");
+    background-repeat: repeat-x;
+    background-size: 10px 80%;
+}
+
+.loading{
+    background-image: url("assets/images/login.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100% 100%;
+}
+.bgRed{
+    background-color:  #C81D25;
+}
+
+.bgGreenBlue{
+    background-color: #087E8B
+}
+
+.bgLightBlue{
+    background-color: #6FA6E8
+}
+
+.bgPaleBlue{
+
+    background-color:  #B1CAE8
+}
