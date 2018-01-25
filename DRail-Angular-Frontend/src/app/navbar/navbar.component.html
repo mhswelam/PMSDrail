@@ -1,0 +1,29 @@
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-faded" style="background-color: #59b4f5;">
+        <a class="navbar-brand" ><img src="assets/Images/rail_icon.png" alt="" height="30" class=""> Drail </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        Stations  <span class="sr-only">(current)</span></a>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary d-inline"><i class="fa fa-plus-square"></i></button>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="false">
+                      <i class="fa fa-user"></i> Hello,{{username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#"> <i class="fa fa-user"></i> Profile</a>
+                        <a class="dropdown-item" href="#"> <i class="fa fa-power-off"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
