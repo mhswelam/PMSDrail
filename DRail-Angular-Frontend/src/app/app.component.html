@@ -1,6 +1,6 @@
-<!-- <div *ngIf=[loggedIn]> -->
+<div *ngIf="userService.getUser()">
     <app-navbar></app-navbar>
-<!-- </div> -->
+</div>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
