@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
