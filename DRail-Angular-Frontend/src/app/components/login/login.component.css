@@ -1,0 +1,12 @@
+.margin-top{
+    margin-top: 10rem;
+}
+
+.headerSize{
+    height: 100px;
+    width: 100%;
+}
+
+.form-control.ng-touched.ng-invalid{
+border: 2px solid red;
+ }
