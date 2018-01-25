@@ -7,7 +7,7 @@
           Username
         </label>
      
-        <input id="username" name="username" class="form-control" type="text" placeholder="Username" formControlName="username">
+        <input (keyup)="checkLength()" maxlength="15" pattern="[a-zA-Z0-9]*"  id="username" name="username" class="form-control" type="text" placeholder="Username" formControlName="username">
         
         <div class="alert-danger" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">
           {{alert}}

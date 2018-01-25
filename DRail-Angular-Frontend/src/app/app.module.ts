@@ -14,6 +14,7 @@ import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
 import { InfoDisplayComponent } from './components/profile/info-display/info-display.component';
 import { InfoEditComponent } from './components/profile/info-edit/info-edit.component';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { InfoEditComponent } from './components/profile/info-edit/info-edit.comp
     AppRoutingModule,
     HttpModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
