@@ -22,11 +22,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "autoprefixer": "^7.2.5",
-<<<<<<< HEAD
-    "bootstrap": "^4.0.0-beta.2",
-=======
     "bootstrap": "4.0.0-beta",
->>>>>>> 71ac772829013a83d4f0085aced35580a869794b
     "core-js": "^2.4.1",
     "install": "^0.10.4",
     "jquery": "^3.3.1",

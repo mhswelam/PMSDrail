@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-<<<<<<< HEAD
-import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './navbar/navbar.component';
-=======
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
->>>>>>> 71ac772829013a83d4f0085aced35580a869794b
+import { RegisterComponent } from './components/register/register.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
+import { LoginService } from './services/login.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -18,14 +19,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileComponent,
+    MainViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
