@@ -1,6 +1,9 @@
 package com.revature.drail.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.drail.beans.DrailTile;
+import com.revature.drail.dto.DrailRailDTO;
 import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.service.ViewTileService;
 /**
@@ -43,6 +47,17 @@ public class ViewTileCtrl {
 				return new ResponseEntity<DrailTileDTO>(dtDto,HttpStatus.OK);
 			}
 		}
-
+	}
+	
+	@PostMapping("/viewtiles")
+	public ResponseEntity<List<DrailTileDTO>> viewTiles(@RequestBody DrailRailDTO railDTO, HttpSession session) {
+		List<DrailTileDTO> dtoLst = new ArrayList<>();
+		for(int n : railDTO.getTileIds()) {
+			dtoLst.add(new DrailTileDTO(tileService.viewTileById(n)));
+		}
+		if (dtoLst.size() == 0) {
+			return new ResponseEntity<List<DrailTileDTO>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<DrailTileDTO>>(dtoLst, HttpStatus.OK);
 	}
 }
