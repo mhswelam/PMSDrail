@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
+import { LoginService } from './services/login.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -25,9 +27,10 @@ import { MainViewComponent } from './components/main-view/main-view.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
