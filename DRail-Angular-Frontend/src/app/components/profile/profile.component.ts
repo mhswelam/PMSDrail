@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+  isEditing = false;
+
   firstname = 'Firstname';
   lastname = 'Lastname';
   username = 'Username';
@@ -17,4 +19,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeDisplay() {
+    this.isEditing = !this.isEditing;
+  }
 }

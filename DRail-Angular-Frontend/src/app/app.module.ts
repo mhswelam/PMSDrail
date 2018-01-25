@@ -12,6 +12,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
+import { InfoDisplayComponent } from './components/profile/info-display/info-display.component';
+import { InfoEditComponent } from './components/profile/info-edit/info-edit.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { HttpModule } from '@angular/http';
     LoginComponent,
     NavbarComponent,
     ProfileComponent,
-    MainViewComponent
+    MainViewComponent,
+    InfoDisplayComponent,
+    InfoEditComponent
   ],
   imports: [
     BrowserModule,
