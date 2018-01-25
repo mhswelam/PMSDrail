@@ -11,17 +11,34 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class StationService {
-  private url = 'http://localhost:8080/api/viewstation';
+  private url = 'http://localhost:8080/api';
+
+  private selectedStation: Station;
+  // List of tiles (?) for creating burndown chart
 
   constructor(private http: Http) { }
 
+  // Get all rails on this station
   getRails (station: Station): Observable<Rail[]> {
     return this.http
-      .post(this.url, station)
-      .map((response: Response) => {
-        return <Rail[]> response.json();
-      })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+      .post(`${this.url}/viewrails`, station)
+      .map((response: Response) => <Rail[]> response.json());
+      // .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  // Set the given station as selected
+  select(station: Station) {
+    this.selectedStation = station;
+  }
+
+  // Remove current selection
+  remove() {
+    this.selectedStation = null;
+  }
+
+  // Get the selected station
+  selected() {
+    return this.selectedStation;
   }
 
 }
