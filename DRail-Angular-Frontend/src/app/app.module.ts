@@ -13,6 +13,8 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
 import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutService } from './services/logout.service';
 
 
 @NgModule({
@@ -29,9 +31,10 @@ import { UserService } from './services/user.service';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [LoginService, UserService],
+  providers: [LoginService, UserService, LogoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
