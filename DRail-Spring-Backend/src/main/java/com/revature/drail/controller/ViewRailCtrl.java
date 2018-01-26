@@ -38,6 +38,7 @@ public class ViewRailCtrl {
 	
 	@PostMapping("/viewrails")
 	public ResponseEntity<List<DrailRailDTO>> viewRails(@RequestBody DrailStationDTO stationDTO, HttpSession session) {
+		System.out.println(stationDTO);
 		List<DrailRailDTO> dtoLst = new ArrayList<>();
 		for(int n: stationDTO.getRailIds()) {
 			dtoLst.add(new DrailRailDTO(railSer.getRail(n)));

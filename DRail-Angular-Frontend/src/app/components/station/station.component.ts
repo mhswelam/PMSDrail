@@ -43,4 +43,8 @@ export class StationComponent implements OnInit {
     console.log(err);
   }
 
+  doSomething (response) {
+    this.rails = response;
+  }
+
 }
