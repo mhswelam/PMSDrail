@@ -1,4 +1,7 @@
+import {User} from '../../models/user';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,19 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  isEditing = false;
+  public isEditing = false;
 
-  firstname = 'Firstname';
-  lastname = 'Lastname';
-  username = 'Username';
-  email = 'Email';
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
 
-  constructor() { }
+  currentUser: User;
+
+  constructor(protected userService: UserService, protected profileService: ProfileService) {
+      this.currentUser = userService.getUser();
+      this.firstname = this.currentUser.firstname;
+      this.lastname = this.currentUser.lastname;
+      this.username = this.currentUser.username;
+      this.email = this.currentUser.email;
+   }
 
   ngOnInit() {
   }
 
-  changeDisplay() {
+  public changeDisplay() {
     this.isEditing = !this.isEditing;
+    if (this.isEditing) {
+      document.getElementById('editButton').innerHTML = '<i class="fa fa-arrow-left"></i> &nbsp; Go Back';
+    } else {
+      document.getElementById('editButton').innerHTML = '<i class="fa fa-pencil"></i> &nbsp; Edit Profile Information';
+    }
   }
 }
