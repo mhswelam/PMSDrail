@@ -26,6 +26,12 @@ export class StationService {
       // .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getStation(station: Station): Observable<Station> {
+    return this.http
+      .post(`${this.url}/viewstation`, station)
+      .map((response: Response) => <Station> response.json());
+  }
+
   // Set the given station as selected
   select(station: Station) {
     this.selectedStation = station;

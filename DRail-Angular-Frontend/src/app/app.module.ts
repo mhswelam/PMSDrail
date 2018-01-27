@@ -20,7 +20,9 @@ import { RailComponent } from './components/rail/rail.component';
 import { TileDetailsComponent } from './components/tile-details/tile-details.component';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
-
+import { GetStationsService } from './services/get-stations.service';
+import { StationViewComponent } from './components/station-view/station-view.component';
+import { StationsComponent } from './components/stations/stations.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { RailService } from './services/rail.service';
     MainViewComponent,
     StationComponent,
     RailComponent,
-    TileDetailsComponent
+    TileDetailsComponent,
+    StationViewComponent,
+    StationsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import { RailService } from './services/rail.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [LoginService, UserService, LogoutService, StationService, RailService],
+  providers: [LoginService, UserService, LogoutService, StationService, RailService, GetStationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
