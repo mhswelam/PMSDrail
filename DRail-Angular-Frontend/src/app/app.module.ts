@@ -29,6 +29,7 @@ import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { DragulaModule } from 'ng2-dragula/components/dragular.module';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
+import { RegisterService } from './services/register.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
     StationViewComponent,
     StationsComponent,
     AddStationComponent,
-    CreateStationPopComponent
+    CreateStationPopComponent,
+    AddStationComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
     HttpClientModule,
     DragulaModule
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, GetStationsService],
+  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, GetStationsService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
