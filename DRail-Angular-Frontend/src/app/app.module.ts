@@ -27,6 +27,8 @@ import { GetStationsService } from './services/get-stations.service';
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
+import { DragulaModule } from 'ng2-dragula/components/dragular.module';
+import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { AddStationComponent } from './components/add-station/add-station.compon
     TileDetailsComponent,
     StationViewComponent,
     StationsComponent,
-    AddStationComponent
+    AddStationComponent,
+    CreateStationPopComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { AddStationComponent } from './components/add-station/add-station.compon
     ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    DragulaModule
   ],
   providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, GetStationsService],
   bootstrap: [AppComponent]

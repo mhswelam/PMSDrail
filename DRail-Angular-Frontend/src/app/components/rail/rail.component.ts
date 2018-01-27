@@ -23,7 +23,7 @@ export class RailComponent implements OnInit {
 
     this.dragula.drop.subscribe(
       val => {
-        console.log("ids before swap " + this.rail.tileIds);
+        console.log('ids before swap ' + this.rail.tileIds);
         console.log('An item has been dropped.');
         this.rail.tileIds = this.map(this.tiles, e => e.tileId);
         console.log('ids after swap ' + this.rail.tileIds);

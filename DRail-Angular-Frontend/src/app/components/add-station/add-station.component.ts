@@ -12,7 +12,7 @@ export class AddStationComponent implements OnInit {
   ngOnInit() {
   }
 
-  addStation(station) {
-
+  createStation() {
+    console.log('in here');
   }
 }

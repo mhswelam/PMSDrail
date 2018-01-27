@@ -64,3 +64,6 @@
     margin-top: 50%;
     position: inherit;
 }
+.circle:hover {
+    background-color: #DCDCDC;
+}
