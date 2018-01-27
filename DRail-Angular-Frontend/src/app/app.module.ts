@@ -12,12 +12,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
+import { InfoDisplayComponent } from './components/profile/info-display/info-display.component';
+import { InfoEditComponent } from './components/profile/info-edit/info-edit.component';
 import { UserService } from './services/user.service';
-import { HttpClientModule } from '@angular/common/http';
-import { LogoutService } from './services/logout.service';
+import { ProfileService } from './services/profile.service';
 import { StationComponent } from './components/station/station.component';
 import { RailComponent } from './components/rail/rail.component';
 import { TileDetailsComponent } from './components/tile-details/tile-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
 import { GetStationsService } from './services/get-stations.service';
@@ -32,6 +35,8 @@ import { StationsComponent } from './components/stations/stations.component';
     NavbarComponent,
     ProfileComponent,
     MainViewComponent,
+    InfoDisplayComponent,
+    InfoEditComponent,
     StationComponent,
     RailComponent,
     TileDetailsComponent,
@@ -46,7 +51,7 @@ import { StationsComponent } from './components/stations/stations.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [LoginService, UserService, LogoutService, StationService, RailService, GetStationsService],
+  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, GetStationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
