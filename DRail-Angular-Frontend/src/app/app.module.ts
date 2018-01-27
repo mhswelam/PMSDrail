@@ -23,9 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
+import { RegisterService } from './services/register.service';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { DragulaModule } from 'ng2-dragula';
 import { UtilsService } from './services/utils.service';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { UtilsService } from './services/utils.service';
     LogoutService,
     StationService,
     RailService,
-    UtilsService
+    UtilsService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })

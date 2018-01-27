@@ -1,3 +1,20 @@
 .form-control.ng-touched.ng-invalid{
-    border: 2px solid red;
+    border-left: 8px solid red;
  }
+
+ .form-control.ng-touched.ng-valid{
+    border-left: 8px solid green;
+ }
+
+ .btn-primary{
+     margin-top: 10px;
+     background-color: rgb(0, 167, 83) ;
+     border-color: blue;
+ }
+
+ 
+ .btn.btn-primary[disabled] {
+    margin-top: 10px;
+    background-color: #8a0000;
+    border-color: red;
+}
