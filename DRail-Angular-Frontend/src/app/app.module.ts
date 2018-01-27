@@ -24,6 +24,8 @@ import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
 import { RegisterService } from './services/register.service';
+import { AddStationComponent } from './components/add-station/add-station.component';
+import { DragulaModule } from 'ng2-dragula';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { RegisterService } from './services/register.service';
     InfoEditComponent,
     StationComponent,
     RailComponent,
-    TileDetailsComponent
+    TileDetailsComponent,
+    AddStationComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { RegisterService } from './services/register.service';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    DragulaModule
   ],
   providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService],
   bootstrap: [AppComponent]
