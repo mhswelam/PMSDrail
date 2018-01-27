@@ -16,6 +16,13 @@ import { InfoDisplayComponent } from './components/profile/info-display/info-dis
 import { InfoEditComponent } from './components/profile/info-edit/info-edit.component';
 import { UserService } from './services/user.service';
 import { ProfileService } from './services/profile.service';
+import { StationComponent } from './components/station/station.component';
+import { RailComponent } from './components/rail/rail.component';
+import { TileDetailsComponent } from './components/tile-details/tile-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutService } from './services/logout.service';
+import { StationService } from './services/station.service';
+import { RailService } from './services/rail.service';
 
 
 @NgModule({
@@ -27,16 +34,20 @@ import { ProfileService } from './services/profile.service';
     ProfileComponent,
     MainViewComponent,
     InfoDisplayComponent,
-    InfoEditComponent
+    InfoEditComponent,
+    StationComponent,
+    RailComponent,
+    TileDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [LoginService, UserService, ProfileService],
+  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
