@@ -1,34 +1,74 @@
-<form>
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input required minlength="4" maxlength="15" ngModel name="username" #username="ngModel" id="username"
-      type="text" class="form-control">
-    <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
-      <div *ngIf="username.errors.required">
-        Username is Required</div>
-      <div *ngIf="username.errors.minlength">Username Must Be Atleast {{username.errors.minlength.requiredLength}} Characters Long</div>
+<form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+
+  <div class="form-group col-6 offset-3">
+
+    <label for="username">
+      Username
+    </label>
+    <input [(ngModel)]="username" (blur)="checkLength()" (keyup)="checkLength()" maxlength="15" pattern="[a-zA-Z0-9]*" id="username" name="username"
+      class="form-control" type="text" placeholder="Username" formControlName="username">
+    <div class="alert-danger" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">
+      {{usernameAlert}}
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input required ngModel name="password" #password="ngModel" type="password" id="password" class="form-control">
-    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-      <div *ngIf="password.errors.required">
-        Password Must Be Entered
-      </div>
+
+
+  <div class="form-group col-6 offset-3">
+    <label for="password">
+      Password
+    </label>
+    <input [(ngModel)]="fPassword" (blur)="setConfirmPass()" (blur)="checkPass()" (keyup)="checkPass()" id="password" name="password" class="form-control" type="password" placeholder="password"
+      formControlName="fPassword">
+    <div class="alert-danger" *ngIf="!rForm.controls['fPassword'].valid && rForm.controls['fPassword'].touched">
+      {{passAlert}}
     </div>
-
-    <div class="form-group">
-        <label for="confirmPassword">confirm Password</label>
-        <input required ngModel name="confirmPassword" #confirmPassword="ngModel" type="password" id="confirmPassword" class="form-control">
-        <div class="alert alert-danger" *ngIf="confirmPassword.touched && !password.valid">
-          <div *ngIf="password.value != confirmPassword.value">
-            Passwords Must Match
-          </div>
-        </div>
-      </div>
-
   </div>
-  <button class="btn btn-primary">{{registerLabel}}</button>
+
+  <div class="form-group col-6 offset-3">
+    <label for="password">
+      Confirm Password
+    </label>
+    <input [(ngModel)]="cpassword"  id="confirmpassword" name="confirmpassword" class="form-control" type="password" placeholder="password"
+      formControlName="cpassword">
+    <div class="alert-danger" *ngIf="!rForm.controls['cpassword'].valid && rForm.controls['cpassword'].touched">
+      Password Does Not Match
+    </div>
+  </div>
+
+  <div class="form-group col-6 offset-3">
+    <label for="password">
+      First Name
+    </label>
+    <input [(ngModel)]="fname" (blur)="checkFName()" maxlength="25" (keyup)="checkFName()" id="firstname" name="firstname" class="form-control" type="text" placeholder="First Name"
+      formControlName="fname">
+    <div class="alert-danger" *ngIf="!rForm.controls['fname'].valid && rForm.controls['fname'].touched">
+      {{fnameAlert}}
+    </div>
+  </div>
+
+  <div class="form-group col-6 offset-3">
+    <label for="lname">
+      Last Name
+    </label>
+    <input [(ngModel)]="lname" (blur)="checkLName()" maxlength="25" (keyup)="checkLName()"  id="lastname" name="lastname" class="form-control" type="text" placeholder="Last Name"
+      formControlName="lname">
+    <div class="alert-danger" *ngIf="!rForm.controls['lname'].valid && rForm.controls['lname'].touched">
+      {{lnameAlert}}
+    </div>
+  </div>
+
+  <div class="form-group col-6 offset-3">
+    <label for="email">
+      Email
+    </label>
+    <input (blur)="checkEmail()" (keyup)="checkEmail()"  id="emails" name="emails" class="form-control" type="text" placeholder="Email"
+      formControlName="email">
+    <div class="alert-danger" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">
+      {{emailAlert}}
+    </div>
+  </div>
+
+
+  <input type="submit" class="btn btn-primary col-6 offset-3" name="login" id="login" value={{registerLabel}} [disabled]="!rForm.valid">
 </form>
