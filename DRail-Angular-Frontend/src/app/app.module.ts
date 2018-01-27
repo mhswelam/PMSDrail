@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
+import { RegisterService } from './services/register.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { RailService } from './services/rail.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService],
+  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
