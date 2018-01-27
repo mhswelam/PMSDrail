@@ -142,10 +142,6 @@ public class DrailTileDTO implements Comparable {
 				+ ", userCheckedOutId=" + userCheckedOutId + ", railId=" + railId + ", taskIds=" + taskIds + "]";
 	}
 
-	public int compareTo(DrailTileDTO other) {
-		return (this.order - other.order);
-	}
-
 	@Override
 	public int compareTo(Object other) {
 		return (this.order - ((DrailTileDTO) other).getOrder());
