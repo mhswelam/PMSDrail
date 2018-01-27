@@ -7,7 +7,7 @@ import java.util.List;
 import com.revature.drail.beans.DrailTask;
 import com.revature.drail.beans.DrailTile;
 
-public class DrailTileDTO {
+public class DrailTileDTO implements Comparable {
 
 	private int tileId;
 	private String name;
@@ -140,6 +140,15 @@ public class DrailTileDTO {
 		return "DrailTileDTO [tileId=" + tileId + ", name=" + name + ", points=" + points + ", note=" + note
 				+ ", dateCompleted=" + dateCompleted + ", completed=" + completed + ", order=" + order
 				+ ", userCheckedOutId=" + userCheckedOutId + ", railId=" + railId + ", taskIds=" + taskIds + "]";
+	}
+
+	public int compareTo(DrailTileDTO other) {
+		return (this.order - other.order);
+	}
+
+	@Override
+	public int compareTo(Object other) {
+		return (this.order - ((DrailTileDTO) other).getOrder());
 	}
 	
 }
