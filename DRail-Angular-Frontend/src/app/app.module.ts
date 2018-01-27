@@ -25,6 +25,7 @@ import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { DragulaModule } from 'ng2-dragula';
+import { UtilsService } from './services/utils.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,15 @@ import { DragulaModule } from 'ng2-dragula';
     HttpClientModule,
     DragulaModule
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService],
+  providers: [
+    LoginService,
+    UserService,
+    ProfileService,
+    LogoutService,
+    StationService,
+    RailService,
+    UtilsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

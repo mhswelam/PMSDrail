@@ -26,6 +26,11 @@ export class StationService {
       // .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  saveRailOrder (station: Station) {
+    return this.http
+      .post(`${this.url}/updaterailorder`, station, { withCredentials: true }).subscribe();
+  }
+
   // Set the given station as selected
   select(station: Station) {
     this.selectedStation = station;
