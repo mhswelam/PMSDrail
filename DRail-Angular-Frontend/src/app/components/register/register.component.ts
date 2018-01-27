@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { FormControl } from '@angular/forms/src/model';
+import {User} from '../../models/user';
+import {RegisterService} from '../../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +26,7 @@ export class RegisterComponent implements OnInit {
   lnameAlert;
   emailAlert;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private registerService: RegisterService) {
 
     const emailValidation = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
@@ -80,8 +82,6 @@ export class RegisterComponent implements OnInit {
     }
 
   setConfirmPass() {
-    console.log('thisisathing');
-    console.log(this.fPassword);
     if (this.fPassword !== this.rForm.get('cpassword').value) {
     this.rForm.get('cpassword').reset();
     }
@@ -117,6 +117,26 @@ export class RegisterComponent implements OnInit {
       }else if (email.dirty) {
          this.emailAlert = 'Email Must Be In The Format Of (Example@email.com)';
       }
+  }
+
+  addPost(post) {
+    this.username = post.username;
+    this.fPassword = post.fPassword;
+    this.fname = post.fname;
+    this.lname = post.lname;
+    this.email = post.email;
+
+    const user = new User(null, this.username, this.fPassword, this.fname, this.lname, this.email, null);
+
+    this.registerService.registerUser(user).subscribe(
+      response => {
+        console.log('this is okay');
+        console.log(response.status);
+      }, error => {
+        console.log('this is an error');
+        console.log(error.status);
+      }
+    );
   }
 
 
