@@ -15,11 +15,12 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginLabel = 'Login To Drail';
+  failedLogin;
   rForm: FormGroup;
   post: any;
   alert = 'Please Enter username';
-  fPassword = '';
-  username = '';
+  fPassword;
+  username;
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private userService: UserService, private router: Router) {
 
@@ -42,14 +43,9 @@ export class LoginComponent implements OnInit {
   // }
 
   ngOnInit() {
-    // this.rForm.get('username').valueChanges.subscribe(
-    //   (username) => { if (this.username.length === 0) {
-    //     this.alert = 'Username Must Be Entered';
-    //   } else if (this.username.length < 4 && this.username.length > 0) {
-    //     this.alert = 'Username Must Greater Than Four Characters';
-    //   }
-    // }
-    // );
+    this.failedLogin = false;
+    this.fPassword = '';
+    this.username = '';
   }
 
 
@@ -62,7 +58,12 @@ export class LoginComponent implements OnInit {
       response => {
       // this.router.navigate(['station-view']);
        this.userService.setUser(response); }
-       , err => this.userService.setUser(null)
+       , err => {
+         console.log(err.status);
+         this.userService.setUser(null);
+         this.username = '';
+         this.fPassword = '';
+         this.failedLogin = true; }
       );
   }
 
@@ -77,6 +78,10 @@ export class LoginComponent implements OnInit {
     } else if (username.dirty) {
       this.alert = 'Username Must NOT Contain Special Characters';
     }
+}
+
+setFailedLoginFalse() {
+  this.failedLogin = false;
 }
 
 }

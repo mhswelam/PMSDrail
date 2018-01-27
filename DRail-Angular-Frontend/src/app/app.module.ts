@@ -13,6 +13,13 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
 import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutService } from './services/logout.service';
+import { StationComponent } from './components/station/station.component';
+import { RailComponent } from './components/rail/rail.component';
+import { TileDetailsComponent } from './components/tile-details/tile-details.component';
+import { StationService } from './services/station.service';
+import { RailService } from './services/rail.service';
 
 
 @NgModule({
@@ -22,16 +29,20 @@ import { UserService } from './services/user.service';
     LoginComponent,
     NavbarComponent,
     ProfileComponent,
-    MainViewComponent
+    MainViewComponent,
+    StationComponent,
+    RailComponent,
+    TileDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [LoginService, UserService],
+  providers: [LoginService, UserService, LogoutService, StationService, RailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
