@@ -16,17 +16,20 @@ export class LoginComponent implements OnInit {
 
   loginLabel = 'Login To Drail';
   failedLogin;
+  failedLogingHeader;
+  failedLoginMessage;
   rForm: FormGroup;
   post: any;
   alert = 'Please Enter username';
   fPassword;
   username;
+  random;
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private userService: UserService, private router: Router) {
 
     this.rForm = fb.group({
       'username':  [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(15)])],
-      'fPassword': [null, Validators.compose([Validators.required])]
+      'fPassword': [null, Validators.compose([Validators.required])],
     });
 
   }
@@ -59,11 +62,18 @@ export class LoginComponent implements OnInit {
       // this.router.navigate(['station-view']);
        this.userService.setUser(response); }
        , err => {
-         console.log(err.status);
+         if (err.status === 401) {
          this.userService.setUser(null);
          this.username = '';
          this.fPassword = '';
+         this.failedLogin = true;
+         this.failedLogingHeader = 'Failed Login!';
+         this.failedLoginMessage = 'This username and password combination was not found in our database please try again'; }else {
+         this.failedLogingHeader = 'Connection Error!';
+         this.failedLoginMessage = 'There was a problem with the connection to the database we apologize';
+          this.userService.setUser(null);
          this.failedLogin = true; }
+         }
       );
   }
 
