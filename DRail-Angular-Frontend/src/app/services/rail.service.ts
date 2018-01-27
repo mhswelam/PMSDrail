@@ -15,8 +15,13 @@ export class RailService {
 
   getTiles(rail: Rail): Observable<Tile[]> {
     return this.http
-      .post(`${this.url}/viewtiles`, rail)
+      .post(`${this.url}/viewtiles`, rail, { withCredentials: true })
       .map((response: Response) => <Tile[]> response.json());
+  }
+
+  saveTileOrder(rails: Rail[]) {
+    return this.http
+      .post(`${this.url}/updatetileorder`, rails, { withCredentials: true }).subscribe();
   }
 
 }

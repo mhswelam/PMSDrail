@@ -17,7 +17,7 @@ export class LoginService {
 
   validateUser(user: User): Observable<User> {
 
-    return this.http.post(this.url, user)
+    return this.http.post(this.url, user, { withCredentials: true })
                     .map((response: Response) => <User> response.json());
   }
 }
