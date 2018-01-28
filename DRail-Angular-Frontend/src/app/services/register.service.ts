@@ -9,12 +9,21 @@ import { User } from '../models/user';
 export class RegisterService {
 
 
-  private url = 'http://localhost:8080/api/login';
+  private url = 'http://localhost:8080/api/adduser';
+  registerStatus = false;
 
   constructor(private http: Http) { }
 
   registerUser(user: User) {
     return this.http.post(this.url, user);
+  }
+
+  setRegisterSucessful(registerStatus: boolean) {
+    this.registerStatus = registerStatus;
+  }
+
+  getRegisterSucessful() {
+    return this.registerStatus;
   }
 
 }

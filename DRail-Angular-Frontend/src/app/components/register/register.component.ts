@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { FormControl } from '@angular/forms/src/model';
 import {User} from '../../models/user';
 import {RegisterService} from '../../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +13,12 @@ import {RegisterService} from '../../services/register.service';
 export class RegisterComponent implements OnInit {
 
   registerLabel = 'Register With Drail';
+  loginLabel = 'Existing User';
   rForm: FormGroup;
   post: any;
+  failedRegister;
+  failedRegisterHeader;
+  failedRegisterMessage;
   username;
   fPassword;
   cpassword;
@@ -26,7 +31,7 @@ export class RegisterComponent implements OnInit {
   lnameAlert;
   emailAlert;
 
-  constructor(private fb: FormBuilder, private registerService: RegisterService) {
+  constructor(private fb: FormBuilder, private registerService: RegisterService, private router: Router) {
 
     const emailValidation = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
@@ -55,6 +60,7 @@ export class RegisterComponent implements OnInit {
   this.fname = '';
   this.lname = '';
   this.email = '';
+  this.failedRegister = false;
   }
 
   checkLength() {
@@ -130,13 +136,29 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.registerUser(user).subscribe(
       response => {
-        console.log('this is okay');
-        console.log(response.status);
+          this.registerService.setRegisterSucessful(true);
+          this.router.navigate(['login']);
       }, error => {
-        console.log('this is an error');
-        console.log(error.status);
+        if (error.status === 0) {
+          this.failedRegister = true;
+          this.failedRegisterHeader = 'FAILED CONNECTION';
+          this.failedRegisterMessage = 'We apologize but something went wrong on our side';
+        }else {
+          this.failedRegister = true;
+          this.failedRegisterMessage = 'USERNAME ALREADY EXIST';
+          this.failedRegisterMessage = 'Please choose a more unique name';
+        }
       }
     );
+  }
+
+  setFailedRegisterFalse() {
+    this.failedRegister = false;
+  }
+
+  redirectToLogin() {
+    this.registerService.setRegisterSucessful(false);
+    this.router.navigate(['login']);
   }
 
 
