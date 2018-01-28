@@ -74,7 +74,7 @@ export class StationComponent implements OnInit {
   }
 
   showAddRail() {
-    const disposable = this.dialogService.addDialog(AddRailComponent, {}).subscribe(resp =>
+    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(resp =>
       this.stationService.refresh()
     );
   }
