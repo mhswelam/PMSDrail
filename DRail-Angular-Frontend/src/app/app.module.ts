@@ -33,7 +33,6 @@ import { GetStationsService } from './services/get-stations.service';
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
-import { DragulaModule } from 'ng2-dragula/components/dragular.module';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
 
 
