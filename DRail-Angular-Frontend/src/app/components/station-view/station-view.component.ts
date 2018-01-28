@@ -22,7 +22,7 @@ export class StationViewComponent implements OnInit {
   loadStation(station) {
     this.Service.getStation(station).subscribe(
       response => {this.Service.select(response);
-      this.router.navigate(['station/test']); });
+      this.router.navigate(['station']); });
   }
 
 }
