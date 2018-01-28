@@ -4,6 +4,7 @@ import { Tile } from '../../models/tile';
 import { RailService } from '../../services/rail.service';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { UserService } from '../../services/user.service';
+import { UtilsService } from '../../services/utils.service';
 
 
 @Component({
@@ -16,17 +17,18 @@ export class RailComponent implements OnInit {
   @Input() rail: Rail;
   tiles: Tile[] = [];
 
-  constructor(private railService: RailService, private dragula: DragulaService, private userService: UserService) { }
+  constructor(
+    private railService: RailService,
+    private dragula: DragulaService,
+    private userService: UserService,
+    private utilsService: UtilsService) { }
 
   ngOnInit() {
     this.getTiles();
 
     this.dragula.drop.subscribe(
       val => {
-        console.log('ids before swap ' + this.rail.tileIds);
-        console.log('An item has been dropped.');
-        this.rail.tileIds = this.map(this.tiles, e => e.tileId);
-        console.log('ids after swap ' + this.rail.tileIds);
+        this.rail.tileIds = this.utilsService.map(this.tiles, e => e.tileId);
         this.railService.saveTileOrder([this.rail]);
       }
     );
@@ -53,15 +55,5 @@ export class RailComponent implements OnInit {
       console.log(tile);
     }
   }
-
-  map(lst, fun) {
-    let result = [];
-    for (let elem of lst) {
-      result.push(fun(elem));
-    }
-    return result;
-  }
-
-
 
 }
