@@ -26,14 +26,15 @@ public class GetBChartServiceImpl implements GetBChartService {
 	
 	
 	@Override
-	public DrailChartDTO<Long, Integer> getChartDto(DrailChartDTO<Long, Integer> chartDto) {
+	public DrailChartDTO getChartDto(DrailChartDTO chartDto) {
 		
 		
-		DrailChartDTO<Long, Integer> sendOut = new DrailChartDTO<Long, Integer>();
+		DrailChartDTO sendOut = new DrailChartDTO();
 		DrailStation currentSt = stSer.viewStationById(chartDto.getStId());
 		Date due = currentSt.getDueDate();
 		sendOut.setData(new ArrayList<>());
 		List<Integer> tileList = chartDto.getTileIds();
+		System.out.println(tileList.toString());
 		List<DrailTile> completedTiles = new ArrayList<>();
 		List<DrailTile> notComplTiles = new ArrayList<>();
 		int totalpoints = 0;
@@ -53,11 +54,11 @@ public class GetBChartServiceImpl implements GetBChartService {
 		leftPoints = totalpoints;
 		for(DrailTile aTile : completedTiles) {
 			leftPoints = leftPoints - aTile.getPoints();
-			sendOut.getData().add(new OrderedPair<Long, Integer>(aTile.getDateCompleted().getTime(), leftPoints));
+			sendOut.getData().add(new OrderedPair(aTile.getDateCompleted().getTime(), leftPoints));
 		}
 		
 		for(int i = 0 ; i < notComplTiles.size(); i++) {
-			sendOut.getData().add(new OrderedPair<Long, Integer>(0L, leftPoints));
+			sendOut.getData().add(new OrderedPair(0L, leftPoints));
 		}
 		
 		sendOut.setTotalPoints(totalpoints);

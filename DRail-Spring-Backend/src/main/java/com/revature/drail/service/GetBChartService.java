@@ -17,6 +17,6 @@ public interface GetBChartService {
 	 * @param chartDto from front end 
 	 * @return chartDto with charts values 
 	 */
-	public DrailChartDTO<Long, Integer> getChartDto(DrailChartDTO<Long, Integer> chartDto);
+	public DrailChartDTO getChartDto(DrailChartDTO chartDto);
 
 }

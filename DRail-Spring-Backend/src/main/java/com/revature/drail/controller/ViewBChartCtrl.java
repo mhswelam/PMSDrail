@@ -23,13 +23,13 @@ public class ViewBChartCtrl {
 	
 	
 	@PostMapping("/viewchart")
-	public ResponseEntity<DrailChartDTO<Long, Integer>> viewBChart(@RequestBody DrailChartDTO<Long, Integer> chartDto, HttpSession session) {
-		
+	public ResponseEntity<DrailChartDTO> viewBChart(@RequestBody DrailChartDTO chartDto, HttpSession session) {
+		System.out.println(chartDto.getTileIds().toString());
 		if (session.getAttribute("user") != null) {
 			
-			return new ResponseEntity<DrailChartDTO<Long, Integer>>(chartServ.getChartDto(chartDto),HttpStatus.OK);
+			return new ResponseEntity<DrailChartDTO>(chartServ.getChartDto(chartDto),HttpStatus.OK);
 		} else {
-			return new ResponseEntity<DrailChartDTO<Long, Integer>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<DrailChartDTO>(HttpStatus.NO_CONTENT);
 		}
 		
 		
