@@ -12,6 +12,29 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
+import { InfoDisplayComponent } from './components/profile/info-display/info-display.component';
+import { InfoEditComponent } from './components/profile/info-edit/info-edit.component';
+import { UserService } from './services/user.service';
+import { ProfileService } from './services/profile.service';
+import { StationComponent } from './components/station/station.component';
+import { RailComponent } from './components/rail/rail.component';
+import { TileDetailsComponent } from './components/tile-details/tile-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutService } from './services/logout.service';
+import { StationService } from './services/station.service';
+import { RailService } from './services/rail.service';
+import { RegisterService } from './services/register.service';
+import { DragulaModule } from 'ng2-dragula';
+import { TileService } from './services/tile.service';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { TilepopComponent } from './components/tilepop/tilepop.component';
+import { TaskService } from './services/task.service';
+import { GetStationsService } from './services/get-stations.service';
+import { StationViewComponent } from './components/station-view/station-view.component';
+import { StationsComponent } from './components/stations/stations.component';
+import { AddStationComponent } from './components/add-station/add-station.component';
+import { DragulaModule } from 'ng2-dragula/components/dragular.module';
+import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
 
 
 @NgModule({
@@ -21,16 +44,33 @@ import { HttpModule } from '@angular/http';
     LoginComponent,
     NavbarComponent,
     ProfileComponent,
-    MainViewComponent
+    MainViewComponent,
+    InfoDisplayComponent,
+    InfoEditComponent,
+    StationComponent,
+    RailComponent,
+    TileDetailsComponent,
+    TilepopComponent,
+    StationViewComponent,
+    StationsComponent,
+    AddStationComponent,
+    CreateStationPopComponent,
+    AddStationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule,
+    DragulaModule,
+    BootstrapModalModule.forRoot({container: document.body})
   ],
-  providers: [LoginService],
+  providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
+    TileService, TaskService],
+  entryComponents: [TilepopComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

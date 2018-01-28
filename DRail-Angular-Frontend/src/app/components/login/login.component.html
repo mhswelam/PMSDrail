@@ -1,5 +1,13 @@
-<div *ngIf = "!username; else forminfo">
-  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+<div *ngIf="failedLogin" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <h4 class="alert-heading">{{failedLoginHeader}}</h4>
+  <p>{{failedLoginMessage}}</p>
+  <button (click)="setFailedLoginFalse()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div> 
+
+ 
+ <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
     
     <div class="form-group col-6 offset-3">
         
@@ -7,7 +15,7 @@
           Username
         </label>
      
-        <input id="username" name="username" class="form-control" type="text" placeholder="Username" formControlName="username">
+        <input [ngModel]="username" (keyup)="checkLength()" maxlength="15" pattern="[a-zA-Z0-9]*"  id="username" name="username" class="form-control" type="text" placeholder="Username" formControlName="username">
         
         <div class="alert-danger" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">
           {{alert}}
@@ -20,7 +28,7 @@
               Password
             </label>
 
-            <input id="password" name="password" class="form-control" type="password" placeholder="password" formControlName="fPassword">
+            <input [value]="fPassword" id="password" name="password" class="form-control" type="password" placeholder="password" formControlName="fPassword">
            <div class="alert-danger" *ngIf="!rForm.controls['fPassword'].valid && rForm.controls['fPassword'].touched">
              Enter Password
            </div>
@@ -28,11 +36,11 @@
 
       <input type="submit" class="btn btn-primary col-6 offset-3" name="login" id="login" value={{loginLabel}} [disabled]="!rForm.valid">
   </form>
-</div>
 
-<ng-template #forminfo>
+
+<!-- <ng-template #forminfo>
 
     <h1>{{username}}</h1>
     <h1>{{fPassword}}</h1>
 
-</ng-template>
+</ng-template> -->

@@ -1,0 +1,60 @@
+<div class="modal-dialog" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="btn-group" role="group" aria-label="Third group">
+            <button type="button" class="btn btn-primary">{{tileObj.points}}</button>
+          </div>
+          <div>
+            <h5 class="modal-title" id="exampleModalLongTitle">{{tileObj.name}} </h5>
+          </div>
+  
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">X</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let task of tileObj.tasks">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <input type="checkbox" aria-label="task checked"  #taskChecked [attr.id]="task.taskId" [(checked)]="task.completed" (change)="taskIdUpdated(taskChecked.id, taskChecked.checked)">
+                  </span>
+                  <input type="text" class="form-control" aria-label="Text input with checkbox" #taskName [(attr.value)]="task.name" [attr.id]="task.taskId" (change)="taskNameUpdated(taskChecked.id, taskName.value)">
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div>
+            <!--to add task will call add task model-->
+            <button type="button" class="btn btn-primary">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+  
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon2">Note</span>
+            <input type="text" class="form-control" placeholder="Add Note" aria-describedby="sizing-addon2" [(value)]="tileObj.note" readonly />
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="checkbox" aria-label="Checkbox for following text input" [(checked)]="tileObj.completed" (change)="tailCompleated()">
+                </span>
+                <h5 class="form-control">completed</h5>
+              </div>
+            </div>
+          </div>
+  
+          <div class="modal-footer">
+            <h5 class="" id="Title"> username</h5>
+            <button type="button" class="btn btn-primary">X</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

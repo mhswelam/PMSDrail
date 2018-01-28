@@ -1,0 +1,22 @@
+<div class="card card-body">
+  <!-- Navbar -->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="#">{{rail.name}}</a>
+    <ul class="navbar-nav">
+
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="btn btn-primary" href="#">+</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Tiles -->
+  <div class="scrolling-wrapper" [dragula]='"bag-one"' [dragulaModel]='tiles'>
+    <div *ngFor="let tile of tiles">
+      <app-tile-details [tile]="tile"></app-tile-details>
+    </div>
+  </div>
+</div>

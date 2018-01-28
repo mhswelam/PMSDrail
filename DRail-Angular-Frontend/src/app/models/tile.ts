@@ -1,3 +1,6 @@
+import { Task } from './task';
+
+
 export class Tile {
     public tileId: number;
     public name: string;
@@ -8,11 +11,12 @@ export class Tile {
     public order: number;
     public userCheckedOutId: number;
     public railId: number;
+    public tasks: Task [];
     public taskIds: number[];
 
     constructor(tileId: number, name: string, points: number, note: string,
                 dateCompleted: number, completed: boolean, order: number,
-                userCheckedOutId: number, railId: number, taskIds: number[]) {
+                userCheckedOutId: number, railId: number, tasks: Task [], taskIds: number[]) {
         this.tileId = tileId;
         this.name = name;
         this.points = points;
@@ -22,6 +26,7 @@ export class Tile {
         this.order = order;
         this.userCheckedOutId = userCheckedOutId;
         this.railId = railId;
+        this.tasks = tasks;
         this.taskIds = taskIds;
     }
 
