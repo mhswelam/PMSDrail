@@ -33,7 +33,7 @@ public class GetBChartServiceImpl implements GetBChartService {
 		DrailStation currentSt = stSer.viewStationById(chartDto.getStId());
 		Date due = currentSt.getDueDate();
 		sendOut.setData(new ArrayList<>());
-		List<Integer> tileList = chartDto.getTailIds();
+		List<Integer> tileList = chartDto.getTileIds();
 		List<DrailTile> completedTiles = new ArrayList<>();
 		List<DrailTile> notComplTiles = new ArrayList<>();
 		int totalpoints = 0;

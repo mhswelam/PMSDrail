@@ -5,6 +5,7 @@ import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task';
 import { TileService } from '../../services/tile.service';
 import { Response } from '@angular/http/src/static_response';
+import { ValidatorFn, Validators } from '@angular/forms';
 
 export interface ConfirmModel  {
 
@@ -48,9 +49,14 @@ taskIdUpdated(id: number, flag: boolean) {
 
 taskNameUpdated(id: number, taskName: string) {
   let task: Task = new Task(id, '', null, 0, 0);
-  this.taskSer.getTask(task).subscribe(
-           data => {task = data; task.name = taskName;
-           this.updateTaskInfo(task);  });
+  if (taskName.length > 0) {
+    this.taskSer.getTask(task).subscribe(
+      data => {task = data; task.name = taskName;
+      this.updateTaskInfo(task);  });
+  } else {
+
+  }
+
 
 }
 
