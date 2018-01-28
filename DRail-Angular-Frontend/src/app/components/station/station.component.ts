@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Station } from '../../models/station';
 import { Rail } from '../../models/rail';
 import { StationService } from '../../services/station.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-station',
@@ -17,11 +18,15 @@ export class StationComponent implements OnInit {
   rails: Rail[];
   sub: any;
 
-  constructor(private stationService: StationService, private route: ActivatedRoute) { }
+  roleId: number;
+
+  constructor(private stationService: StationService, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-   this.getStation();
-   this.getRails();
+    this.getStation();
+    this.getRails();
+
+    this.roleId = this.userService.getUsersRole().id;
   }
 
   getStation() {

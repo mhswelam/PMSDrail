@@ -4,6 +4,13 @@ import { Tile } from '../../models/tile';
 import { RailService } from '../../services/rail.service';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { UserService } from '../../services/user.service';
+import { FormGroup } from '@angular/forms/src/model';
+import { ValidatorFn,
+         Validators,
+         AbstractControl,
+         FormControl,
+         NG_VALIDATORS,
+         FormBuilder} from '@angular/forms';
 
 
 @Component({
@@ -16,7 +23,21 @@ export class RailComponent implements OnInit {
   @Input() rail: Rail;
   tiles: Tile[] = [];
 
-  constructor(private railService: RailService, private dragula: DragulaService, private userService: UserService) { }
+  /* Adding Tiles */
+  form: FormGroup;
+  roleId: number;
+  tileTitle: string;
+  tilePoints: number;
+  tileNote: string;
+
+  constructor(private railService: RailService, private dragula: DragulaService,
+    private userService: UserService, formBuilder: FormBuilder) {
+        this.form = formBuilder.group ({
+          tileTitle: ['', Validators.required],
+          tilePoints: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
+          tileNote: ['', Validators.required]
+        });
+     }
 
   ngOnInit() {
     this.getTiles();
@@ -31,7 +52,7 @@ export class RailComponent implements OnInit {
       }
     );
 
-
+    this.roleId = this.userService.getUsersRole().id;
   }
 
   getTiles() {
@@ -62,6 +83,11 @@ export class RailComponent implements OnInit {
     return result;
   }
 
+  addNewTile() {
+    let tile = new Tile(null, this.tileTitle, this.tilePoints, this.tileNote,
+                        null, false, this.tiles.length, this.userService.getUser().userId,
+                        this.rail.railId, null);
+  }
 
 
 }

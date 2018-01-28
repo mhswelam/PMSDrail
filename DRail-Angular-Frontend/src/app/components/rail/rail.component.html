@@ -6,9 +6,9 @@
     <ul class="navbar-nav">
 
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" ><!--*ngIf="roleId == 64 || roleId == 27"-->
       <li class="nav-item active">
-        <a class="btn btn-primary" href="#">+</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTileModal">+</button>
       </li>
     </ul>
   </nav>
@@ -17,6 +17,55 @@
   <div class="scrolling-wrapper" [dragula]='"bag-one"' [dragulaModel]='tiles'>
     <div *ngFor="let tile of tiles">
       <app-tile-details [tile]="tile"></app-tile-details>
+    </div>
+  </div>
+</div>
+
+<!-- New Tile Modal -->
+<div class="modal fade" id="newTileModal" tabindex="-1" role="dialog" aria-labelledby="newTileModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new Tile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+        <form class="col-12" [formGroup]="form">
+
+            <div class="form-group row">
+                <div class="col-9">
+                  <input class="form-control" type="text" [(ngModel)]="tileTitle" formControlName="tileTitle" placeholder="Title">
+                </div>
+                <div class="col-12 error" *ngIf="form.get('tileTitle').hasError('required')  && form.get('tileTitle').touched">Field cannot be blank</div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-9">
+                    <input class="form-control" type="number" [(ngModel)]="tilePoints" formControlName="tilePoints" placeholder="Points" min="1" max="10">
+                  </div>
+                <div class="col-12 error" *ngIf="form.get('tilePoints').hasError('required')  && form.get('tilePoints').touched">Field cannot be blank</div>
+                <div class="col-12 error" *ngIf="form.get('tilePoints').hasError('min')">Number must greater than 0.</div>
+                <div class="col-12 error" *ngIf="form.get('tilePoints').hasError('max')">Number must be less than or equal to 10.</div>
+            </div>
+
+            <div class="form-group row">
+                <textarea class="col-11" [(ngModel)]="tileNote" formControlName="tileNote" placeholder="Description" rows="4">
+                </textarea>
+                <div class="col-12 error" *ngIf="form.get('tileNote').hasError('required')  && form.get('tileNote').touched">Field cannot be blank</div>
+            </div>
+
+        </form>
+        
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="addNewTile()">Add</button>
+      </div>
+      
     </div>
   </div>
 </div>
