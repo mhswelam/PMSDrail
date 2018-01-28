@@ -23,13 +23,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
+import { RegisterService } from './services/register.service';
+import { DragulaModule } from 'ng2-dragula';
+import { TileService } from './services/tile.service';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { TilepopComponent } from './components/tilepop/tilepop.component';
+import { TaskService } from './services/task.service';
 import { GetStationsService } from './services/get-stations.service';
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { DragulaModule } from 'ng2-dragula/components/dragular.module';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
-import { RegisterService } from './services/register.service';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +50,7 @@ import { RegisterService } from './services/register.service';
     StationComponent,
     RailComponent,
     TileDetailsComponent,
+    TilepopComponent,
     StationViewComponent,
     StationsComponent,
     AddStationComponent,
@@ -57,9 +64,13 @@ import { RegisterService } from './services/register.service';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
-    DragulaModule
+    DragulaModule,
+    BootstrapModalModule.forRoot({container: document.body})
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, GetStationsService, RegisterService],
+  providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
+    TileService, TaskService],
+  entryComponents: [TilepopComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
