@@ -100,7 +100,7 @@ setFailedLoginFalse() {
   this.failedLogin = false;
 }
 
-setRegisterStatusFalse(){
+setRegisterStatusFalse() {
   this.registerStatus = false;
 }
 
