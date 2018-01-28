@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     const user = new User(0, this.username, this.fPassword, '', '', '', null);
     this.loginService.validateUser(user).subscribe(
       response => {
-      // this.router.navigate(['station-view']);
+       this.router.navigate(['app-station-view']);
        this.userService.setUser(response); }
        , err => {
          if (err.status === 401) {

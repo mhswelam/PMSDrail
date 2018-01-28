@@ -24,8 +24,12 @@ import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
 import { RegisterService } from './services/register.service';
-import { AddStationComponent } from './components/add-station/add-station.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TileService } from './services/tile.service';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { TilepopComponent } from './components/tilepop/tilepop.component';
+import { TaskService } from './services/task.service';
+
 
 
 @NgModule({
@@ -41,7 +45,7 @@ import { DragulaModule } from 'ng2-dragula';
     StationComponent,
     RailComponent,
     TileDetailsComponent,
-    AddStationComponent
+    TilepopComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +54,12 @@ import { DragulaModule } from 'ng2-dragula';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
-    DragulaModule
+    DragulaModule,
+    BootstrapModalModule.forRoot({container: document.body})
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService],
+  providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService,
+    TileService, TaskService],
+  entryComponents: [TilepopComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
