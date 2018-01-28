@@ -34,7 +34,12 @@ public class GetStationsCtlr {
 			return new ResponseEntity<DrailStationsDTO>(HttpStatus.UNAUTHORIZED);
 		}else {
 			DrailStationsDTO userStations = duService.getStations((DrailUser)session.getAttribute("user"));
-			return new ResponseEntity<DrailStationsDTO>(userStations , HttpStatus.OK);
+			if (userStations != null) {
+				return new ResponseEntity<DrailStationsDTO>(userStations , HttpStatus.OK);
+			} else {
+				return new ResponseEntity<DrailStationsDTO>( HttpStatus.NO_CONTENT);
+			}
+			
 		}
 	}
 

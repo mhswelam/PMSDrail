@@ -16,6 +16,8 @@ import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.revature.drail.dto.DrailUserDTO;
 
 @Entity
@@ -89,7 +91,7 @@ public class DrailUser {
 		return userId;
 	}
 
-
+	@Required
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -99,7 +101,7 @@ public class DrailUser {
 		return username;
 	}
 
-
+	@Required
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -109,17 +111,17 @@ public class DrailUser {
 		return password;
 	}
 
-
+	@Required
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
+	@Required
 	public String getFirstname() {
 		return firstname;
 	}
 
-
+	@Required
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
@@ -129,7 +131,7 @@ public class DrailUser {
 		return lastname;
 	}
 
-
+	@Required
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
@@ -139,7 +141,7 @@ public class DrailUser {
 		return email;
 	}
 
-
+	@Required
 	public void setEmail(String email) {
 		this.email = email;
 	}

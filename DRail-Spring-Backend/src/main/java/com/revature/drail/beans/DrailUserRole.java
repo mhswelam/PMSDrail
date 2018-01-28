@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 @Entity
 @Table(name="DRAIL_ROLES")
 public class DrailUserRole {
@@ -14,7 +16,7 @@ public class DrailUserRole {
 	
 	public static final transient DrailUserRole SCRUM_MASTER = new DrailUserRole(27, "SCRUM MASTER");
 	
-	public static final transient DrailUserRole TEAM_MEMBER = new DrailUserRole(652, "TEAM MEMBER");;
+	public static final transient DrailUserRole TEAM_MEMBER = new DrailUserRole(652, "TEAM MEMBER");
 	
 	@Id
 	@Column(name="ROLE_ID")
@@ -46,7 +48,7 @@ public class DrailUserRole {
 	}
 
 
-
+	@Required
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -58,7 +60,7 @@ public class DrailUserRole {
 	}
 
 
-
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}

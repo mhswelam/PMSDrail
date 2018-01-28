@@ -22,16 +22,23 @@ public class GetStationsServiceImpl implements GetStationsService {
 	
 	@Override
 	public DrailStationsDTO getStations(DrailUser du){
-		Map<DrailStation,DrailUserRole> userStMap = du.getStationRoleMap();
-		List<DrailStationViewDTO> allUserStations = new ArrayList<>();
-		
-		for(DrailStation ds: userStMap.keySet()) {
-			allUserStations.add(new DrailStationViewDTO(ds));
+		DrailStationsDTO drailStations = new DrailStationsDTO();
+		if (du != null) {
+			Map<DrailStation,DrailUserRole> userStMap = du.getStationRoleMap();
+			List<DrailStationViewDTO> allUserStations = new ArrayList<>();
+			
+			for(DrailStation ds: userStMap.keySet()) {
+				allUserStations.add(new DrailStationViewDTO(ds));
+			}
+			
+			
+			drailStations.setStations(allUserStations);
+			return  drailStations;
+		}else {
+			return null;
 		}
 		
-		DrailStationsDTO drailStations = new DrailStationsDTO();
-		drailStations.setStations(allUserStations);
-		return  drailStations;
+		
 	};
 }
 

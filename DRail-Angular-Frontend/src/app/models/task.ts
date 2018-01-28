@@ -3,13 +3,13 @@ export class Task {
     public name: string;
     public completed: boolean;
     public order: number;
-    public tildId: number;
+    public tileId: number;
 
-    constructor(taskId: number, name: string, completed: boolean, order: number, tileId) {
+    constructor(taskId: number, name: string, completed: boolean, order: number, tileId: number) {
         this.taskId = taskId;
         this.name = name;
         this.completed = completed;
         this.order = order;
-        this.tildId = tileId;
+        this.tileId = tileId;
     }
 }

@@ -1,5 +1,6 @@
 package com.revature.drail.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class UpdateStationServiceImpl implements UpdateStationService {
 		
 			DrailStation station = new DrailStation();
 			station.setStationId(updatedStation.getStationId());
-			station.setDueDate(updatedStation.getDueDate());
+			station.setDueDate(new Date(updatedStation.getDueDate()));
 			station.setName(updatedStation.getName());
 			station.setTimeCreated(updatedStation.getTimeCreated());
 			List<DrailRail> rails = station.getRails();
