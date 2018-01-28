@@ -6,7 +6,7 @@ import java.util.List;
 import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailTile;
 
-public class DrailRailDTO {
+public class DrailRailDTO implements Comparable {
 	
 	private int railId;
 	private String name;
@@ -82,6 +82,11 @@ public class DrailRailDTO {
 	public String toString() {
 		return "DrailRailDTO [railId=" + railId + ", name=" + name + ", order=" + order + ", stationId=" + stationId
 				+ ", tileIds=" + tileIds + "]";
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return (this.order - ((DrailRailDTO) o).getOrder());
 	}
 	
 }

@@ -33,7 +33,8 @@ import { GetStationsService } from './services/get-stations.service';
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
-import { DragulaModule } from 'ng2-dragula/components/dragular.module';
+import { DragulaModule } from 'ng2-dragula';
+import { UtilsService } from './services/utils.service';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
 
 
@@ -67,8 +68,9 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
     DragulaModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
+
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
-    TileService, TaskService],
+    TileService, TaskService, UtilsService],
   entryComponents: [TilepopComponent],
 
   bootstrap: [AppComponent]
