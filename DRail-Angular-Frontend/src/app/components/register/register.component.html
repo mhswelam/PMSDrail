@@ -1,7 +1,7 @@
-<form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+<form class="margin-top" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
 
-  <div class="form-group col-6 offset-3">
-
+  <div class="form-row">
+  <div class="col-4 offset-3">
     <label for="username">
       Username
     </label>
@@ -11,10 +11,11 @@
       {{usernameAlert}}
     </div>
   </div>
+</div>
 
 
-
-  <div class="form-group col-6 offset-3">
+  <div class="form-row">
+  <div class="col-2 offset-3">
     <label for="password">
       Password
     </label>
@@ -25,8 +26,9 @@
     </div>
   </div>
 
-  <div class="form-group col-6 offset-3">
-    <label for="password">
+  
+  <div class="col-2">
+    <label for="cpassword">
       Confirm Password
     </label>
     <input [(ngModel)]="cpassword"  id="confirmpassword" name="confirmpassword" class="form-control" type="password" placeholder="password"
@@ -35,9 +37,11 @@
       Password Does Not Match
     </div>
   </div>
-
-  <div class="form-group col-6 offset-3">
-    <label for="password">
+  </div>
+  
+<div class="form-row">
+  <div class="col-4 offset-3">
+    <label for="fname">
       First Name
     </label>
     <input [(ngModel)]="fname" (blur)="checkFName()" maxlength="25" (keyup)="checkFName()" id="firstname" name="firstname" class="form-control" type="text" placeholder="First Name"
@@ -46,8 +50,11 @@
       {{fnameAlert}}
     </div>
   </div>
+</div>
+  
 
-  <div class="form-group col-6 offset-3">
+<div class="form-row">
+  <div class="col-4 offset-3">
     <label for="lname">
       Last Name
     </label>
@@ -57,18 +64,24 @@
       {{lnameAlert}}
     </div>
   </div>
+</div>
 
-  <div class="form-group col-6 offset-3">
-    <label for="email">
+<div class="form-row">
+  <div class="col-4 offset-3">
+    <label for="emails">
       Email
     </label>
-    <input (blur)="checkEmail()" (keyup)="checkEmail()"  id="emails" name="emails" class="form-control" type="text" placeholder="Email"
+    <input [(ngModel)]="email" (blur)="checkEmail()" (keyup)="checkEmail()"  id="emails" name="emails" class="form-control" type="text" placeholder="Email"
       formControlName="email">
     <div class="alert-danger" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">
       {{emailAlert}}
     </div>
   </div>
+</div>
 
 
-  <input type="submit" class="btn btn-primary col-6 offset-3" name="login" id="login" value={{registerLabel}} [disabled]="!rForm.valid">
+<div class ="form-row ">
+  <input type="submit" class="btn btn-primary col-4 offset-3" name="login" id="login" value={{registerLabel}} [disabled]="!rForm.valid">
+</div>
+
 </form>

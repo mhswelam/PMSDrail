@@ -23,7 +23,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
+import { RegisterService } from './services/register.service';
 import { DragulaModule } from 'ng2-dragula';
+import { TileService } from './services/tile.service';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { TilepopComponent } from './components/tilepop/tilepop.component';
+import { TaskService } from './services/task.service';
+import { GetStationsService } from './services/get-stations.service';
+import { StationViewComponent } from './components/station-view/station-view.component';
+import { StationsComponent } from './components/stations/stations.component';
+import { AddStationComponent } from './components/add-station/add-station.component';
+import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +48,13 @@ import { DragulaModule } from 'ng2-dragula';
     InfoEditComponent,
     StationComponent,
     RailComponent,
-    TileDetailsComponent
+    TileDetailsComponent,
+    TilepopComponent,
+    StationViewComponent,
+    StationsComponent,
+    AddStationComponent,
+    CreateStationPopComponent,
+    AddStationComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +63,13 @@ import { DragulaModule } from 'ng2-dragula';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
-    DragulaModule
+    DragulaModule,
+    BootstrapModalModule.forRoot({container: document.body})
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService],
+  providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
+    TileService, TaskService],
+  entryComponents: [TilepopComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
