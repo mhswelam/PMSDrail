@@ -41,7 +41,7 @@ export class StationComponent implements OnInit {
   }
 
   getStation() {
-    this.stationService.select(new Station(268, 'Test Station Name', null, null, [126, 127, 128], null));
+    // this.stationService.select(new Station(268, 'Test Station Name', null, null, [126, 127, 128], null));
     this.station = this.stationService.selected();
   }
 

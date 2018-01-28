@@ -46,4 +46,9 @@ export class StationService {
     return this.selectedStation;
   }
 
+  getStation(station) {
+    return this.http
+      .post(`${this.url}/viewstation`, station, { withCredentials: true })
+      .map((response: Response) =>  response.json());
+  }
 }

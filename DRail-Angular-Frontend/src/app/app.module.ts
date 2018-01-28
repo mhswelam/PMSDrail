@@ -23,11 +23,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
-import { RegisterService } from './services/register.service';
+import { GetStationsService } from './services/get-stations.service';
+import { StationViewComponent } from './components/station-view/station-view.component';
+import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { DragulaModule } from 'ng2-dragula';
 import { UtilsService } from './services/utils.service';
-
+import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
+import { RegisterService } from './services/register.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,10 @@ import { UtilsService } from './services/utils.service';
     StationComponent,
     RailComponent,
     TileDetailsComponent,
+    StationViewComponent,
+    StationsComponent,
+    AddStationComponent,
+    CreateStationPopComponent,
     AddStationComponent
   ],
   imports: [
@@ -61,7 +68,8 @@ import { UtilsService } from './services/utils.service';
     StationService,
     RailService,
     UtilsService,
-    RegisterService
+    RegisterService,
+    GetStationsService
   ],
   bootstrap: [AppComponent]
 })
