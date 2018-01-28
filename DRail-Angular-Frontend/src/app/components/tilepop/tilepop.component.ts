@@ -6,6 +6,7 @@ import { Task } from '../../models/task';
 import { TileService } from '../../services/tile.service';
 import { Response } from '@angular/http/src/static_response';
 import { ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface ConfirmModel  {
 
@@ -22,8 +23,10 @@ export class TilepopComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   tileObj: Tile;
 
-  constructor(dialogService: DialogService, private taskSer: TaskService, private tailSer: TileService) {
+  constructor(dialogService: DialogService, private taskSer: TaskService, private tailSer: TileService,
+     private activatedRoute: ActivatedRoute, private router: Router) {
     super(dialogService);
+
  }
 
  confirm() {
@@ -57,8 +60,19 @@ taskNameUpdated(id: number, taskName: string) {
 
   }
 
-
 }
+
+addNewTask(taskName: string) {
+  if (taskName.length > 0) {
+    let task: Task = new Task(0, taskName, null, this.tileObj.tasks.length, this.tileObj.tileId);
+    this.taskSer.addTask(task).subscribe();
+    this.tileObj.tasks.push(task);
+    this.dialogService.addDialog(TilepopComponent, {
+      tileObj: this.tileObj} ).subscribe();
+      this.close();
+  }
+}
+
 
 updateTaskInfo(task: Task) {
   this.taskSer.updateTask(task).subscribe();
