@@ -36,6 +36,8 @@ import { AddStationComponent } from './components/add-station/add-station.compon
 import { UtilsService } from './services/utils.service';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
 import { CreateStationService } from './services/create-station.service';
+import { AddRailComponent } from './components/add-rail/add-rail.component';
+import { UpdateRailComponent } from './components/update-rail/update-rail.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { CreateStationService } from './services/create-station.service';
     StationsComponent,
     AddStationComponent,
     CreateStationPopComponent,
-    AddStationComponent
+    AddStationComponent,
+    AddRailComponent,
+    UpdateRailComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ import { CreateStationService } from './services/create-station.service';
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
     TileService, TaskService, CreateStationService, UtilsService],
-  entryComponents: [TilepopComponent, CreateStationPopComponent],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent],
 
   bootstrap: [AppComponent]
 })
