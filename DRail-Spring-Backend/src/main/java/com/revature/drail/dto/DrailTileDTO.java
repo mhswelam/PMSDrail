@@ -1,25 +1,25 @@
 package com.revature.drail.dto;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.drail.beans.DrailTask;
 import com.revature.drail.beans.DrailTile;
 
-public class DrailTileDTO {
+public class DrailTileDTO implements Comparable {
 
 	private int tileId;
 	private String name;
 	private int points;
 	private String note;
-	private Date dateCompleted;
+	private Long dateCompleted;
 	private boolean completed;
 	private int order;
 	private int userCheckedOutId;
 	private int railId;
+	private List<DrailTaskDTO> tasks = new ArrayList<DrailTaskDTO>();
 	private List<Integer> taskIds = new ArrayList<Integer>();
-	
+
 	public DrailTileDTO() {
 	}
 	
@@ -28,20 +28,23 @@ public class DrailTileDTO {
 		this.name = tile.getName();
 		this.points = tile.getPoints();
 		this.note = tile.getNote();
-		this.dateCompleted = tile.getDateCompleted();
+		if (tile.getDateCompleted() != null) {
+			this.dateCompleted = tile.getDateCompleted().getTime();
+		}
 		this.completed = (tile.getCompleted() == 0) ? false : true;
 		this.order = tile.getOrder();
 		if (tile.getUserCheckedOut() != null) this.userCheckedOutId = tile.getUserCheckedOut().getUserId();
 		if (tile.getRail() != null) this.railId = tile.getRail().getRailId();
 		if (tile.getTask() != null) {
 			for(DrailTask task : tile.getTask()) {
+				tasks.add(new DrailTaskDTO(task));
 				taskIds.add(task.getTaskId());
 			}
 		}
 	}
 
-	public DrailTileDTO(int tileId, String name, int points, String note, Date dateCompleted, boolean completed,
-			int order, int userCheckedOutId, int railId, List<Integer> taskIds) {
+	public DrailTileDTO(int tileId, String name, int points, String note, Long dateCompleted, boolean completed,
+			int order, int userCheckedOutId, int railId, List<DrailTaskDTO> taskIds) {
 		super();
 		this.tileId = tileId;
 		this.name = name;
@@ -52,7 +55,7 @@ public class DrailTileDTO {
 		this.order = order;
 		this.userCheckedOutId = userCheckedOutId;
 		this.railId = railId;
-		this.taskIds = taskIds;
+		this.tasks = taskIds;
 	}
 
 	public int getTileId() {
@@ -87,11 +90,11 @@ public class DrailTileDTO {
 		this.note = note;
 	}
 
-	public Date getDateCompleted() {
+	public Long getDateCompleted() {
 		return dateCompleted;
 	}
 
-	public void setDateCompleted(Date dateCompleted) {
+	public void setDateCompleted(Long dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 
@@ -127,6 +130,14 @@ public class DrailTileDTO {
 		this.railId = railId;
 	}
 
+	public List<DrailTaskDTO> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<DrailTaskDTO> taskIds) {
+		this.tasks = taskIds;
+	}
+
 	public List<Integer> getTaskIds() {
 		return taskIds;
 	}
@@ -139,7 +150,12 @@ public class DrailTileDTO {
 	public String toString() {
 		return "DrailTileDTO [tileId=" + tileId + ", name=" + name + ", points=" + points + ", note=" + note
 				+ ", dateCompleted=" + dateCompleted + ", completed=" + completed + ", order=" + order
-				+ ", userCheckedOutId=" + userCheckedOutId + ", railId=" + railId + ", taskIds=" + taskIds + "]";
+				+ ", userCheckedOutId=" + userCheckedOutId + ", railId=" + railId + ", taskIds=" + tasks + "]";
+	}
+
+	@Override
+	public int compareTo(Object other) {
+		return (this.order - ((DrailTileDTO) other).getOrder());
 	}
 	
 }

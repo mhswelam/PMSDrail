@@ -21,7 +21,7 @@ export class StationService {
   // Get all rails on this station
   getRails (station: Station): Observable<Rail[]> {
     return this.http
-      .post(`${this.url}/viewrails`, station)
+      .post(`${this.url}/viewrails`, station, { withCredentials: true })
       .map((response: Response) => <Rail[]> response.json());
       // .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -41,4 +41,9 @@ export class StationService {
     return this.selectedStation;
   }
 
+  getStation(station) {
+    return this.http
+      .post(`${this.url}/viewstation`, station, { withCredentials: true })
+      .map((response: Response) =>  response.json());
+  }
 }

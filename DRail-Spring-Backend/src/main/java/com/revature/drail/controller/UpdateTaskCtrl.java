@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.drail.beans.DrailUser;
 import com.revature.drail.dto.DrailTaskDTO;
 import com.revature.drail.service.AddTaskService;
 
@@ -26,7 +25,7 @@ public class UpdateTaskCtrl {
 	 * @return HttpStatus.ACCEPTED if update is successful, HttpStatus.UNAUTHORIZED if there is no user logged into the session
 	 */
 	@PostMapping("/updatetask")
-	public ResponseEntity<DrailUser> updateUser(@RequestBody DrailTaskDTO taskDTO, HttpSession session) {
+	public ResponseEntity<?> updateTask(@RequestBody DrailTaskDTO taskDTO, HttpSession session) {
 		if (session.getAttribute("user") != null) {
 			service.saveTask(taskDTO);
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
