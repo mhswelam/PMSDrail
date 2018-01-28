@@ -17,12 +17,9 @@
     </nav>
 
     <!-- Rails -->
-    <div  [dragula]='"bag-two"' [dragulaModel]='rails'>
+    <div>
       <div *ngFor="let rail of rails">
         <app-rail [rail]="rail"></app-rail>
-      </div>
-      <div *ngIf="rails.length == 0" class="divider">
-        
       </div>
     </div>
 

@@ -54,6 +54,7 @@ export class StationService {
       .map((response: Response) => response.json());
   }
 
+  // Reloads the selected station from server
   refresh() {
     return this.http
       .post(`${this.url}/viewstation`, this.selectedStation, { withCredentials: true })
@@ -61,7 +62,7 @@ export class StationService {
       .subscribe(st => {
         this.selectedStation = st;
         StationComponent.refreshStation.next(true); // here!
-        this.router.navigate(['station/test']);
+        this.router.navigate(['station']);
       });
   }
 }
