@@ -3,17 +3,18 @@ body {
     height: 100%;
 }
 
-.bgGradiant{
-    background-image: url("assets/images/background_gradientRed2Blue.jpg");
-    background-repeat: repeat-x;
-    background-size: 10px 80%;
+.train4k{
+    /* background-image: url("assets/images/train4k.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; */
+    background-color: rgba(44, 130, 243, 0.5)
 }
+
 
 .loading{
     background-image: url("assets/images/login.gif");
     background-repeat: no-repeat;
-    background-size: contain;
-    background-size: 100% 100%;
 }
 .bgRed{
     background-color:  #C81D25;
