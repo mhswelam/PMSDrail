@@ -5,13 +5,10 @@ import { RailService } from '../../services/rail.service';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { UserService } from '../../services/user.service';
 import { FormGroup } from '@angular/forms/src/model';
-import { ValidatorFn,
-         Validators,
-         AbstractControl,
-         FormControl,
-         NG_VALIDATORS,
-         FormBuilder} from '@angular/forms';
+
 import { TileService } from '../../services/tile.service';
+import { AddtilepopComponent } from '../addtilepop/addtilepop.component';
+import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 
 
 @Component({
@@ -25,7 +22,6 @@ export class RailComponent implements OnInit {
   tiles: Tile[] = [];
 
   /* Adding Tiles */
-  form: FormGroup;
   roleId: number;
   tileTitle: string;
   tilePoints: number;
@@ -33,12 +29,7 @@ export class RailComponent implements OnInit {
   statusMessage: string;
 
   constructor(private railService: RailService, private dragula: DragulaService,
-    private userService: UserService, private tileService: TileService, formBuilder: FormBuilder) {
-        this.form = formBuilder.group ({
-          tileTitle: ['', Validators.required],
-          tilePoints: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
-          tileNote: ['', Validators.required]
-        });
+    private userService: UserService, private tileService: TileService, private dialogService: DialogService) {
      }
 
   ngOnInit() {
@@ -85,25 +76,14 @@ export class RailComponent implements OnInit {
     return result;
   }
 
-  addNewTile() {
-    this.statusMessage = '';
-
-    let tile = new Tile(null, this.tileTitle, this.tilePoints, this.tileNote,
-                        null, false, this.tiles.length, this.userService.getUser().userId,
-                        this.rail.railId, null, null);
-
-    this.tileService.addTile(tile).subscribe (
-      response => {
-        if (response.status === 201) {
-           document.getElementById('tileStatus').setAttribute('style', 'color:green');
-           this.statusMessage = 'Tile Created!';
-        } else {
-          document.getElementById('tileStatus').setAttribute('style', 'color:red');
-           this.statusMessage = 'There was an error processing your request.';
-        }
-      }
-    );
+  createTileDialog() {
+    this.showCreate(this.rail);
   }
 
+  showCreate(inRail: Rail) {
+    let disposable = this.dialogService.addDialog(AddtilepopComponent, {
+      railObj: inRail
+    }).subscribe();
+  }
 
 }

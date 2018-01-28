@@ -34,6 +34,7 @@ import { StationViewComponent } from './components/station-view/station-view.com
 import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
+import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
     AddStationComponent,
     CreateStationPopComponent,
     AddStationComponent,
+    AddtilepopComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,7 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
   ],
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
     TileService, TaskService],
-  entryComponents: [TilepopComponent],
+  entryComponents: [TilepopComponent, AddtilepopComponent],
 
   bootstrap: [AppComponent]
 })
