@@ -23,10 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogoutService } from './services/logout.service';
 import { StationService } from './services/station.service';
 import { RailService } from './services/rail.service';
-import { RegisterService } from './services/register.service';
+import { GetStationsService } from './services/get-stations.service';
+import { StationViewComponent } from './components/station-view/station-view.component';
+import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
-import { DragulaModule } from 'ng2-dragula';
-
+import { DragulaModule } from 'ng2-dragula/components/dragular.module';
+import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
+import { RegisterService } from './services/register.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,10 @@ import { DragulaModule } from 'ng2-dragula';
     StationComponent,
     RailComponent,
     TileDetailsComponent,
+    StationViewComponent,
+    StationsComponent,
+    AddStationComponent,
+    CreateStationPopComponent,
     AddStationComponent
   ],
   imports: [
@@ -52,7 +59,7 @@ import { DragulaModule } from 'ng2-dragula';
     HttpClientModule,
     DragulaModule
   ],
-  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService],
+  providers: [LoginService, UserService, ProfileService, LogoutService, StationService, RailService, GetStationsService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
