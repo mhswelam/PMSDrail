@@ -7,6 +7,8 @@ import { Rail } from '../models/rail';
 // import 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Router } from '@angular/router';
+import { StationComponent } from '../components/station/station.component';
 
 
 @Injectable()
@@ -16,17 +18,17 @@ export class StationService {
   private selectedStation: Station;
   // List of tiles (?) for creating burndown chart
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
   // Get all rails on this station
-  getRails (station: Station): Observable<Rail[]> {
+  getRails(station: Station): Observable<Rail[]> {
     return this.http
       .post(`${this.url}/viewrails`, station, { withCredentials: true })
-      .map((response: Response) => <Rail[]> response.json());
-      // .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+      .map((response: Response) => <Rail[]>response.json());
+    // .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  saveRailOrder (station: Station) {
+  saveRailOrder(station: Station) {
     return this.http
       .post(`${this.url}/updaterailorder`, station, { withCredentials: true }).subscribe();
   }
@@ -49,6 +51,17 @@ export class StationService {
   getStation(station) {
     return this.http
       .post(`${this.url}/viewstation`, station, { withCredentials: true })
-      .map((response: Response) =>  response.json());
+      .map((response: Response) => response.json());
+  }
+
+  refresh() {
+    return this.http
+      .post(`${this.url}/viewstation`, this.selectedStation, { withCredentials: true })
+      .map((response: Response) => response.json())
+      .subscribe(st => {
+        this.selectedStation = st;
+        StationComponent.refreshStation.next(true); // here!
+        this.router.navigate(['station/test']);
+      });
   }
 }

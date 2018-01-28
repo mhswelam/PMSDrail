@@ -1,3 +1,7 @@
 .divider {
     margin-top: 2%;
 }
+
+.hoverable {
+    cursor: pointer;
+}
