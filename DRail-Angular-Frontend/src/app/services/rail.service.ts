@@ -24,6 +24,11 @@ export class RailService {
       .post(`${this.url}/addrail`, rail, {withCredentials: true });
   }
 
+  updateRail(rail: Rail) {
+    return this.http
+      .post(`${this.url}/updaterail`, rail, { withCredentials: true });
+  }
+
   saveTileOrder(rails: Rail[]) {
     return this.http
       .post(`${this.url}/updatetileorder`, rails, { withCredentials: true }).subscribe();
