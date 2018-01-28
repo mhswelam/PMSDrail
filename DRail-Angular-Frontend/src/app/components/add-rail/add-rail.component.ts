@@ -7,7 +7,9 @@ import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {Router} from '@angular/router';
 
 
-export interface AddRailModal {}
+export interface AddRailModal {
+  station: Station;
+}
 
 @Component({
   selector: 'app-add-rail',
@@ -17,6 +19,7 @@ export interface AddRailModal {}
 export class AddRailComponent extends DialogComponent<AddRailModal, boolean> implements AddRailModal, OnInit {
 
   name = '';
+  station: Station;
 
   constructor(private railService: RailService, private stationService: StationService, dialogService: DialogService,
      private router: Router) {
@@ -27,8 +30,8 @@ export class AddRailComponent extends DialogComponent<AddRailModal, boolean> imp
   }
 
   addRail() {
-    const stationId = this.stationService.selected().stationId;
-    const order = this.stationService.selected().railIds.length;
+    const stationId = this.station.stationId;
+    const order = this.station.railIds.length;
     const rail = new Rail(0, this.name, order, stationId, []);
     this.railService.createRail(rail).subscribe(resp => this.confirm());
   }

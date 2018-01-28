@@ -63,6 +63,9 @@ export class StationComponent implements OnInit {
         .subscribe(
         response => {
           this.rails = response;
+          if (!this.rails) {
+            this.rails = [];
+          }
         },
         err => this.handleError(err)
         );
