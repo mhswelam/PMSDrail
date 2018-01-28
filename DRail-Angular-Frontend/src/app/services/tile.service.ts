@@ -12,16 +12,19 @@ export class TileService {
   constructor(private http: Http) { }
 
 
+  addTile(tile: Tile) {
+    return this.http
+      .post(`${this.url}/addtile`, tile, { withCredentials: true});
+  }
+
   getTileInfo(tile: Tile): Observable<Tile> {
     return this.http
       .post(`${this.url}/viewtile`, tile , { withCredentials: true })
       .map((response: Response) => <Tile> response.json());
   }
 
-
   updateTile(tile: Tile) {
     return this.http
       .post(`${this.url}/updatetile`, tile , { withCredentials: true });
   }
-
 }

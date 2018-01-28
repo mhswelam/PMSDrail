@@ -28,7 +28,7 @@
     <button type="button" class="btn btn-primary col-4 offset-4" (click)="saveProfileInformation()" [disabled]="form.invalid">
         <i class="fa fa-save"></i> &nbsp; Save
     </button>
-    <div class="col-12 status"> {{ statusMessage }}</div>
+    <div class="col-12" id="profileStatus"> {{ statusMessage }}</div>
 </div>
 
 </form>
