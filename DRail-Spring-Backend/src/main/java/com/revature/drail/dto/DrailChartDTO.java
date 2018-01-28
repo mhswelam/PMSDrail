@@ -8,7 +8,7 @@ public class DrailChartDTO<X, Y> {
 	private int totalPoints;
 	
 	private Integer stId; 
-	private List<Integer> tailIds;
+	private List<Integer> tileIds;
 	
 	
 	
@@ -39,12 +39,12 @@ public class DrailChartDTO<X, Y> {
 	}
 
 	
-	public List<Integer> getTailIds() {
-		return tailIds;
+	public List<Integer> getTileIds() {
+		return tileIds;
 	}
 
-	public void setTailIds(List<Integer> tailIds) {
-		this.tailIds = tailIds;
+	public void setTileIds(List<Integer> tileIds) {
+		this.tileIds = tileIds;
 	}
 	
 	

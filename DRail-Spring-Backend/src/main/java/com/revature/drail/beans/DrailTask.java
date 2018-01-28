@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -34,7 +36,7 @@ public class DrailTask {
 	private int order;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="TASK_T_ID")
 	private DrailTile tile;
 	
@@ -53,7 +55,7 @@ public class DrailTask {
 	public int getTaskId() {
 		return taskId;
 	}
-
+	@Required
 	public void setTaskId(int taskId) {
 		this.taskId = taskId;
 	}
@@ -61,7 +63,7 @@ public class DrailTask {
 	public String getName() {
 		return name;
 	}
-
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -69,7 +71,7 @@ public class DrailTask {
 	public int getCompleted() {
 		return completed;
 	}
-
+	
 	public void setCompleted(int completed) {
 		this.completed = completed;
 	}
@@ -77,7 +79,7 @@ public class DrailTask {
 	public int getOrder() {
 		return order;
 	}
-
+	@Required
 	public void setOrder(int order) {
 		this.order = order;
 	}
@@ -85,7 +87,7 @@ public class DrailTask {
 	public DrailTile getTile() {
 		return tile;
 	}
-
+	@Required
 	public void setTile(DrailTile tile) {
 		this.tile = tile;
 	}
