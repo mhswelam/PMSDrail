@@ -9,7 +9,7 @@
       <a class="navbar-brand">{{station.name}}</a>
       <ul class="navbar-nav">
       </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto" *ngIf="roleId == 64 || roleId == 27">
         <li class="nav-item active">
           <a class="btn btn-primary hoverable text-white" (click)="showAddRail()">+</a>
         </li>

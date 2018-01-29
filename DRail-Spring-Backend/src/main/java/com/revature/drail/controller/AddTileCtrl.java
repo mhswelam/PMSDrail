@@ -61,7 +61,6 @@ public class AddTileCtrl {
 			
 		try {
 			DrailTile tile = new DrailTile(dto);
-			tile.setUserCheckedOut(currentUser);
 			tsService.addTile(tile);
 			return new ResponseEntity<DrailTile>(HttpStatus.CREATED);
 		} catch (Exception e) {
