@@ -10,6 +10,7 @@ import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { AddRailComponent } from '../add-rail/add-rail.component';
 import { Subject } from 'rxjs/Subject';
 import { ApplicationRef } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-station',
@@ -24,9 +25,11 @@ export class StationComponent implements OnInit {
 
   station: Station;
   rails: Rail[] = [];
+  roleId: number;
 
   constructor(
     private stationService: StationService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private dragula: DragulaService,
     private utilsService: UtilsService,
@@ -37,6 +40,8 @@ export class StationComponent implements OnInit {
         console.log('Refreshing...');
         this.getStation();
         this.getRails();
+
+        this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
       }
     );
   }
