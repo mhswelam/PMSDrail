@@ -5,9 +5,12 @@ import { RailService } from '../../services/rail.service';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
-import { DialogService } from 'ng2-bootstrap-modal/dist/dialog.service';
 import { UpdateRailComponent } from '../update-rail/update-rail.component';
 import { StationService } from '../../services/station.service';
+import { FormGroup } from '@angular/forms/src/model';
+import { TileService } from '../../services/tile.service';
+import { AddtilepopComponent } from '../addtilepop/addtilepop.component';
+import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 
 
 @Component({
@@ -19,17 +22,26 @@ export class RailComponent implements OnInit {
 
   @Input() rail: Rail;
   tiles: Tile[] = [];
+  rails: Rail[] = [];
+
+  /* Adding Tiles */
+  roleId: number;
+  tileTitle: string;
+  tilePoints: number;
+  tileNote: string;
 
   constructor(
     private railService: RailService,
     private dragula: DragulaService,
     private userService: UserService,
+    private tileService: TileService,
     private utilsService: UtilsService,
     private dialogService: DialogService,
     private stationService: StationService) { }
 
   ngOnInit() {
     this.getTiles();
+    this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
 
     this.dragula.drop.subscribe(
       val => {
@@ -39,6 +51,12 @@ export class RailComponent implements OnInit {
     );
 
 
+  }
+
+  createTileDialog() {
+    let disposable = this.dialogService.addDialog(AddtilepopComponent, {
+        railObj: this.rail
+    }).subscribe();
   }
 
   getTiles() {
@@ -62,9 +80,7 @@ export class RailComponent implements OnInit {
   }
 
   showUpdateRail() {
-    const disposable = this.dialogService.addDialog(UpdateRailComponent, { rail: this.rail}).subscribe(resp =>
-      this.stationService.refresh()
-    );
+    const disposable = this.dialogService.addDialog(UpdateRailComponent, { rail: this.rail}).subscribe();
   }
 
 }
