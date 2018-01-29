@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 
 @Entity
 @Table(name = "DRAIL_ST")
@@ -84,7 +86,7 @@ public class DrailStation {
 		return stationId;
 	}
 
-
+	@Required
 	public void setStationId(int stationId) {
 		this.stationId = stationId;
 	}
@@ -94,7 +96,7 @@ public class DrailStation {
 		return name;
 	}
 
-
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -114,7 +116,7 @@ public class DrailStation {
 		return dueDate;
 	}
 
-
+	@Required
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}

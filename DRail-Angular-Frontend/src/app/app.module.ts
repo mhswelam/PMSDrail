@@ -35,6 +35,7 @@ import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { UtilsService } from './services/utils.service';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
+import { CreateStationService } from './services/create-station.service';
 import { AddRailComponent } from './components/add-rail/add-rail.component';
 import { UpdateRailComponent } from './components/update-rail/update-rail.component';
 import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
@@ -74,8 +75,8 @@ import { AddtilepopComponent } from './components/addtilepop/addtilepop.componen
   ],
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
-    TileService, TaskService, UtilsService],
-  entryComponents: [TilepopComponent, AddRailComponent, UpdateRailComponent, AddtilepopComponent],
+    TileService, TaskService, CreateStationService, UtilsService],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, AddtilepopComponent],
 
   bootstrap: [AppComponent]
 })

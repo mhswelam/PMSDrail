@@ -41,7 +41,7 @@ export class AddRailComponent extends DialogComponent<AddRailModal, boolean> imp
     // then we can get dialog result from caller code
     this.result = true;
     this.close();
-    // this.stationService.refresh();
+    this.stationService.refresh();
   }
 
 }

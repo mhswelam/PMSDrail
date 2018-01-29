@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.revature.drail.dto.DrailTileDTO;
 
@@ -96,18 +98,22 @@ public class DrailTile {
 	public int getTileId() {
 		return tileId;
 	}
+	@Required
 	public void setTileId(int tileId) {
 		this.tileId = tileId;
 	}
 	public String getName() {
 		return name;
 	}
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int getPoints() {
 		return points;
 	}
+	@Required
 	public void setPoints(int points) {
 		this.points = points;
 	}
@@ -132,6 +138,7 @@ public class DrailTile {
 	public int getOrder() {
 		return order;
 	}
+	@Required
 	public void setOrder(int order) {
 		this.order = order;
 	}

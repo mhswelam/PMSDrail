@@ -23,7 +23,7 @@ export class StationComponent implements OnInit {
 
   public static refreshStation: Subject<boolean> = new Subject();
 
-  station: Station; // = new Station(268, 'Station Name', null, null, [126, 127, 128], null);
+  station: Station;
   rails: Rail[] = [];
   roleId: number;
 
@@ -82,8 +82,8 @@ export class StationComponent implements OnInit {
   }
 
   showAddRail() {
-    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(resp =>
-      this.stationService.refresh()
+    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(
+      // this.stationService.refresh()
     );
   }
 
