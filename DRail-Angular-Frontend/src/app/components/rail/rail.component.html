@@ -6,9 +6,9 @@
     <ul class="navbar-nav">
 
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" *ngIf="roleId == 64 || roleId == 27">
       <li class="nav-item active">
-        <a class="btn btn-primary" href="#">+</a>
+        <button type="button" class="btn btn-primary" (click)="createTileDialog()">+</button>
       </li>
     </ul>
   </nav>
