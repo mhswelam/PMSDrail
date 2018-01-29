@@ -29,7 +29,7 @@ export class TileDetailsComponent implements OnInit {
   }
 
   showConfirm(inTile: Tile) {
-    let disposable = this.dialogService.addDialog(TilepopComponent, {
+    const disposable = this.dialogService.addDialog(TilepopComponent, {
         tileObj: inTile} ).subscribe();
 
 }

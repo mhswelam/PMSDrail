@@ -1,6 +1,7 @@
 package com.revature.drail.service;
 
 import com.revature.drail.dto.DrailChartDTO;
+import com.revature.drail.dto.DrailChartOutDTO;
 
 
 /**
@@ -17,6 +18,6 @@ public interface GetBChartService {
 	 * @param chartDto from front end 
 	 * @return chartDto with charts values 
 	 */
-	public DrailChartDTO getChartDto(DrailChartDTO chartDto);
+	public DrailChartOutDTO getChartDto(DrailChartDTO chartDto);
 
 }

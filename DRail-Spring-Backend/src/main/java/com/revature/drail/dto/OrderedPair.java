@@ -2,32 +2,32 @@ package com.revature.drail.dto;
 
 public class OrderedPair {
 		
-	private Long label;
-	private Integer value;
+	private long label;
+	private int value;
 		
     public OrderedPair() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderedPair(Long label, Integer value) {
+	public OrderedPair(long label, int value) {
 		super();
 		this.label = label;
 		this.value = value;
 	}
 
-	public Long getLabel() {
+	public long getLabel() {
 		return label;
 	}
 
-	public void setLabel(Long label) {
+	public void setLabel(long label) {
 		this.label = label;
 	}
 
-	public Integer getValue() {
+	public int getValue() {
 		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 

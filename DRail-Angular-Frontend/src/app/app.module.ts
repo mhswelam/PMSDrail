@@ -38,12 +38,10 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
 import { CreateStationService } from './services/create-station.service';
 import { AddRailComponent } from './components/add-rail/add-rail.component';
 import { UpdateRailComponent } from './components/update-rail/update-rail.component';
-import * as FusionCharts from 'fusioncharts';
-import * as Charts from 'fusioncharts/fusioncharts.charts';
-import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
-import { FusionChartsModule } from 'angular4-fusioncharts';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartService } from './services/chart.service';
 
-FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
+
 
 @NgModule({
   declarations: [
@@ -65,7 +63,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     CreateStationPopComponent,
     AddStationComponent,
     AddRailComponent,
-    UpdateRailComponent
+    UpdateRailComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -79,8 +78,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
   ],
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
-    TileService, TaskService, CreateStationService, UtilsService],
-  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent],
+    TileService, TaskService, CreateStationService, UtilsService, ChartService],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, ChartComponent],
 
   bootstrap: [AppComponent]
 })

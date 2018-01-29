@@ -8,9 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailTile;
 import com.revature.drail.dto.DrailChartDTO;
+import com.revature.drail.dto.DrailChartOutDTO;
 import com.revature.drail.dto.OrderedPair;
 import com.revature.drail.util.DrailTileByDate;
 
@@ -26,27 +28,29 @@ public class GetBChartServiceImpl implements GetBChartService {
 	
 	
 	@Override
-	public DrailChartDTO getChartDto(DrailChartDTO chartDto) {
+	public DrailChartOutDTO getChartDto(DrailChartDTO chartDto) {
 		
 		
-		DrailChartDTO sendOut = new DrailChartDTO();
+		DrailChartOutDTO sendOut = new DrailChartOutDTO();
 		DrailStation currentSt = stSer.viewStationById(chartDto.getStId());
+		List<DrailTile> tileList = new ArrayList<>();
+		for (DrailRail rails: currentSt.getRails()) {
+			tileList.addAll(rails.getTiles());
+		}
 		Date due = currentSt.getDueDate();
 		sendOut.setData(new ArrayList<>());
-		List<Integer> tileList = chartDto.getTileIds();
-		System.out.println(tileList.toString());
+		
 		List<DrailTile> completedTiles = new ArrayList<>();
 		List<DrailTile> notComplTiles = new ArrayList<>();
 		int totalpoints = 0;
 		int leftPoints = 0;
 		
-		for (Integer id : tileList ) {
-			DrailTile tile = tileSer.viewTileById(id);
-			totalpoints += tile.getPoints();
-			if (tile.getCompleted() == 1) {
-				completedTiles.add(tile);
+		for (DrailTile aTile : tileList ) {
+			totalpoints += aTile.getPoints();
+			if (aTile.getCompleted() == 1) {
+				completedTiles.add(aTile);
 			} else {
-				notComplTiles.add(tile);
+				notComplTiles.add(aTile);
 			}
 			
 		}
@@ -61,8 +65,7 @@ public class GetBChartServiceImpl implements GetBChartService {
 			sendOut.getData().add(new OrderedPair(0L, leftPoints));
 		}
 		
-		sendOut.setTotalPoints(totalpoints);
-		sendOut.setStId(chartDto.getStId());
+		
 		
 		return sendOut;
 	}

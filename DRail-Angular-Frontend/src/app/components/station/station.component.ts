@@ -10,6 +10,7 @@ import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { AddRailComponent } from '../add-rail/add-rail.component';
 import { Subject } from 'rxjs/Subject';
 import { ApplicationRef } from '@angular/core';
+import { ChartComponent } from '../chart/chart.component';
 
 @Component({
   selector: 'app-station',
@@ -81,5 +82,12 @@ export class StationComponent implements OnInit {
       this.stationService.refresh()
     );
   }
+
+
+  showChart() {
+    const disposable = this.dialogService.addDialog(ChartComponent, {
+      currentSt: this.station } ).subscribe();
+
+}
 
 }

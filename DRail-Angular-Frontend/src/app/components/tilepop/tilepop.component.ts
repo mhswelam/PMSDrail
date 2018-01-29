@@ -5,8 +5,6 @@ import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task';
 import { TileService } from '../../services/tile.service';
 import { Response } from '@angular/http/src/static_response';
-import { ValidatorFn, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
 export interface ConfirmModel  {
 
@@ -23,8 +21,7 @@ export class TilepopComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   tileObj: Tile;
 
-  constructor(dialogService: DialogService, private taskSer: TaskService, private tailSer: TileService,
-     private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(dialogService: DialogService, private taskSer: TaskService, private tailSer: TileService) {
     super(dialogService);
 
  }
