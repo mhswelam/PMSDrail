@@ -40,6 +40,7 @@ import { AddRailComponent } from './components/add-rail/add-rail.component';
 import { UpdateRailComponent } from './components/update-rail/update-rail.component';
 import { EditStationPopComponent } from './components/edit-station-pop/edit-station-pop.component';
 
+import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { EditStationPopComponent } from './components/edit-station-pop/edit-stat
     AddStationComponent,
     AddRailComponent,
     UpdateRailComponent,
-    EditStationPopComponent
+    EditStationPopComponent,
+    AddtilepopComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { EditStationPopComponent } from './components/edit-station-pop/edit-stat
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
     TileService, TaskService, CreateStationService, UtilsService],
-  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, EditStationPopComponent],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, EditStationPopComponent, 
+    AddtilepopComponent],
 
   bootstrap: [AppComponent]
 })

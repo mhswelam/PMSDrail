@@ -10,6 +10,7 @@ import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { AddRailComponent } from '../add-rail/add-rail.component';
 import { Subject } from 'rxjs/Subject';
 import { ApplicationRef } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-station',
@@ -22,11 +23,13 @@ export class StationComponent implements OnInit {
 
   public static refreshStation: Subject<boolean> = new Subject();
 
-  station: Station; // = new Station(268, 'Station Name', null, null, [126, 127, 128], null);
+  station: Station;
   rails: Rail[] = [];
+  roleId: number;
 
   constructor(
     private stationService: StationService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private dragula: DragulaService,
     private utilsService: UtilsService,
@@ -37,6 +40,8 @@ export class StationComponent implements OnInit {
         console.log('Refreshing...');
         this.getStation();
         this.getRails();
+
+        this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
       }
     );
   }
@@ -77,8 +82,8 @@ export class StationComponent implements OnInit {
   }
 
   showAddRail() {
-    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(resp =>
-      this.stationService.refresh()
+    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(
+      // this.stationService.refresh()
     );
   }
 

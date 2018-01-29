@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ProfileService {
 
-  private url = 'http://localhost:8080/api/updateuser';
+  private url = 'http://localhost:8080/api';
   private options: {};
   constructor(private http: Http) {
       this.options = {
@@ -18,7 +18,7 @@ export class ProfileService {
   }
 
   updateUser(user: User) {
-    return this.http.post(this.url, user, this.options);
+    return this.http.post(`${this.url}/updateuser`, user, this.options);
   }
 
 }

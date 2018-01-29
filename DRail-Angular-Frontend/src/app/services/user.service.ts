@@ -15,5 +15,4 @@ export class UserService {
     this.user = user;
   }
 
-
 }
