@@ -41,7 +41,7 @@ export class StationComponent implements OnInit {
         this.getStation();
         this.getRails();
 
-        this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId];
+        this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
       }
     );
   }

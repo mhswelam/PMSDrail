@@ -35,11 +35,12 @@ export class RailComponent implements OnInit {
     private userService: UserService,
     private tileService: TileService,
     private utilsService: UtilsService,
-    private dialogService: DialogService) { }
+    private dialogService: DialogService,
+    private stationService: StationService) { }
 
   ngOnInit() {
     this.getTiles();
-    this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId];
+    this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
 
     this.dragula.drop.subscribe(
       val => {

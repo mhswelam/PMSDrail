@@ -1,3 +1,4 @@
+import {StationService} from '../../services/station.service';
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '../../models/tile';
 import { ConfirmModel } from '../tilepop/tilepop.component';
@@ -36,7 +37,10 @@ export class AddtilepopComponent extends DialogComponent<AddModal, boolean> impl
   tileNote: string;
 
 
-  constructor(dialogService: DialogService, private tileService: TileService, private railService: RailService,
+  constructor( dialogService: DialogService,
+              private tileService: TileService,
+              private railService: RailService,
+              private stationService: StationService,
     formBuilder: FormBuilder) {
       super(dialogService);
       this.form = formBuilder.group ({
@@ -58,6 +62,7 @@ export class AddtilepopComponent extends DialogComponent<AddModal, boolean> impl
         if (response.status === 201) {
            document.getElementById('tileStatus').setAttribute('style', 'color:green');
            this.statusMessage = 'Tile Created!';
+           this.stationService.refresh();
         } else {
           document.getElementById('tileStatus').setAttribute('style', 'color:red');
            this.statusMessage = 'There was an error processing your request.';
