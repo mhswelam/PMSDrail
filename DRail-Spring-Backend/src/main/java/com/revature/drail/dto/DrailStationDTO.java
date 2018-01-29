@@ -1,6 +1,5 @@
 package com.revature.drail.dto;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +16,7 @@ public class DrailStationDTO {
 	private int stationId;
 	private String name;
 	private Timestamp timeCreated;
-	private Date dueDate;
+	private Long dueDate;
 	private List<Integer> railIds = new ArrayList<>();
 //	private List<Integer> userIds = new ArrayList<>();
 	private Map<Integer, DrailUserRole> userRoleMap = new HashMap<>();
@@ -29,7 +28,7 @@ public class DrailStationDTO {
 		this.stationId = station.getStationId();
 		this.name = station.getName();
 		this.timeCreated = station.getTimeCreated();
-		this.dueDate = station.getDueDate();
+		this.dueDate = station.getDueDate().getTime();
 		if (station.getRails() != null) {
 			for(DrailRail rail : station.getRails()) {
 				this.railIds.add(rail.getRailId());
@@ -42,7 +41,7 @@ public class DrailStationDTO {
 		}
 	}
 
-	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Date dueDate, List<Integer> railIds,
+	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Long dueDate, List<Integer> railIds,
 			Map<Integer, DrailUserRole> userRoleMap) {
 		super();
 		this.stationId = stationId;
@@ -77,11 +76,11 @@ public class DrailStationDTO {
 		this.timeCreated = timeCreated;
 	}
 
-	public Date getDueDate() {
+	public Long getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(Long dueDate) {
 		this.dueDate = dueDate;
 	}
 
