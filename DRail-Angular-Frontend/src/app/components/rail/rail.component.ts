@@ -19,6 +19,7 @@ export class RailComponent implements OnInit {
 
   @Input() rail: Rail;
   tiles: Tile[] = [];
+  rails: Rail[] = [];
 
   constructor(
     private railService: RailService,
@@ -62,9 +63,7 @@ export class RailComponent implements OnInit {
   }
 
   showUpdateRail() {
-    const disposable = this.dialogService.addDialog(UpdateRailComponent, { rail: this.rail}).subscribe(resp =>
-      this.stationService.refresh()
-    );
+    const disposable = this.dialogService.addDialog(UpdateRailComponent, { rail: this.rail}).subscribe();
   }
 
 }
