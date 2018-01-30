@@ -3,10 +3,10 @@
         <app-station-view [station]="station"></app-station-view>
         <!--<p>{{station.name}}</p>-->
     </div>
-    <div *ngIf = "user">
-        <app-add-station class="floating-box"></app-add-station>
-    </div>
-</div>
-<div>
 
+    <div *ngIf = "user">
+        <app-add-station></app-add-station>
+    </div>
+    
 </div>
+

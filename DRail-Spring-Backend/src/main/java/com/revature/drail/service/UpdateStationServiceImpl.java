@@ -32,7 +32,7 @@ public class UpdateStationServiceImpl implements UpdateStationService {
 		
 			DrailStation station = new DrailStation();
 			station.setStationId(updatedStation.getStationId());
-			station.setDueDate(new Date(updatedStation.getDueDate()));
+			station.setDueDate(updatedStation.getDueDate());
 			station.setName(updatedStation.getName());
 			station.setTimeCreated(updatedStation.getTimeCreated());
 			List<DrailRail> rails = station.getRails();

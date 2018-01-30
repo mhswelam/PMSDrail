@@ -10,6 +10,10 @@ import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { AddRailComponent } from '../add-rail/add-rail.component';
 import { Subject } from 'rxjs/Subject';
 import { ApplicationRef } from '@angular/core';
+import { ChartComponent } from '../chart/chart.component';
+import { ChartOut } from '../../models/chartout';
+import { ChartService } from '../../services/chart.service';
+import { ChartIn } from '../../models/chartin';
 import { UserService } from '../../services/user.service';
 import { EditStationPopComponent } from '../edit-station-pop/edit-station-pop.component';
 import { AddUserPopComponent } from '../add-user-pop/add-user-pop.component';
@@ -24,10 +28,12 @@ import { AddUserPopComponent } from '../add-user-pop/add-user-pop.component';
 export class StationComponent implements OnInit {
 
   public static refreshStation: Subject<boolean> = new Subject();
+  chartout: ChartOut = new ChartOut(null, 0);
+  currChart: ChartIn;
 
   station: Station;
   rails: Rail[] = [];
-  roleId: number;
+  // roleId: number;
 
   constructor(
     private stationService: StationService,
@@ -36,6 +42,7 @@ export class StationComponent implements OnInit {
     private dragula: DragulaService,
     private utilsService: UtilsService,
     private dialogService: DialogService,
+    private chartSer: ChartService,
     private appRef: ApplicationRef) {
     StationComponent.refreshStation.subscribe(
       res => {
@@ -43,7 +50,7 @@ export class StationComponent implements OnInit {
         this.getStation();
         this.getRails();
 
-        this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
+        // this.roleId = this.userService.getUser().stationRoleMap[this.station.stationId].id;
       }
     );
   }
@@ -51,6 +58,7 @@ export class StationComponent implements OnInit {
   ngOnInit() {
     this.getStation();
     this.getRails();
+    // this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
 
     this.dragula.drop.subscribe(
       val => {
@@ -84,11 +92,12 @@ export class StationComponent implements OnInit {
   }
 
   showAddRail() {
-    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(
+    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station }).subscribe(
       // this.stationService.refresh()
     );
   }
 
+<<<<<<< HEAD
   editStation(station) {
     console.log(station.name);
     console.log(station.dueDate);
@@ -100,4 +109,20 @@ export class StationComponent implements OnInit {
   addUsers(station) {
     const disposable = this.dialogService.addDialog(AddUserPopComponent, { stationObj: this.station });
   }
+=======
+
+  showChart(data: ChartIn) {
+    const disposable = this.dialogService.addDialog(ChartComponent, {
+      currentChart: data } ).subscribe();
+
+}
+
+
+ getChartInfo() {
+    this.chartout.stId = this.station.stationId;
+    this.chartSer.getChart(this.chartout).subscribe(
+    data => {this.currChart = data; console.log(data); this.showChart(data); });
+ }
+
+>>>>>>> 118bac2138a97ccc9e2cadb22e98a675044272db
 }
