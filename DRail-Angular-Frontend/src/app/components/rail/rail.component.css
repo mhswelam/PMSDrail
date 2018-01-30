@@ -9,7 +9,7 @@
   }
 
   .div-thin{
-    height: 200px;
+    height: 235px;
   }
 
   .tile-detail-card {
@@ -26,4 +26,10 @@
 .no-border{
   border-width: 0px;
 }
+
+.navbar{
+  border: 1px solid violet;
+  margin-bottom: 10px;
+}
+
 
