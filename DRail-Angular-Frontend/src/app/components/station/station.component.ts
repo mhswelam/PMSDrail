@@ -98,6 +98,6 @@ export class StationComponent implements OnInit {
   }
 
   addUsers(station) {
-    const disposable = this.dialogService.addDialog(AddUserPopComponent);
+    const disposable = this.dialogService.addDialog(AddUserPopComponent, { stationObj: this.station });
   }
 }
