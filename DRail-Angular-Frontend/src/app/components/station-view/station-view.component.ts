@@ -3,6 +3,8 @@ import { GetStationsService } from '../../services/get-stations.service';
 import { Station } from '../../models/station';
 import { StationService } from '../../services/station.service';
 import {Router} from '@angular/router';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-station-view',
@@ -10,6 +12,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./station-view.component.css']
 })
 export class StationViewComponent implements OnInit {
+
 
  @Input() station: Station;
   constructor(private Service: StationService, private router: Router) {
