@@ -97,7 +97,6 @@ export class StationComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
   editStation(station) {
     console.log(station.name);
     console.log(station.dueDate);
@@ -109,7 +108,6 @@ export class StationComponent implements OnInit {
   addUsers(station) {
     const disposable = this.dialogService.addDialog(AddUserPopComponent, { stationObj: this.station });
   }
-=======
 
   showChart(data: ChartIn) {
     const disposable = this.dialogService.addDialog(ChartComponent, {
@@ -124,5 +122,4 @@ export class StationComponent implements OnInit {
     data => {this.currChart = data; console.log(data); this.showChart(data); });
  }
 
->>>>>>> 118bac2138a97ccc9e2cadb22e98a675044272db
 }
