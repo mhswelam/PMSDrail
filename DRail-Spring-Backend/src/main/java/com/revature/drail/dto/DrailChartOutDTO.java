@@ -1,64 +1,76 @@
 package com.revature.drail.dto;
 
-import java.util.HashMap;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class DrailChartOutDTO {
 
-	private List<OrderedPair> data;
+	private List<Integer> data;
 	
-	private Map<String,String> chart = new HashMap<>();
+	private List<Integer> labels;
 	
+	private int points;
 	
 	
 	public DrailChartOutDTO() {
-		chart.put("caption", "BurnDown Chart");
-		chart.put("subCaption", "BurnDown Chart");
-		chart.put("xAxisName", "Days");
-		chart.put("yAxisName", "Total Project Points");
-		chart.put("showValues", "0");
-		chart.put("theme", "ocean");
+		
 	}
 
 
 
-	public DrailChartOutDTO(List<OrderedPair> data, Map<String, String> chart) {
+	public DrailChartOutDTO(List<Integer> data, List<Integer> labels) {
 		super();
 		this.data = data;
-		this.chart = chart;
+		this.labels = labels;
 	}
 
 
 
-	public List<OrderedPair> getData() {
+	public List<Integer> getData() {
 		return data;
 	}
 
 
 
-	public void setData(List<OrderedPair> data) {
+	public void setData(List<Integer> data) {
 		this.data = data;
 	}
 
 
 
-	public Map<String, String> getChart() {
-		return chart;
+	public List<Integer> getLabels() {
+		return labels;
 	}
 
 
 
-	public void setChart(Map<String, String> chart) {
-		this.chart = chart;
+	public void setLabels(List<Integer> labels) {
+		this.labels = labels;
+	}
+
+
+
+	public int getPoints() {
+		return points;
+	}
+
+
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "DrailChartOutDTO [data=" + data + ", chart=" + chart + "]";
+		return "DrailChartOutDTO [data=" + data + ", labels=" + labels + ", points=" + points + "]";
 	}
+
+
+
+
+
 	
 	
 	

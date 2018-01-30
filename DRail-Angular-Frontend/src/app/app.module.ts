@@ -40,7 +40,7 @@ import { AddRailComponent } from './components/add-rail/add-rail.component';
 import { UpdateRailComponent } from './components/update-rail/update-rail.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ChartService } from './services/chart.service';
-
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -74,6 +74,7 @@ import { ChartService } from './services/chart.service';
     HttpModule,
     HttpClientModule,
     DragulaModule,
+    ChartsModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
 

@@ -16,7 +16,7 @@ public class DrailStationDTO {
 
 	private int stationId;
 	private String name;
-	private Timestamp timeCreated;
+	private Date timeCreated;
 	private Date dueDate;
 	private List<Integer> railIds = new ArrayList<>();
 //	private List<Integer> userIds = new ArrayList<>();
@@ -42,7 +42,7 @@ public class DrailStationDTO {
 		}
 	}
 
-	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Date dueDate, List<Integer> railIds,
+	public DrailStationDTO(int stationId, String name, Date timeCreated, Date dueDate, List<Integer> railIds,
 			Map<Integer, DrailUserRole> userRoleMap) {
 		super();
 		this.stationId = stationId;
@@ -69,11 +69,11 @@ public class DrailStationDTO {
 		this.name = name;
 	}
 
-	public Timestamp getTimeCreated() {
+	public Date getTimeCreated() {
 		return timeCreated;
 	}
 
-	public void setTimeCreated(Timestamp timeCreated) {
+	public void setTimeCreated(Date timeCreated) {
 		this.timeCreated = timeCreated;
 	}
 

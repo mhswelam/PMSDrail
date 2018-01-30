@@ -4,11 +4,12 @@ import { OrderedPair } from './orderedpair';
 
 
 export class ChartIn {
-    public data: OrderedPair[];
-    public chart: Map<String, String>;
+    public data: number[];
+    public labels: number[];
+    public points: number;
 
-    constructor(data: OrderedPair[], chart: Map<String, String>) {
+    constructor(data: number[], labels: number[]) {
         this.data = data;
-        this.chart = chart;
+        this.labels = labels;
     }
 }
