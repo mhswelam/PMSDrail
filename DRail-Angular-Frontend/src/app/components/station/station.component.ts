@@ -33,7 +33,7 @@ export class StationComponent implements OnInit {
 
   station: Station;
   rails: Rail[] = [];
-  // roleId: number;
+  roleId: number;
 
   constructor(
     private stationService: StationService,
@@ -58,7 +58,7 @@ export class StationComponent implements OnInit {
   ngOnInit() {
     this.getStation();
     this.getRails();
-    // this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
+    this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
 
     this.dragula.drop.subscribe(
       val => {
