@@ -18,7 +18,8 @@
     </nav>
 
     <!-- Rails -->
-    <div [dragula]='"bag-two"' [dragulaModel]='rails'>
+    <!-- <div [dragula]='"bag-two"' [dragulaModel]='rails'> -->
+    <div>
       <div class="rail" *ngFor="let rail of rails">
         <app-rail [rail]="rail"></app-rail>
       </div>
