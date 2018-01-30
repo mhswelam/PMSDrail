@@ -1,12 +1,10 @@
 package com.revature.drail.service;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +34,10 @@ public class GetBChartServiceImpl implements GetBChartService {
 		DrailStation currentSt = stSer.viewStationById(chartDto.getStId());
 		
 		List<DrailTile> tileList = new ArrayList<>();
+		if (currentSt.getRails() == null && currentSt.getRails().isEmpty()) {
+			return sendOut;
+		}
+		
 		for (DrailRail rails: currentSt.getRails()) {
 			tileList.addAll(rails.getTiles());
 		}
@@ -49,13 +51,14 @@ public class GetBChartServiceImpl implements GetBChartService {
 				completedTiles.add(aTile);
 			} 
 		}
+		sendOut.setPoints(totalpoints);
 		if (completedTiles.isEmpty()) {
 			return sendOut;
 		}
 		Collections.sort(completedTiles, new DrailTileByDate()); 
 		
 		leftPoints = totalpoints;
-		sendOut.setPoints(totalpoints);
+		
 		sendOut.setData(new ArrayList<>());
 		leftPoints = leftPoints - completedTiles.get(0).getPoints();
 		int dataIndex = 0;
@@ -68,7 +71,7 @@ public class GetBChartServiceImpl implements GetBChartService {
 			} else {
 				dataIndex++;
 				leftPoints = leftPoints - completedTiles.get(i).getPoints();
-				sendOut.getData().set(dataIndex, leftPoints);
+				sendOut.getData().add(leftPoints);
 			}
 		}
 		
