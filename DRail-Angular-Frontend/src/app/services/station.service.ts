@@ -65,4 +65,10 @@ export class StationService {
         this.router.navigate(['station']);
       });
   }
+
+  updateStation(station) {
+    return this.http
+      .post(`${this.url}/updatestation`, station, { withCredentials: true });
+  }
+
 }

@@ -11,6 +11,7 @@ import { AddRailComponent } from '../add-rail/add-rail.component';
 import { Subject } from 'rxjs/Subject';
 import { ApplicationRef } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { EditStationPopComponent } from '../edit-station-pop/edit-station-pop.component';
 
 @Component({
   selector: 'app-station',
@@ -87,4 +88,11 @@ export class StationComponent implements OnInit {
     );
   }
 
+  editStation(station) {
+    console.log(station.name);
+    console.log(station.dueDate);
+    const disposable = this.dialogService.addDialog(EditStationPopComponent, { stationObj: this.station }).subscribe(
+      // this.stationService.refresh()
+    );
+  }
 }
