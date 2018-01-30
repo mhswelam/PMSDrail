@@ -38,7 +38,7 @@ public class DrailStation {
 	private String name;
 
 	@Column(name = "ST_CREATED")
-	private Timestamp timeCreated;
+	private Date timeCreated;
 
 	@Column(name = "ST_DUE")
 	private Date dueDate;
@@ -70,7 +70,7 @@ public class DrailStation {
 	}
 
 
-	public DrailStation(int stationId, String name, Timestamp timeCreated, Date dueDate,
+	public DrailStation(int stationId, String name, Date timeCreated, Date dueDate,
 			Map<DrailUser, DrailUserRole> userRoleMap, List<DrailRail> rails) {
 		super();
 		this.stationId = stationId;
@@ -102,12 +102,12 @@ public class DrailStation {
 	}
 
 
-	public Timestamp getTimeCreated() {
+	public Date getTimeCreated() {
 		return timeCreated;
 	}
 
 
-	public void setTimeCreated(Timestamp timeCreated) {
+	public void setTimeCreated(Date timeCreated) {
 		this.timeCreated = timeCreated;
 	}
 

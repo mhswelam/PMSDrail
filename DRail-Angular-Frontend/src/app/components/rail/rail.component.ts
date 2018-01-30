@@ -50,6 +50,12 @@ export class RailComponent implements OnInit {
       }
     );
 
+    this.dragula.setOptions('bag-one', {
+      invalid(el, handle) {
+        return (el.className === 'rail');
+      }
+    });
+
 
   }
 

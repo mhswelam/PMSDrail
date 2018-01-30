@@ -30,7 +30,7 @@ public class AddStationCtrl {
 			if(du!=null) {
 				DrailStation station = new DrailStation();
 				station.setName(ds.getName());
-				station.setDueDate(new Date(ds.getDueDate()));
+				station.setDueDate(ds.getDueDate());
 				station = dsService.addStation(du, station);
 				session.setAttribute("station", station);
 			    station = dsService.addStation(du, station);
