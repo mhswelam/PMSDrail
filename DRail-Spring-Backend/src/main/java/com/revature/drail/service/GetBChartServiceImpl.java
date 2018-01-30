@@ -49,6 +49,9 @@ public class GetBChartServiceImpl implements GetBChartService {
 				completedTiles.add(aTile);
 			} 
 		}
+		if (completedTiles.isEmpty()) {
+			return sendOut;
+		}
 		Collections.sort(completedTiles, new DrailTileByDate()); 
 		
 		leftPoints = totalpoints;
