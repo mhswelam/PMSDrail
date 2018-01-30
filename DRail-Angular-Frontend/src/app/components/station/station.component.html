@@ -20,6 +20,9 @@
             <i class="fa fa-edit"></i>
           </a>
         </li>
+          <li class="nav-item active">
+              <a class="btn btn-warning hoverable text-white" (click)="getChartInfo()"><i class="fa fa-bar-chart-o"></i></a>
+            </li>
         <li class="nav-item active">
           <a class="btn btn-primary hoverable text-white" (click)="showAddRail()">+</a>
         </li>
@@ -27,8 +30,9 @@
     </nav>
 
     <!-- Rails -->
+    <!-- <div [dragula]='"bag-two"' [dragulaModel]='rails'> -->
     <div>
-      <div *ngFor="let rail of rails">
+      <div class="rail" *ngFor="let rail of rails">
         <app-rail [rail]="rail"></app-rail>
       </div>
     </div>

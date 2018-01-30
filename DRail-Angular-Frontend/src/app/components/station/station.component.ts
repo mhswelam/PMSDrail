@@ -109,6 +109,7 @@ export class StationComponent implements OnInit {
     const disposable = this.dialogService.addDialog(AddUserPopComponent, { stationObj: this.station });
   }
 
+
   showChart(data: ChartIn) {
     const disposable = this.dialogService.addDialog(ChartComponent, {
       currentChart: data } ).subscribe();

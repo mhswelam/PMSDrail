@@ -39,7 +39,9 @@ import { CreateStationService } from './services/create-station.service';
 import { AddRailComponent } from './components/add-rail/add-rail.component';
 import { UpdateRailComponent } from './components/update-rail/update-rail.component';
 import { EditStationPopComponent } from './components/edit-station-pop/edit-station-pop.component';
-
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartService } from './services/chart.service';
+import { ChartsModule } from 'ng2-charts';
 import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
 import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.component';
 
@@ -67,6 +69,8 @@ import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.comp
     EditStationPopComponent,
     AddtilepopComponent,
     AddUserPopComponent
+    ChartComponent,
+    AddtilepopComponent
   ],
   imports: [
     BrowserModule,
@@ -76,13 +80,15 @@ import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.comp
     HttpModule,
     HttpClientModule,
     DragulaModule,
+    ChartsModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
-    TileService, TaskService, CreateStationService, UtilsService],
+    TileService, TaskService, CreateStationService, UtilsService, ChartService],
   entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, EditStationPopComponent, 
-    AddtilepopComponent, AddUserPopComponent],
+    AddtilepopComponent, AddUserPopComponent, ChartComponent],
+
 
   bootstrap: [AppComponent]
 })

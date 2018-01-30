@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import { DialogService } from 'ng2-bootstrap-modal/dist/dialog.service';
 import { EditStationPopComponent } from '../edit-station-pop/edit-station-pop.component';
 import { CreateStationPopComponent } from '../create-station-pop/create-station-pop.component';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-station-view',
@@ -13,6 +15,7 @@ import { CreateStationPopComponent } from '../create-station-pop/create-station-
   styleUrls: ['./station-view.component.css']
 })
 export class StationViewComponent implements OnInit {
+
 
  @Input() station: Station;
   constructor(private Service: StationService, private router: Router, private dialogService: DialogService) {
