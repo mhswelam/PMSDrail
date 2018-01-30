@@ -68,7 +68,7 @@ import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.comp
     UpdateRailComponent,
     EditStationPopComponent,
     AddtilepopComponent,
-    AddUserPopComponent
+    AddUserPopComponent,
     ChartComponent,
     AddtilepopComponent
   ],
