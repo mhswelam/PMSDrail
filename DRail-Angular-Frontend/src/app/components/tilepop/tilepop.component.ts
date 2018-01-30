@@ -80,14 +80,20 @@ export class TilepopComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   addNewTask(taskName: string) {
     if (taskName.length > 0) {
-      let task: Task = new Task(0, taskName, null, this.tileObj.tasks.length, this.tileObj.tileId);
-      this.taskSer.addTask(task).subscribe();
-      this.tileObj.tasks.push(task);
-      this.dialogService.addDialog(TilepopComponent, {
-        tileObj: this.tileObj
-      }).subscribe();
-      this.close();
+      const task: Task = new Task(0, taskName, null, this.tileObj.tasks.length, this.tileObj.tileId);
+      this.taskSer.addTask(task).subscribe(data => {
+        this.getTileInfo();
+      });
     }
+  }
+getTileInfo() {
+    this.tailSer.getTileInfo(this.tileObj).subscribe(
+      data => {this.tileObj = data;
+        this.dialogService.addDialog(TilepopComponent, {
+          tileObj: this.tileObj
+        }).subscribe();
+        this.close(); },
+      err => console.log(err));
   }
 
   updateTaskInfo(task: Task) {

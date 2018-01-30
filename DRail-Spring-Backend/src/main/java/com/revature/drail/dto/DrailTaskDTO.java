@@ -2,7 +2,7 @@ package com.revature.drail.dto;
 
 import com.revature.drail.beans.DrailTask;
 
-public class DrailTaskDTO {
+public class DrailTaskDTO implements Comparable{
 
 	private int taskId;
 	private String name;
@@ -74,6 +74,11 @@ public class DrailTaskDTO {
 	public String toString() {
 		return "DrailTaskDTO [taskId=" + taskId + ", name=" + name + ", completed=" + completed + ", order=" + order
 				+ ", tileId=" + tileId + "]";
+	}
+
+	@Override
+	public int compareTo(Object other) {
+		return (this.order - ((DrailTaskDTO) other).getOrder());
 	}
 	
 }
