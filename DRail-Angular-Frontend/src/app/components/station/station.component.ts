@@ -15,6 +15,8 @@ import { ChartOut } from '../../models/chartout';
 import { ChartService } from '../../services/chart.service';
 import { ChartIn } from '../../models/chartin';
 import { UserService } from '../../services/user.service';
+import { EditStationPopComponent } from '../edit-station-pop/edit-station-pop.component';
+import { AddUserPopComponent } from '../add-user-pop/add-user-pop.component';
 
 @Component({
   selector: 'app-station',
@@ -93,6 +95,18 @@ export class StationComponent implements OnInit {
     const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station }).subscribe(
       // this.stationService.refresh()
     );
+  }
+
+  editStation(station) {
+    console.log(station.name);
+    console.log(station.dueDate);
+    const disposable = this.dialogService.addDialog(EditStationPopComponent, { stationObj: this.station }).subscribe(
+      // this.stationService.refresh()
+    );
+  }
+
+  addUsers(station) {
+    const disposable = this.dialogService.addDialog(AddUserPopComponent, { stationObj: this.station });
   }
 
 

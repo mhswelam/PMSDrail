@@ -38,11 +38,13 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
 import { CreateStationService } from './services/create-station.service';
 import { AddRailComponent } from './components/add-rail/add-rail.component';
 import { UpdateRailComponent } from './components/update-rail/update-rail.component';
+import { EditStationPopComponent } from './components/edit-station-pop/edit-station-pop.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ChartService } from './services/chart.service';
 import { ChartsModule } from 'ng2-charts';
-
 import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
+import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.component';
+import { InfoPasswordComponent } from './components/profile/info-password/info-password.component';
 
 @NgModule({
   declarations: [
@@ -65,8 +67,12 @@ import { AddtilepopComponent } from './components/addtilepop/addtilepop.componen
     AddStationComponent,
     AddRailComponent,
     UpdateRailComponent,
+    EditStationPopComponent,
+    AddtilepopComponent,
+    AddUserPopComponent,
     ChartComponent,
-    AddtilepopComponent
+    AddtilepopComponent,
+    InfoPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -82,8 +88,9 @@ import { AddtilepopComponent } from './components/addtilepop/addtilepop.componen
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
     TileService, TaskService, CreateStationService, UtilsService, ChartService],
-  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent,
-    AddtilepopComponent, ChartComponent],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, EditStationPopComponent, 
+    AddtilepopComponent, AddUserPopComponent, ChartComponent],
+
 
   bootstrap: [AppComponent]
 })

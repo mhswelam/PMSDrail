@@ -10,7 +10,7 @@ import { window } from 'rxjs/operator/window';
 import { UserService } from '../../services/user.service';
 import { Role } from '../../models/role';
 
-export interface CreateStationModel  {
+export interface CreateStationModel {
 
   stationObj: Station;
 
@@ -42,14 +42,16 @@ export class CreateStationPopComponent extends DialogComponent<CreateStationMode
    let station: Station = new Station( null, this.name, null, this.dueDate, null, null);
    console.log(station.name);
    console.log(station.dueDate);
-  this.createStationService.createStation(station).subscribe(
-    resp => {
-      // this.userService.refreshUser();
-      // userService.getUser().stationRoleMap.put(response.stationid, 64)
-      this.userService.getUser().stationRoleMap[resp.stationId] = new Role(64, 'PRODUCT OWNER');
-      this.close();
-    });
 
+   if (typeof station.name !== 'undefined' && typeof station.dueDate !== 'undefined') {
+      this.createStationService.createStation(station).subscribe(
+        resp => {
+          // this.userService.refreshUser();
+          // userService.getUser().stationRoleMap.put(response.stationid, 64)
+          this.userService.getUser().stationRoleMap[resp.stationId] = new Role(64, 'PRODUCT OWNER');
+          this.close();
+      });
+  }
   // this.route.navigate(['/stations?refresh=1']);
  // this.stationObj.name = this.name;
  // this.stationObj.dueDate = this.dueDate;

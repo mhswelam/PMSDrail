@@ -10,6 +10,16 @@
       <ul class="navbar-nav">
       </ul>
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="btn btn-primary hoverable text-white" (click)="addUsers(station)">
+            <i class="fa fa-group"></i>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="btn btn-primary hoverable text-white" (click)="editStation(station)">
+            <i class="fa fa-edit"></i>
+          </a>
+        </li>
           <li class="nav-item active">
               <a class="btn btn-warning hoverable text-white" (click)="getChartInfo()"><i class="fa fa-bar-chart-o"></i></a>
             </li>
