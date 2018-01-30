@@ -74,10 +74,11 @@ export class LoginComponent implements OnInit {
          this.fPassword = '';
          this.failedLogin = true;
          this.failedLogingHeader = 'Failed Login!';
-         this.failedLoginMessage = 'This username and password combination was not found in our database please try again'; }else {
+         this.failedLoginMessage = 'This username and password combination was not found in our database please try again'; 
+        }else {
          this.failedLogingHeader = 'Connection Error!';
          this.failedLoginMessage = 'There was a problem with the connection to the database we apologize';
-          this.userService.setUser(null);
+         this.userService.setUser(null);
          this.failedLogin = true; }
          }
       );

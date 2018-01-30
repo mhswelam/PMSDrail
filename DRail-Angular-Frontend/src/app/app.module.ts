@@ -42,6 +42,7 @@ import { ChartComponent } from './components/chart/chart.component';
 import { ChartService } from './services/chart.service';
 import { ChartsModule } from 'ng2-charts';
 
+import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ChartsModule } from 'ng2-charts';
     AddStationComponent,
     AddRailComponent,
     UpdateRailComponent,
-    ChartComponent
+    ChartComponent,
+    AddtilepopComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { ChartsModule } from 'ng2-charts';
 
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
     TileService, TaskService, CreateStationService, UtilsService, ChartService],
-  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, ChartComponent],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent,
+    AddtilepopComponent, ChartComponent],
 
   bootstrap: [AppComponent]
 })

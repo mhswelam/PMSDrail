@@ -3,10 +3,11 @@
       <div class="modal-content">
         <div class="modal-header ">
           <div class="btn-group" role="group" aria-label="Third group">
-            <button type="button" class="btn btn-primary">{{tileObj.points}}</button>
+            <input *ngIf="editPoints" type="number" value="tileObj.points" [(ngModel)]="points" (keyup.enter)="savePoints()">
+            <button *ngIf="!editPoints" (click)="editPoints=true" type="button" class="btn btn-primary">{{tileObj.points}}</button>
           </div>
-          
-            <h5 class="modal-title" id="exampleModalLongTitle">&nbsp;{{tileObj.name}} </h5>
+            <input *ngIf="editName" (blur)="saveName()" (keyup.enter)="saveName()" class="form-control" type="text" value="tileObj.name" [(ngModel)]="name">
+            <h5 *ngIf="!editName" (click)="editName=true" class="modal-title" id="exampleModalLongTitle">&nbsp;{{tileObj.name}} </h5>
           
   
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
@@ -52,7 +53,7 @@
   
           <div class="modal-footer">
             <h5 class="" id="Title"></h5>
-            <button type="button" class="btn btn-primary">Pick The Tile</button>
+            <button (click)="setUserCheckedOut()" type="button" class="btn btn-primary">Pick The Tile</button>
           </div>
         </div>
       </div>

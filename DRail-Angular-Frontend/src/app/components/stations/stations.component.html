@@ -1,12 +1,12 @@
-<div class=floating-box>
+<div class="floating-box">
     <div *ngFor="let station of stations">
         <app-station-view [station]="station"></app-station-view>
         <!--<p>{{station.name}}</p>-->
     </div>
+
     <div *ngIf = "user">
         <app-add-station></app-add-station>
     </div>
+    
 </div>
-<div>
 
-</div>

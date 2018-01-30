@@ -14,6 +14,7 @@ import { ChartComponent } from '../chart/chart.component';
 import { ChartOut } from '../../models/chartout';
 import { ChartService } from '../../services/chart.service';
 import { ChartIn } from '../../models/chartin';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-station',
@@ -27,11 +28,14 @@ export class StationComponent implements OnInit {
   public static refreshStation: Subject<boolean> = new Subject();
   chartout: ChartOut = new ChartOut(null, 0);
   currChart: ChartIn;
-  station: Station; // = new Station(268, 'Station Name', null, null, [126, 127, 128], null);
+
+  station: Station;
   rails: Rail[] = [];
+  // roleId: number;
 
   constructor(
     private stationService: StationService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private dragula: DragulaService,
     private utilsService: UtilsService,
@@ -43,6 +47,8 @@ export class StationComponent implements OnInit {
         console.log('Refreshing...');
         this.getStation();
         this.getRails();
+
+        // this.roleId = this.userService.getUser().stationRoleMap[this.station.stationId].id;
       }
     );
   }
@@ -50,6 +56,7 @@ export class StationComponent implements OnInit {
   ngOnInit() {
     this.getStation();
     this.getRails();
+    // this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
 
     this.dragula.drop.subscribe(
       val => {
@@ -83,8 +90,8 @@ export class StationComponent implements OnInit {
   }
 
   showAddRail() {
-    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(resp =>
-      this.stationService.refresh()
+    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station }).subscribe(
+      // this.stationService.refresh()
     );
   }
 
