@@ -7,6 +7,8 @@ import { Data } from '@angular/router/src/config';
 import { CreateStationService } from '../../services/create-station.service';
 import { Router } from '@angular/router';
 import { window } from 'rxjs/operator/window';
+import { UserService } from '../../services/user.service';
+import { Role } from '../../models/role';
 
 export interface CreateStationModel  {
 
@@ -26,7 +28,8 @@ export class CreateStationPopComponent extends DialogComponent<CreateStationMode
   stationObj: Station;
   public name: string;
   public dueDate: number;
-  constructor(dialogService: DialogService, private createStationService: CreateStationService, private route: Router) {
+  constructor(dialogService: DialogService, private createStationService: CreateStationService,
+    private route: Router, private userService: UserService) {
     super(dialogService);
  }
 
@@ -39,7 +42,14 @@ export class CreateStationPopComponent extends DialogComponent<CreateStationMode
    let station: Station = new Station( null, this.name, null, this.dueDate, null, null);
    console.log(station.name);
    console.log(station.dueDate);
-  this.createStationService.createStation(station).subscribe(resp => this.close());
+  this.createStationService.createStation(station).subscribe(
+    resp => {
+      // this.userService.refreshUser();
+      // userService.getUser().stationRoleMap.put(response.stationid, 64)
+      this.userService.getUser().stationRoleMap[resp.stationId] = new Role(64, 'PRODUCT OWNER');
+      this.close();
+    });
+
   // this.route.navigate(['/stations?refresh=1']);
  // this.stationObj.name = this.name;
  // this.stationObj.dueDate = this.dueDate;
