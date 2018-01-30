@@ -73,7 +73,7 @@ export class StationService {
 
   getUser(username) {
     return this.http
-      .post(`${this.url}/getuser`, username, { withCredentials: true })
+      .post(`${this.url}/getuserinfo`, username, { withCredentials: true })
       .map((response: Response) => response.json());
   }
 }

@@ -16,7 +16,8 @@ export class CreateStationService {
 
   createStation(station: Station) {
     return this.http
-        .post(`${this.url}/addstation`, station, { withCredentials: true });
+        .post(`${this.url}/addstation`, station, { withCredentials: true })
+        .map((response: Response) => <Station> response.json());
   }
 
   refresh() {
