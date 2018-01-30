@@ -10,6 +10,10 @@ import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { AddRailComponent } from '../add-rail/add-rail.component';
 import { Subject } from 'rxjs/Subject';
 import { ApplicationRef } from '@angular/core';
+import { ChartComponent } from '../chart/chart.component';
+import { ChartOut } from '../../models/chartout';
+import { ChartService } from '../../services/chart.service';
+import { ChartIn } from '../../models/chartin';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -22,6 +26,8 @@ import { UserService } from '../../services/user.service';
 export class StationComponent implements OnInit {
 
   public static refreshStation: Subject<boolean> = new Subject();
+  chartout: ChartOut = new ChartOut(null, 0);
+  currChart: ChartIn;
 
   station: Station;
   rails: Rail[] = [];
@@ -34,6 +40,7 @@ export class StationComponent implements OnInit {
     private dragula: DragulaService,
     private utilsService: UtilsService,
     private dialogService: DialogService,
+    private chartSer: ChartService,
     private appRef: ApplicationRef) {
     StationComponent.refreshStation.subscribe(
       res => {
@@ -87,5 +94,19 @@ export class StationComponent implements OnInit {
       // this.stationService.refresh()
     );
   }
+
+
+  showChart(data: ChartIn) {
+    const disposable = this.dialogService.addDialog(ChartComponent, {
+      currentChart: data } ).subscribe();
+
+}
+
+
+ getChartInfo() {
+    this.chartout.stId = this.station.stationId;
+    this.chartSer.getChart(this.chartout).subscribe(
+    data => {this.currChart = data; console.log(data); this.showChart(data); });
+ }
 
 }

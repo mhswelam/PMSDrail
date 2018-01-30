@@ -1,7 +1,6 @@
 package com.revature.drail.beans;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

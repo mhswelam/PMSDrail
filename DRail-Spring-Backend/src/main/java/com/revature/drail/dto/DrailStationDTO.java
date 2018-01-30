@@ -28,9 +28,7 @@ public class DrailStationDTO {
 	public DrailStationDTO(DrailStation station) {
 		this.stationId = station.getStationId();
 		this.name = station.getName();
-//		this.timeCreated = station.getTimeCreated();
-//		this.dueDate = station.getDueDate().getTime();
-		this.timeCreated = station.getDueDate();
+		this.timeCreated = station.getTimeCreated();
 		this.dueDate = station.getDueDate();
 		if (station.getRails() != null) {
 			for(DrailRail rail : station.getRails()) {

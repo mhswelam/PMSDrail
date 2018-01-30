@@ -31,7 +31,8 @@ export class TilepopComponent extends DialogComponent<ConfirmModel, boolean> imp
   points: number;
 
   constructor(dialogService: DialogService, private taskSer: TaskService, private tailSer: TileService,
-    private activatedRoute: ActivatedRoute, private router: Router, private stationService: StationService, private userService: UserService) {
+    private activatedRoute: ActivatedRoute, private router: Router, private stationService: StationService,
+     private userService: UserService) {
     super(dialogService);
 
   }
