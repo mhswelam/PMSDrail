@@ -9,7 +9,8 @@
       <a class="navbar-brand">{{station.name}}</a>
       <ul class="navbar-nav">
       </ul>
-      <ul class="navbar-nav ml-auto" *ngIf="roleId == 64 || roleId == 27">
+      <ul class="navbar-nav ml-auto">
+        <!-- <ul class="navbar-nav ml-auto" *ngIf="roleId == 64 || roleId == 27"> -->
         <li class="nav-item active">
           <a class="btn btn-primary hoverable text-white" (click)="showAddRail()">+</a>
         </li>
@@ -17,8 +18,9 @@
     </nav>
 
     <!-- Rails -->
+    <!-- <div [dragula]='"bag-two"' [dragulaModel]='rails'> -->
     <div>
-      <div *ngFor="let rail of rails">
+      <div class="rail" *ngFor="let rail of rails">
         <app-rail [rail]="rail"></app-rail>
       </div>
     </div>

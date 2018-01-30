@@ -25,7 +25,7 @@ export class StationComponent implements OnInit {
 
   station: Station;
   rails: Rail[] = [];
-  roleId: number;
+  // roleId: number;
 
   constructor(
     private stationService: StationService,
@@ -41,7 +41,7 @@ export class StationComponent implements OnInit {
         this.getStation();
         this.getRails();
 
-        this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
+        // this.roleId = this.userService.getUser().stationRoleMap[this.station.stationId].id;
       }
     );
   }
@@ -49,6 +49,7 @@ export class StationComponent implements OnInit {
   ngOnInit() {
     this.getStation();
     this.getRails();
+    // this.roleId = this.userService.getUser().stationRoleMap[this.stationService.selected().stationId].id;
 
     this.dragula.drop.subscribe(
       val => {
@@ -82,7 +83,7 @@ export class StationComponent implements OnInit {
   }
 
   showAddRail() {
-    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station}).subscribe(
+    const disposable = this.dialogService.addDialog(AddRailComponent, { station: this.station }).subscribe(
       // this.stationService.refresh()
     );
   }

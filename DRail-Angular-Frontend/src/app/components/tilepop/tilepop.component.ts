@@ -9,6 +9,7 @@ import { ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StationService } from '../../services/station.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { UserService } from '../../services/user.service';
 
 export interface ConfirmModel {
 
@@ -24,11 +25,13 @@ export interface ConfirmModel {
 export class TilepopComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel, OnInit {
 
   tileObj: Tile;
-  edit = false;
+  editName = false;
+  editPoints = false;
   name: string;
+  points: number;
 
   constructor(dialogService: DialogService, private taskSer: TaskService, private tailSer: TileService,
-    private activatedRoute: ActivatedRoute, private router: Router, private stationService: StationService) {
+    private activatedRoute: ActivatedRoute, private router: Router, private stationService: StationService, private userService: UserService) {
     super(dialogService);
 
   }
@@ -90,13 +93,25 @@ export class TilepopComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.taskSer.updateTask(task).subscribe();
   }
 
-  save() {
-    this.edit = false;
+  saveName() {
+    this.editName = false;
     if (this.tileObj.name !== this.name) {
       this.tileObj.name = this.name;
-      this.tailSer.updateTile(this.tileObj).subscribe();
-      this.stationService.refresh();
+      this.tailSer.updateTile(this.tileObj).subscribe(() => this.stationService.refresh());
     }
+  }
+
+  savePoints() {
+    this.editPoints = false;
+    if (this.tileObj.points !== this.points) {
+      this.tileObj.points = this.points;
+      this.tailSer.updateTile(this.tileObj).subscribe(() => this.stationService.refresh());
+    }
+  }
+
+  setUserCheckedOut() {
+    this.tileObj.userCheckedOutId = this.userService.getUser().userId;
+    this.tailSer.updateTile(this.tileObj).subscribe(() => this.stationService.refresh());
   }
 
 }
