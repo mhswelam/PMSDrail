@@ -44,6 +44,8 @@ import { ChartService } from './services/chart.service';
 import { ChartsModule } from 'ng2-charts';
 import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
 import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.component';
+import { InfoPasswordComponent } from './components/profile/info-password/info-password.component';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.comp
     AddtilepopComponent,
     AddUserPopComponent,
     ChartComponent,
-    AddtilepopComponent
+    AddtilepopComponent,
+    InfoPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -36,19 +36,19 @@ export class EditStationPopComponent extends DialogComponent<EditStationModel, b
   confirm() {
     // we set dialog result as true on click on confirm button,
     // then we can get dialog result from caller code
-    this.createStation.refresh();
+    //this.createStation.refresh();
     this.close();
   }
 
   updateStation() {
     console.log(this.name);
     console.log(this.dueDate);
-    if (this.name.length > 0 && this.dueDate > 0 ) {
+    if (this.name.length > 0  ) {
       this.stationObj.name = this.name;
       this.stationObj.dueDate = this.dueDate;
       console.log(this.stationObj.stationId);
       // if(this.name == this.stationObj.name &&)
-      this.stationService.updateStation(this.stationObj).subscribe(resp => this.confirm());
+      this.stationService.updateStation(this.stationObj).subscribe(resp => {this.confirm(); });
     }
   }
 }
