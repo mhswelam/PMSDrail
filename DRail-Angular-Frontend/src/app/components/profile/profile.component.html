@@ -1,53 +1,55 @@
 <div class="row" id="profile-background"> <!-- Profile Parent -->
 
-  <!-- Info Section -->
-  <div class="col-md-6"> 
 
-      <!-- Avatar Section -->
-      <div class="row"> 
-
-        <div class="col-md-4">
-            <img src="//placehold.it/200x200" alt="Profile Image">
+    <!-- Info Section -->
+    <div class="col-md-6"> 
+  
+        <!-- Avatar Section -->
+        <div class="row"> 
+  
+          <div class="col-md-4">
+              <img src="//placehold.it/200x200" alt="Profile Image">
+          </div>
+  
+          <div class="w-100"></div>
+  
+          <!-- Information Component -->
+          <div class="col-md-12">
+              <app-info-display
+                  *ngIf="profileMode == 1"></app-info-display>
+              <app-info-edit
+                  *ngIf="profileMode == 2"></app-info-edit>
+              <app-info-password
+                  *ngIf="profileMode == 3"></app-info-password>
+  
+          </div>
+  
         </div>
-
-        <div class="w-100"></div>
-
-        <!-- Information Component -->
-        <div class="col-md-12">
-            <app-info-display
-                *ngIf="profileMode == 1"></app-info-display>
-            <app-info-edit
-                *ngIf="profileMode == 2"></app-info-edit>
-            <app-info-password
-                *ngIf="profileMode == 3"></app-info-password>
-
-        </div>
-
-      </div>
-
-  </div>
-
-  <!-- *ngIf profileMode == 1 (click)="ShowProfileView" else if profileMode == 2 (click)="ShowEditView" -->
-
-  <!-- Button Section -->
-  <div class="col-md-6 btn-group-vertical"> 
-      <button type="button" class="btn btn-primary" *ngIf="profileMode == 1 || profileMode == 3" (click)="changeDisplay(2)" id="editButton">
-        <i class="fa fa-pencil"></i> &nbsp; Edit Profile Information
+  
+    </div>
+  
+    <!-- *ngIf profileMode == 1 (click)="ShowProfileView" else if profileMode == 2 (click)="ShowEditView" -->
+  
+    <!-- Button Section -->
+    <div class="col-md-6 btn-group-vertical"> 
+        <button type="button" class="btn btn-primary" *ngIf="profileMode == 1 || profileMode == 3" (click)="changeDisplay(2)" id="editButton">
+          <i class="fa fa-pencil"></i> &nbsp; Edit Profile Information
+          </button>
+        <button type="button" class="btn btn-primary" *ngIf="profileMode == 2" (click)="changeDisplay(1)" id="editButton">
+          <i class="fa fa-arrow-left"></i> &nbsp; Go Back
         </button>
-      <button type="button" class="btn btn-primary" *ngIf="profileMode == 2" (click)="changeDisplay(1)" id="editButton">
-        <i class="fa fa-arrow-left"></i> &nbsp; Go Back
+  
+        <button type="button" class="btn btn-warning" style="color: #FFF;" disabled>
+              <i class="fa fa-camera"></i> &nbsp; Upload Profile Picture
+          </button>
+  
+  
+        <button type="button" class="btn btn-danger" *ngIf="profileMode == 1 || profileMode == 2" (click)="changeDisplay(3)" id="passwordButton">
+          <i class="fa fa-remove"></i> &nbsp; Reset Password
+          </button>
+        <button type="button" class="btn btn-danger" *ngIf="profileMode == 3" (click)="changeDisplay(1)" id="passwordButton">
+          <i class="fa fa-arrow-left"></i> &nbsp; Go Back
       </button>
-
-      <button type="button" class="btn btn-warning" style="color: #FFF;" disabled>
-            <i class="fa fa-camera"></i> &nbsp; Upload Profile Picture
-        </button>
-
-
-      <button type="button" class="btn btn-danger" *ngIf="profileMode == 1 || profileMode == 2" (click)="changeDisplay(3)" id="passwordButton">
-        <i class="fa fa-remove"></i> &nbsp; Reset Password
-        </button>
-      <button type="button" class="btn btn-danger" *ngIf="profileMode == 3" (click)="changeDisplay(1)" id="passwordButton">
-        <i class="fa fa-arrow-left"></i> &nbsp; Go Back
-    </button>
+    </div>
   </div>
-</div>
+

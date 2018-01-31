@@ -4,19 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.drail.beans.DrailUser;
-import com.revature.drail.dto.DrailUserDTO;
 import com.revature.drail.repo.DrailUserRepo;
 
 @Service
-public class AddUserServiceImpl implements AddUserService{
-
+public class GetUserByUsernameImpl implements GetUserByUsernameService{
+	
 	@Autowired
 	DrailUserRepo repo;
-	
+
 	@Override
-	public void addUser(DrailUserDTO du) {
-		
-		DrailUser newUser = new DrailUser(du);
-		 repo.save(newUser);
+	public DrailUser getUserByUsername(String username) {
+		return repo.findByUsername(username);
 	}
+	
+	
 }

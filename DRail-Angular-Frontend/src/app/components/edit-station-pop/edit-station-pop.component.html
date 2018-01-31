@@ -8,12 +8,11 @@
           </button>
         </div>
         <div class="modal-body">
-            Station Name: <input [(ngModel)]="name" class="form-control" type="text" id="name" value="stationObj.name"><br>
+            Station Name: <input [(ngModel)]="name" class="form-control" type="text" id="name" value="[(stationObj.name)]"><br>
             End Date of Sprint: <input [(ngModel)]="dueDate" class="form-control" dueDate="date" type="date" value="stationObj.dueDate">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="confirm()">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateStation()">Update Station</button>
+          <button type="button" class="btn btn-primary"  (click)="this.updateStation()">Update Station</button>
         </div>
       </div>
     </div>
