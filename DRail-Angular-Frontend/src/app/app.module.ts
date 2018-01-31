@@ -46,7 +46,6 @@ import { AddtilepopComponent } from './components/addtilepop/addtilepop.componen
 import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.component';
 import { InfoPasswordComponent } from './components/profile/info-password/info-password.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

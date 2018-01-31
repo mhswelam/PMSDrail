@@ -23,12 +23,15 @@ export class InfoPasswordComponent  extends ProfileComponent {
 
   password: string;
   cPassword: string;
+
   passAlert;
+
 
   constructor(formBuilder: FormBuilder, userService: UserService, profileService: ProfileService) {
     super(userService, profileService);
 
     this.form = formBuilder.group ({
+
       'password':  [null,
         Validators.compose([
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&~])[A-Za-z0-9$@$!%*?&]{8,}'),
@@ -54,6 +57,7 @@ export class InfoPasswordComponent  extends ProfileComponent {
     }
     this.form.get('cPassword').setValidators([Validators.pattern(this.password), Validators.required]);
   }
+
 
   saveNewPassword() {
     this.statusMessage = '';

@@ -28,10 +28,12 @@ export class CreateStationPopComponent extends DialogComponent<CreateStationMode
   stationObj: Station;
   public name: string;
   public dueDate: number;
+
   constructor(dialogService: DialogService, private createStationService: CreateStationService, private route: Router,
      private userService: UserService) {
     super(dialogService);
-  }
+ }
+
 
   confirm() {
     // we set dialog result as true on click on confirm button,
@@ -42,6 +44,7 @@ export class CreateStationPopComponent extends DialogComponent<CreateStationMode
     let station: Station = new Station( null, this.name, null, this.dueDate, null, null);
     console.log(station.name);
     console.log(station.dueDate);
+
 
     if (typeof station.name !== 'undefined' && typeof station.dueDate !== 'undefined') {
        this.createStationService.createStation(station).subscribe(
