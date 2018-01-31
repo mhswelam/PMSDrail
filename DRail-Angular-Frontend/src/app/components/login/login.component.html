@@ -1,0 +1,58 @@
+<div *ngIf="failedLogin" class="alert alert-danger alert-dismissible fade show animated fadeInDown" role="alert">
+  <h4 class="alert-heading">{{failedLoginHeader}}</h4>
+  <p>{{failedLoginMessage}}</p>
+  <button (click)="setFailedLoginFalse()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div> 
+ 
+<div *ngIf="registerStatus" class="alert alert-success alert-dismissible fade show" role="alert">
+  <h4 class="alert-heading">Successful Register!</h4>
+  <p>Welcome To Drail Please Login</p>
+  <button (click)="setRegisterStatusFalse()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>  
+
+ 
+ <form class="margin-top" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    
+    <div class="form-group col-6 offset-3">
+        
+        <label for="username">
+          Username
+        </label>
+     
+        <input [ngModel]="username" (keyup)="checkLength()" maxlength="15" pattern="[a-zA-Z0-9]*"  id="username" name="username" class="form-control" type="text" placeholder="Username" formControlName="username">
+        
+        <div class="alert-danger animated fadeInDown" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">
+          {{alert}}
+        </div>
+
+      </div>
+
+      <div class="form-group col-6 offset-3">
+          <label for="password">
+              Password
+            </label>
+
+            <input [value]="fPassword" id="password" name="password" class="form-control" type="password" placeholder="password" formControlName="fPassword">
+           <div class="alert-danger animated fadeInDown" *ngIf="!rForm.controls['fPassword'].valid && rForm.controls['fPassword'].touched">
+             Enter Password
+           </div>
+      </div>
+
+      <div class="row">
+      <input type="submit" class="btn btn-primary col-3 offset-3" name="login" id="login" value={{loginLabel}} [disabled]="!rForm.valid">
+      
+      <button type="button"  routerLink="/register" class="btn btn-secondary col-3 " name="register" id="register">{{registerLabel}}</button>
+      </div>
+  </form>
+
+
+<!-- <ng-template #forminfo>
+
+    <h1>{{username}}</h1>
+    <h1>{{fPassword}}</h1>
+
+</ng-template> -->

@@ -1,0 +1,7 @@
+.floating-box * {
+    display: inline-block;
+    width: 200px;
+    height: 75px;
+    margin: 10px;
+}
+
