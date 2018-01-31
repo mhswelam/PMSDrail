@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login.service';
 import { Response } from '@angular/http/src/static_response';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
+import { RegisterService } from '../../services/register.service';
 
 
 @Component({
@@ -15,6 +16,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginLabel = 'Login To Drail';
+  registerLabel = 'Register With Drail';
+  registerStatus;
   failedLogin;
   failedLogingHeader;
   failedLoginMessage;
@@ -25,7 +28,9 @@ export class LoginComponent implements OnInit {
   username;
   random;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private userService: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private loginService: LoginService,
+     private userService: UserService, private registerService: RegisterService,
+     private router: Router) {
 
     this.rForm = fb.group({
       'username':  [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(15)])],
@@ -49,6 +54,7 @@ export class LoginComponent implements OnInit {
     this.failedLogin = false;
     this.fPassword = '';
     this.username = '';
+    this.registerStatus = this.registerService.getRegisterSucessful();
   }
 
 
@@ -68,10 +74,11 @@ export class LoginComponent implements OnInit {
          this.fPassword = '';
          this.failedLogin = true;
          this.failedLogingHeader = 'Failed Login!';
-         this.failedLoginMessage = 'This username and password combination was not found in our database please try again'; }else {
+         this.failedLoginMessage = 'This username and password combination was not found in our database please try again'; 
+        }else {
          this.failedLogingHeader = 'Connection Error!';
          this.failedLoginMessage = 'There was a problem with the connection to the database we apologize';
-          this.userService.setUser(null);
+         this.userService.setUser(null);
          this.failedLogin = true; }
          }
       );
@@ -92,6 +99,10 @@ export class LoginComponent implements OnInit {
 
 setFailedLoginFalse() {
   this.failedLogin = false;
+}
+
+setRegisterStatusFalse() {
+  this.registerStatus = false;
 }
 
 }

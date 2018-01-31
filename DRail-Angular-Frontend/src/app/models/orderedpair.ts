@@ -1,9 +1,9 @@
 export class OrderedPair {
-    public x: number;
-    public y: number;
+    public label: number;
+    public value: number;
 
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
+    constructor(label: number, value: number) {
+        this.label = label;
+        this.value = value;
     }
 }

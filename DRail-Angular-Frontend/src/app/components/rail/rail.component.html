@@ -1,14 +1,14 @@
-<div class="card card-body">
+<div class="div-thin card card-body black-border">
   <!-- Navbar -->
 
   <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href="#">{{rail.name}}</a>
+    <a class="navbar-brand" (click)="showUpdateRail()">{{rail.name}}</a>
     <ul class="navbar-nav">
 
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" *ngIf="roleId == 64 || roleId == 27">
       <li class="nav-item active">
-        <a class="btn btn-primary" href="#">+</a>
+        <button type="button" class="btn btn-primary" (click)="createTileDialog()">+</button>
       </li>
     </ul>
   </nav>
@@ -18,5 +18,15 @@
     <div *ngFor="let tile of tiles">
       <app-tile-details [tile]="tile"></app-tile-details>
     </div>
+    <div *ngIf="tiles.length===0">
+       
+        <div class="card no-border">
+            <div class="card-body text-center">
+              <h4 class="card-title"></h4>
+              <div class="dropdown-divider"></div>
+            </div>
+          </div>
+
+      </div>
   </div>
 </div>

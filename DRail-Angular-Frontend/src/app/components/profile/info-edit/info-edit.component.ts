@@ -43,9 +43,11 @@ export class InfoEditComponent extends ProfileComponent {
       response => {
         this.userService.setUser(updatedUser);
         if (response.status === 200) {
-          this.statusMessage = 'Profile updated Successfully!';
+          this.statusMessage = 'Profile updated successfully!';
+          document.getElementById('profileStatus').setAttribute('style', 'color:green;');
         } else {
-          this.statusMessage = 'There was an error processing your request.';
+          this.statusMessage = 'There was an error processing your request';
+          document.getElementById('profileStatus').setAttribute('style', 'color:red;');
         }
       }
     );

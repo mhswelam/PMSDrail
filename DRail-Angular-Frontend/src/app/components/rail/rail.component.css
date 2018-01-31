@@ -8,6 +8,28 @@
     display: inline-block;
   }
 
+  .div-thin{
+    height: 235px;
+  }
+
   .tile-detail-card {
     padding: .5% 1.5%;
   }
+
+.black-border{
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-width: 1px;
+  border-color: rgb(179, 179, 179);
+}
+
+.no-border{
+  border-width: 0px;
+}
+
+.navbar{
+  border: 1px solid violet;
+  margin-bottom: 10px;
+}
+
+

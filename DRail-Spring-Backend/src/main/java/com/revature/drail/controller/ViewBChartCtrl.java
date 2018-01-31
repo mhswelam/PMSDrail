@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.drail.dto.DrailChartDTO;
+import com.revature.drail.dto.DrailChartOutDTO;
 import com.revature.drail.service.GetBChartService;
 
 @RestController
@@ -23,16 +24,16 @@ public class ViewBChartCtrl {
 	
 	
 	@PostMapping("/viewchart")
-	public ResponseEntity<DrailChartDTO<Long, Integer>> viewBChart(@RequestBody DrailChartDTO<Long, Integer> chartDto, HttpSession session) {
+	public ResponseEntity<DrailChartOutDTO> viewBChart(@RequestBody DrailChartDTO chartDto, HttpSession session) {
 		
 		if (session.getAttribute("user") != null) {
 			
-			return new ResponseEntity<DrailChartDTO<Long, Integer>>(chartServ.getChartDto(chartDto),HttpStatus.OK);
+			return new ResponseEntity<DrailChartOutDTO>(chartServ.getChartDto(chartDto),HttpStatus.OK);
 		} else {
-			return new ResponseEntity<DrailChartDTO<Long, Integer>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<DrailChartOutDTO>(HttpStatus.NO_CONTENT);
 		}
 		
-		
+
 	}
 	
 	

@@ -45,6 +45,9 @@ public class ViewTileCtrl {
 				return new ResponseEntity<DrailTileDTO>(HttpStatus.NO_CONTENT);
 			}else {
 				DrailTileDTO dtDto = new DrailTileDTO(dt);
+				if (dtDto != null) {
+					Collections.sort(dtDto.getTasks());
+				}
 				return new ResponseEntity<DrailTileDTO>(dtDto,HttpStatus.OK);
 			}
 		}

@@ -1,12 +1,43 @@
-.margin-top{
-    margin-top: 10rem;
-}
-
-.headerSize{
-    height: 100px;
-    width: 100%;
-}
-
 .form-control.ng-touched.ng-invalid{
-border: 2px solid red;
+    border-left: 8px solid red;
  }
+
+ .form-control.ng-touched.ng-valid{
+    border-left: 8px solid green;
+ }
+
+ .margin-top{
+     margin-top: 140px;
+ }
+
+ .btn-primary{
+     margin-top: 10px;
+     background-color: rgba(0, 167, 84, 0.582) ;
+     border-color: blue;
+     white-space: normal;
+ }
+
+ .btn-secondary{
+     margin-top: 10px;
+     background-color: rgb(121, 77, 223);
+     border-color: violet;
+     white-space: normal;
+ }
+
+ 
+ .btn.btn-primary[disabled] {
+    margin-top: 10px;
+    background-color: #8a0000;
+    border-color: red;
+}
+
+@keyframes fadeInDown {
+    0% {
+       opacity: 0;
+       transform: translateY(-20px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateY(0);
+    }
+ } 

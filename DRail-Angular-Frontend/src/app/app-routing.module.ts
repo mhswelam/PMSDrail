@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'main', component: MainViewComponent },
-  { path: 'station/test', component: StationComponent},
+  { path: 'station', component: StationComponent},
   { path: 'stations', component: StationsComponent}
 ];
 

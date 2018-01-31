@@ -10,7 +10,7 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public isEditing = false;
+  profileMode: number;
 
   firstname: string;
   lastname: string;
@@ -28,14 +28,10 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.profileMode = 1;
   }
 
-  public changeDisplay() {
-    this.isEditing = !this.isEditing;
-    if (this.isEditing) {
-      document.getElementById('editButton').innerHTML = '<i class="fa fa-arrow-left"></i> &nbsp; Go Back';
-    } else {
-      document.getElementById('editButton').innerHTML = '<i class="fa fa-pencil"></i> &nbsp; Edit Profile Information';
-    }
+  public changeDisplay(val: number) {
+    this.profileMode = val;
   }
 }

@@ -7,4 +7,34 @@
     width: auto;
   }
 
+ .navbar-light{
+  color: red;
+  background-color: red;
+ }
+ .navbar{
+   color: white;
+   background-color: #ff00009c
+ }
+
+ .btn-outline-primary{
+   color: white;
+   border-color: rgba(153, 130, 238, 0.678);
+ }
+
+ .btn-outline-primary:hover{
+  background-color: rgba(95, 184, 187, 0.507)
+ }
+
+ .btn-outline-secondary{
+   color: rgb(255, 255, 255);
+   border-color: rgba(0, 255, 128, 0.432);
+ }
+
+ .btn-outline-primary:hover{
+  border-color: rgba(0, 255, 128, 0.432);
+ }
+
+
+
+
   

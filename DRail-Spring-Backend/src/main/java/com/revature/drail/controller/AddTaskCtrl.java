@@ -17,6 +17,7 @@ public class AddTaskCtrl {
 	
 	@Autowired
 	AddTaskService service;
+
 	
 	/**
 	 * Persists [taskDTO] as a DrailTask
@@ -27,8 +28,10 @@ public class AddTaskCtrl {
 	@PostMapping("/addtask")
 	public ResponseEntity<?> addTask(@RequestBody DrailTaskDTO taskDTO, HttpSession session) {
 		if (session.getAttribute("user") != null) {
-			service.saveTask(taskDTO);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			if (service.saveTask(taskDTO)) {
+				return new ResponseEntity<>(HttpStatus.CREATED);
+			}
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	}

@@ -33,9 +33,18 @@ import { GetStationsService } from './services/get-stations.service';
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
-import { DragulaModule } from 'ng2-dragula/components/dragular.module';
+import { UtilsService } from './services/utils.service';
 import { CreateStationPopComponent } from './components/create-station-pop/create-station-pop.component';
-
+import { CreateStationService } from './services/create-station.service';
+import { AddRailComponent } from './components/add-rail/add-rail.component';
+import { UpdateRailComponent } from './components/update-rail/update-rail.component';
+import { EditStationPopComponent } from './components/edit-station-pop/edit-station-pop.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartService } from './services/chart.service';
+import { ChartsModule } from 'ng2-charts';
+import { AddtilepopComponent } from './components/addtilepop/addtilepop.component';
+import { AddUserPopComponent } from './components/add-user-pop/add-user-pop.component';
+import { InfoPasswordComponent } from './components/profile/info-password/info-password.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +64,15 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
     StationsComponent,
     AddStationComponent,
     CreateStationPopComponent,
-    AddStationComponent
+    AddStationComponent,
+    AddRailComponent,
+    UpdateRailComponent,
+    EditStationPopComponent,
+    AddtilepopComponent,
+    AddUserPopComponent,
+    ChartComponent,
+    AddtilepopComponent,
+    InfoPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -65,11 +82,15 @@ import { CreateStationPopComponent } from './components/create-station-pop/creat
     HttpModule,
     HttpClientModule,
     DragulaModule,
+    ChartsModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
+
   providers: [ LoginService, UserService, ProfileService, LogoutService, StationService, RailService, RegisterService, GetStationsService,
-    TileService, TaskService],
-  entryComponents: [TilepopComponent],
+    TileService, TaskService, CreateStationService, UtilsService, ChartService],
+  entryComponents: [TilepopComponent, CreateStationPopComponent, AddRailComponent, UpdateRailComponent, EditStationPopComponent, 
+    AddtilepopComponent, AddUserPopComponent, ChartComponent],
+
 
   bootstrap: [AppComponent]
 })
