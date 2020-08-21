@@ -144,7 +144,9 @@ public class DrailStation {
 	@Override
 	public String toString() {
 		return "DrailStation [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated + ", dueDate="
-				+ dueDate + ", userRoleMap=" + userRoleMap.entrySet() + ", rails=" + rails.size() + "]";
+   Drail_viewstations_v1.8B
+				+ dueDate;
+
 	}
 
 

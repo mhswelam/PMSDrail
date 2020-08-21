@@ -1,5 +1,10 @@
 package com.revature.drail.controller;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,39 +13,52 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.dto.DrailStationViewDTO;
 import com.revature.drail.dto.DrailStationsDTO;
+import com.revature.drail.repo.DrailUserRepo;
 import com.revature.drail.service.GetStationsService;
+
+
 /**
  * 
  * @author cristian hermida
  *
  */
+
 @RestController
 public class GetStationsCtlr {
 	
 	@Autowired
 	GetStationsService duService;
 
-	/**
-	 * This will return a list of DrailStationViewDTO.
-	 * If does not exist it will return an HTTP status of UNAUTHORIZED
-	 * @param session
-	 * @return List of DrailStationViewDTO and status 200, or 401 if session is invalid
-	 */
+	
+	
+	@Autowired
+	DrailUserRepo userRepo;
+
 	@GetMapping("/getstations")
 	public ResponseEntity<DrailStationsDTO> getStations(HttpSession session) {
-		if (session == null) {
-			return new ResponseEntity<DrailStationsDTO>(HttpStatus.UNAUTHORIZED);
-		}else {
-			DrailStationsDTO userStations = duService.getStations((DrailUser)session.getAttribute("user"));
-			if (userStations != null) {
-				return new ResponseEntity<DrailStationsDTO>(userStations , HttpStatus.OK);
-			} else {
-				return new ResponseEntity<DrailStationsDTO>( HttpStatus.NO_CONTENT);
-			}
+		
+		DrailUser currentUser = (DrailUser) session.getAttribute("user");
+		List<DrailStationViewDTO> dsvDTO= new ArrayList<>();
+		
+		Set<DrailStation> dsSet = currentUser.getStations();
+		System.out.println(dsSet);
+		for(DrailStation ds : dsSet)
+		{
 			
+			dsvDTO.add(new DrailStationViewDTO(ds));		
 		}
+		System.out.println(dsvDTO);
+		DrailStationsDTO userStations = new DrailStationsDTO();
+		userStations.setStations(dsvDTO);
+		
+		return new ResponseEntity<DrailStationsDTO>(userStations,HttpStatus.ACCEPTED);
+		
+
 	}
 
 }
