@@ -1,5 +1,7 @@
 package com.revature.drail.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,27 @@ public class AddStationCtrl {
 
 	@Autowired
 	AddStationService dsService;
-	
+
 	@PostMapping("/addstation")
-	public ResponseEntity<DrailStationDTO> addStation(@RequestBody DrailStation ds,HttpSession session) {
+	public ResponseEntity<DrailStationDTO> addStation(@RequestBody DrailStationDTO ds,HttpSession session) {
 		try {
 			DrailUser du = (DrailUser) session.getAttribute("user");
 			
 			if(du!=null) {
-			DrailStationDTO stationDTO = dsService.addStation(du, ds);
-			return new ResponseEntity<DrailStationDTO>(stationDTO,HttpStatus.CREATED);
-																				}
-			
+				DrailStation station = new DrailStation();
+				station.setName(ds.getName());
+				station.setDueDate(ds.getDueDate());
+				station = dsService.addStation(du, station);
+				session.setAttribute("station", station);
+			    station = dsService.addStation(du, station);
+			    return new ResponseEntity<DrailStationDTO>(new DrailStationDTO(station),HttpStatus.CREATED);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<DrailStationDTO>(HttpStatus.CONFLICT);
 		}
-		
 		return new ResponseEntity<DrailStationDTO>(HttpStatus.UNAUTHORIZED);
+	
 	}
 	
-}
+}   

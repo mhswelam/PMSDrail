@@ -1,6 +1,5 @@
 package com.revature.drail.beans;
 
-import java.security.Timestamp;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.revature.drail.dto.DrailTileDTO;
 
 @Entity
 @Table(name="DRAIL_TILE")
@@ -54,11 +56,11 @@ public class DrailTile {
 	private DrailUser userCheckedOut;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="TILE_R_ID")
 	private DrailRail rail;
 	
-	@OneToMany(mappedBy="tile", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="tile", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<DrailTask> task = new ArrayList<DrailTask>();
 	
 	public DrailTile() {
@@ -77,21 +79,41 @@ public class DrailTile {
 		this.rail = rail;
 		this.task = task;
 	}
+	
+	public DrailTile(DrailTileDTO dto) {
+		super();
+		this.tileId = dto.getTileId();
+		this.name = dto.getName();
+		this.points = dto.getPoints();
+		this.note = dto.getNote();
+		this.completed = dto.isCompleted() ? 1 : 0;
+		this.order = dto.getOrder();
+		//this.userCheckout = set in the Ctrl
+		
+		this.rail = new DrailRail();
+		this.rail.setRailId(dto.getRailId());
+		
+		//Task...shouldn't change?
+	}
 	public int getTileId() {
 		return tileId;
 	}
+	@Required
 	public void setTileId(int tileId) {
 		this.tileId = tileId;
 	}
 	public String getName() {
 		return name;
 	}
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int getPoints() {
 		return points;
 	}
+	@Required
 	public void setPoints(int points) {
 		this.points = points;
 	}
@@ -116,6 +138,7 @@ public class DrailTile {
 	public int getOrder() {
 		return order;
 	}
+	@Required
 	public void setOrder(int order) {
 		this.order = order;
 	}

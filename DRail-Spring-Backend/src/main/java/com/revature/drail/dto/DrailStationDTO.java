@@ -3,20 +3,24 @@ package com.revature.drail.dto;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.beans.DrailUserRole;
 
 public class DrailStationDTO {
 
 	private int stationId;
 	private String name;
-	private Timestamp timeCreated;
+	private Date timeCreated;
 	private Date dueDate;
-	private List<DrailRail> rails = new ArrayList<>();
-	private List<DrailUserDTO> users = new ArrayList<>();
+	private List<Integer> railIds = new ArrayList<>();
+//	private List<Integer> userIds = new ArrayList<>();
+	private Map<Integer, DrailUserRole> userRoleMap = new HashMap<>();
 	
 	public DrailStationDTO() {
 	}
@@ -26,22 +30,27 @@ public class DrailStationDTO {
 		this.name = station.getName();
 		this.timeCreated = station.getTimeCreated();
 		this.dueDate = station.getDueDate();
-		this.rails = station.getRails();
-		for(DrailUser user : station.getUsers()) {
-			users.add(new DrailUserDTO(user));
+		if (station.getRails() != null) {
+			for(DrailRail rail : station.getRails()) {
+				this.railIds.add(rail.getRailId());
+			}
+		}
+		if (station.getUserRoleMap().keySet() != null) {
+			for(DrailUser user : station.getUserRoleMap().keySet()) {
+				this.userRoleMap.put(user.getUserId(), station.getUserRoleMap().get(user));
+			}
 		}
 	}
-	
-	
 
-	public DrailStationDTO(int stationId, String name, Timestamp timeCreated, Date dueDate, List<DrailRail> rails,
-			List<DrailUserDTO> users) {
+	public DrailStationDTO(int stationId, String name, Date timeCreated, Date dueDate, List<Integer> railIds,
+			Map<Integer, DrailUserRole> userRoleMap) {
+		super();
 		this.stationId = stationId;
 		this.name = name;
 		this.timeCreated = timeCreated;
 		this.dueDate = dueDate;
-		this.rails = rails;
-		this.users = users;
+		this.railIds = railIds;
+		this.userRoleMap = userRoleMap;
 	}
 
 	public int getStationId() {
@@ -60,11 +69,11 @@ public class DrailStationDTO {
 		this.name = name;
 	}
 
-	public Timestamp getTimeCreated() {
+	public Date getTimeCreated() {
 		return timeCreated;
 	}
 
-	public void setTimeCreated(Timestamp timeCreated) {
+	public void setTimeCreated(Date timeCreated) {
 		this.timeCreated = timeCreated;
 	}
 
@@ -76,29 +85,26 @@ public class DrailStationDTO {
 		this.dueDate = dueDate;
 	}
 
-	public List<DrailRail> getRails() {
-		return rails;
+	public List<Integer> getRailIds() {
+		return railIds;
 	}
 
-	public void setRails(List<DrailRail> rails) {
-		this.rails = rails;
+	public void setRailIds(List<Integer> railIds) {
+		this.railIds = railIds;
 	}
 
-	public List<DrailUserDTO> getUsers() {
-		return users;
+	public Map<Integer, DrailUserRole> getUserRoleMap() {
+		return userRoleMap;
 	}
 
-	public void setUsers(List<DrailUserDTO> users) {
-		this.users = users;
+	public void setUserRoleMap(Map<Integer, DrailUserRole> userRoleMap) {
+		this.userRoleMap = userRoleMap;
 	}
 
 	@Override
 	public String toString() {
 		return "DrailStationDTO [stationId=" + stationId + ", name=" + name + ", timeCreated=" + timeCreated
-				+ ", dueDate=" + dueDate + ", rails=" + rails + ", users=" + users + "]";
+				+ ", dueDate=" + dueDate + ", railIds=" + railIds + ", userRoleMap=" + userRoleMap + "]";
 	}
-	
-	
-	
-	
+
 }

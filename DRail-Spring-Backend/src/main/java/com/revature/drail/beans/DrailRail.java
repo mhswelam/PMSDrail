@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -35,11 +37,11 @@ public class DrailRail {
 	private int order;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="RAIL_S_ID")
 	private DrailStation station;
 	
-	@OneToMany(mappedBy="rail", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="rail", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<DrailTile> tiles = new ArrayList<>();
 	
 	public DrailRail() {
@@ -53,11 +55,15 @@ public class DrailRail {
 		this.station = station;
 		this.tiles = tiles;
 	}
+	
+	public DrailRail(int id) {
+		this.railId = id;
+	}
 
 	public int getRailId() {
 		return railId;
 	}
-
+	@Required
 	public void setRailId(int railId) {
 		this.railId = railId;
 	}
@@ -65,7 +71,7 @@ public class DrailRail {
 	public String getName() {
 		return name;
 	}
-
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -73,7 +79,7 @@ public class DrailRail {
 	public int getOrder() {
 		return order;
 	}
-
+	@Required
 	public void setOrder(int order) {
 		this.order = order;
 	}
@@ -81,7 +87,7 @@ public class DrailRail {
 	public DrailStation getStation() {
 		return station;
 	}
-
+	@Required
 	public void setStation(DrailStation station) {
 		this.station = station;
 	}

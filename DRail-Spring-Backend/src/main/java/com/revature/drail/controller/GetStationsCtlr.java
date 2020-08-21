@@ -1,5 +1,6 @@
 package com.revature.drail.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailUser;
 import com.revature.drail.dto.DrailStationViewDTO;
@@ -19,11 +21,19 @@ import com.revature.drail.dto.DrailStationsDTO;
 import com.revature.drail.repo.DrailUserRepo;
 import com.revature.drail.service.GetStationsService;
 
+
+/**
+ * 
+ * @author cristian hermida
+ *
+ */
+
 @RestController
 public class GetStationsCtlr {
 	
 	@Autowired
 	GetStationsService duService;
+
 	
 	
 	@Autowired
@@ -48,6 +58,7 @@ public class GetStationsCtlr {
 		
 		return new ResponseEntity<DrailStationsDTO>(userStations,HttpStatus.ACCEPTED);
 		
+
 	}
 
 }

@@ -1,34 +1,41 @@
 package com.revature.drail.dto;
 
-public class OrderedPair<X, Y> {
+public class OrderedPair {
 		
-	private X x;
-	private Y y;
+	private long label;
+	private int value;
 		
-	public OrderedPair(X x, Y y) {
-			this.x = x;
-			this.y = y;
+    public OrderedPair() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public X getX() {
-		return x;
+	public OrderedPair(long label, int value) {
+		super();
+		this.label = label;
+		this.value = value;
 	}
 
-	public void setX(X x) {
-		this.x = x;
+	public long getLabel() {
+		return label;
 	}
 
-	public Y getY() {
-		return y;
+	public void setLabel(long label) {
+		this.label = label;
 	}
 
-	public void setY(Y y) {
-		this.y = y;
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderedPair [x=" + x + ", y=" + y + "]";
+		return "OrderedPair [label=" + label + ", value=" + value + "]";
 	}
-	
+    
+    
+    
 }

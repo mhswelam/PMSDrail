@@ -1,6 +1,6 @@
 package com.revature.drail.controller;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.drail.beans.DrailRail;
 import com.revature.drail.beans.DrailStation;
 import com.revature.drail.beans.DrailTile;
 import com.revature.drail.beans.DrailUser;
+import com.revature.drail.beans.DrailUserRole;
+import com.revature.drail.dto.DrailTileDTO;
 import com.revature.drail.service.AddTileService;
+import com.revature.drail.service.GetStationService;
 
 /**
  * 
@@ -26,24 +28,40 @@ public class AddTileCtrl {
 	
 	@Autowired
 	AddTileService tsService;
+	@Autowired
+	GetStationService stnService;
 	
 	/**
 	 * Adds a tile to a rail
-	 * @param dt - The tile to be created
-	 * @return
+	 * @param dto - The tile to be created. Must send the current Rail ID
+	 * @return 401 if the currentUser is null and if the currentUser isn't the role of SCRUM_MASTER;
+	 * 201 if the tile was created successfully;
+	 * or 409 if there was a conflict.
+	 * 
 	 */
 	@PostMapping("/addtile")
-	public ResponseEntity<DrailTile> addTile(@RequestBody DrailTile dt) {
+	public ResponseEntity<DrailTile> addTile(@RequestBody DrailTileDTO dto, HttpSession session) {
+		
+		DrailUser currentUser = (DrailUser)session.getAttribute("user");
+		if (currentUser == null) return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
+		
+		DrailStation station;
+		DrailUserRole role;
 		try {
-			//TODO Get User Session
-			DrailUser du = new DrailUser("test", "pass", "test", "user", "test@user.com");
-			du.setUserId(107);
+			station = stnService.getStationByRail(dto.getRailId());
+			role =  currentUser.getStationRoleMap().get(station);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<DrailTile>(HttpStatus.CONFLICT);
+		}
+		
+		if (role != null && role.getId() != DrailUserRole.SCRUM_MASTER.getId() && role.getId() != DrailUserRole.PRODUCT_OWNER.getId()) {
+			return new ResponseEntity<DrailTile>(HttpStatus.UNAUTHORIZED);
+		}
 			
-			//TODO Get the current Rail, somehow. 
-			DrailRail dr = new DrailRail();
-			dr.setRailId(1);
-			
-			tsService.addTile(dt, dr, du);
+		try {
+			DrailTile tile = new DrailTile(dto);
+			tsService.addTile(tile);
 			return new ResponseEntity<DrailTile>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
